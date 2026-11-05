@@ -1,9 +1,11 @@
+"use client";
+
+import Hero from "@/sections/Hero";
+
 export default function Home() {
   return (
-    <main>
-      <div>
-        <h1 className="text-3xl underline">Welcome to my portfolio</h1>
-      </div>
-    </main>
+    <>
+      <Hero />
+    </>
   );
 }
