@@ -1,6 +1,7 @@
 "use client";
 
 import NavBar from "@/components/HeroModels/NavBar";
+import LogoSection from "@/components/LogoSection";
 import Showcase from "@/components/Showcase";
 import Hero from "@/sections/Hero";
 
@@ -10,6 +11,7 @@ export default function Home() {
       <NavBar />
       <Hero />
       <Showcase />
+      <LogoSection />
     </>
   );
 }

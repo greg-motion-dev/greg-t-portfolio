@@ -14,6 +14,11 @@ export interface CounterItem {
   readonly label: string;
 }
 
+export interface LogoIcon {
+  readonly imgPath: string;
+  readonly alt?: string;
+}
+
 export const navLinks: readonly NavLink[] = [
   {
     name: "Work",
@@ -49,4 +54,18 @@ export const counterItems: readonly CounterItem[] = [
   { value: 50, suffix: "+", label: "Web Projects & Apps Delivered" },
   { value: 6, suffix: "+", label: "Years Leading Teams & Web Strategy" },
   { value: 100, suffix: "%", label: "TypeScript & Interactive Stack" },
+] as const;
+
+export const logoIconsList: readonly LogoIcon[] = [
+  { imgPath: "/images/logos/company-logo-1.png" },
+  { imgPath: "/images/logos/company-logo-2.png" },
+  { imgPath: "/images/logos/company-logo-3.png" },
+  { imgPath: "/images/logos/company-logo-4.png" },
+  { imgPath: "/images/logos/company-logo-5.png" },
+  { imgPath: "/images/logos/company-logo-6.png" },
+  { imgPath: "/images/logos/company-logo-7.png" },
+  { imgPath: "/images/logos/company-logo-8.png" },
+  { imgPath: "/images/logos/company-logo-9.png" },
+  { imgPath: "/images/logos/company-logo-10.png" },
+  { imgPath: "/images/logos/company-logo-11.png" },
 ] as const;
