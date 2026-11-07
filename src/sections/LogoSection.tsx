@@ -1,0 +1,37 @@
+"use client";
+
+import React from "react";
+import { logoIconsList, LogoIcon as LogoIconType } from "@/constants";
+
+interface LogoIconProps {
+  icon: LogoIconType;
+}
+
+const LogoIcon: React.FC<LogoIconProps> = ({ icon }) => {
+  return (
+    <div className="flex-none flex-center marquee-item">
+      <img src={icon.imgPath} alt={icon.alt ?? "company logo"} />
+    </div>
+  );
+};
+
+const LogoSection: React.FC = () => {
+  return (
+    <div className="md:my-20 my-10 relative">
+      <div className="gradient-edge" />
+      <div className="gradient-edge" />
+      <div className="marquee h-52">
+        <div className="marquee-box md:gap-12 gap-5">
+          {logoIconsList.map((icon, index) => (
+            <LogoIcon key={`first-${icon.imgPath}-${index}`} icon={icon} />
+          ))}
+          {logoIconsList.map((icon, index) => (
+            <LogoIcon key={`second-${icon.imgPath}-${index}`} icon={icon} />
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default LogoSection;
