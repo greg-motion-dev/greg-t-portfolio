@@ -1,7 +1,37 @@
+export interface NavLink {
+  readonly name: string;
+  readonly link: string;
+}
+
 export interface WordItem {
   readonly text: string;
   readonly imgPath: string;
 }
+
+export interface CounterItem {
+  readonly value: number;
+  readonly suffix: string;
+  readonly label: string;
+}
+
+export const navLinks: readonly NavLink[] = [
+  {
+    name: "Work",
+    link: "#work",
+  },
+  {
+    name: "Experience",
+    link: "#experience",
+  },
+  {
+    name: "Skills",
+    link: "#skills",
+  },
+  {
+    name: "Testimonials",
+    link: "#testimonials",
+  },
+] as const;
 
 export const words: readonly WordItem[] = [
   { text: "Ideas", imgPath: "/images/ideas.svg" },
@@ -13,12 +43,6 @@ export const words: readonly WordItem[] = [
   { text: "Designs", imgPath: "/images/designs.svg" },
   { text: "Code", imgPath: "/images/code.svg" },
 ] as const;
-
-export interface CounterItem {
-  readonly value: number;
-  readonly suffix: string;
-  readonly label: string;
-}
 
 export const counterItems: readonly CounterItem[] = [
   { value: 12, suffix: "+", label: "Years Building Web Platforms" },
