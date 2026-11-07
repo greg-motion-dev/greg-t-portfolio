@@ -17,11 +17,31 @@ const Button: React.FC<ButtonProps> = ({
   href = "#",
   onClick,
 }) => {
+  const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    if (onClick) {
+      onClick(e);
+      return;
+    }
+
+    if (href.startsWith("#") && href.length > 1) {
+      e.preventDefault();
+      const targetId = href.replace("#", "");
+      const target = document.getElementById(targetId);
+
+      if (target) {
+        const offset = window.innerHeight * 0.15;
+        const top =
+          target.getBoundingClientRect().top + window.scrollY - offset;
+        window.scrollTo({ top, behavior: "smooth" });
+      }
+    }
+  };
+
   return (
     <a
       id={id}
       href={href}
-      onClick={onClick}
+      onClick={handleClick}
       className={`${className ?? ""} cta-wrapper`}
     >
       <div className="cta-button group">
