@@ -6,6 +6,7 @@ import Showcase from "@/sections/Showcase";
 import Hero from "@/sections/Hero";
 import Competencies from "@/sections/Competencies";
 import Experience from "@/sections/Experience";
+import TechStack from "@/sections/TechStack";
 
 export default function Home() {
   return (
@@ -16,6 +17,7 @@ export default function Home() {
       <LogoSection />
       <Competencies />
       <Experience />
+      <TechStack />
     </>
   );
 }

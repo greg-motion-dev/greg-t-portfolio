@@ -15,7 +15,6 @@ const Experience: React.FC = () => {
 
   useGSAP(
     () => {
-      // Animate GlowCards
       gsap.utils.toArray<HTMLElement>(".timeline-card").forEach((card) => {
         gsap.from(card, {
           xPercent: -100,
@@ -30,7 +29,6 @@ const Experience: React.FC = () => {
         });
       });
 
-      // Animate Timeline Line Progress
       gsap.to(".timeline", {
         transformOrigin: "bottom bottom",
         ease: "power1.inOut",
@@ -46,7 +44,6 @@ const Experience: React.FC = () => {
         },
       });
 
-      // Animate Experience Right-Side Text Blocks
       gsap.utils.toArray<HTMLElement>(".expText").forEach((text) => {
         gsap.from(text, {
           xPercent: 0,
