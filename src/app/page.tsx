@@ -7,6 +7,7 @@ import Hero from "@/sections/Hero";
 import Competencies from "@/sections/Competencies";
 import Experience from "@/sections/Experience";
 import TechStack from "@/sections/TechStack";
+import Contact from "@/sections/Contact";
 
 export default function Home() {
   return (
@@ -18,6 +19,7 @@ export default function Home() {
       <Competencies />
       <Experience />
       <TechStack />
+      <Contact />
     </>
   );
 }
