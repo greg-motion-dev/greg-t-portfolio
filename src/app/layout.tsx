@@ -1,16 +1,16 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const jetbrainsMono = JetBrains_Mono({
+  variable: "--font-jetbrains-mono",
   subsets: ["latin"],
+  display: "swap",
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+const FONTSHARE_API_ORIGIN = "https://api.fontshare.com";
+const FONTSHARE_CDN_ORIGIN = "https://cdn.fontshare.com";
+const SATOSHI_STYLESHEET_URL = `${FONTSHARE_API_ORIGIN}/v2/css?f[]=satoshi@1&display=swap`;
 
 export const metadata: Metadata = {
   title: "Greg | Creative Engineer",
@@ -29,10 +29,12 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html
-      lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
-    >
+    <html lang="en" className={`${jetbrainsMono.variable} h-full antialiased`}>
+      <head>
+        <link rel="preconnect" href={FONTSHARE_API_ORIGIN} />
+        <link rel="preconnect" href={FONTSHARE_CDN_ORIGIN} crossOrigin="anonymous" />
+        <link rel="stylesheet" href={SATOSHI_STYLESHEET_URL} />
+      </head>
       <body className="min-h-full flex flex-col">{children}</body>
     </html>
   );
