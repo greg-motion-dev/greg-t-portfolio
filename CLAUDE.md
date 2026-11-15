@@ -92,14 +92,14 @@ We need to merge my extensive background as a Senior UI/UX Strategist (10+ years
 We are merging three eras of work into `src/constants/index.ts` (converting from `.tsx` to pure `.ts` with zero JSX):
 
 1. **The Professional Era (Climate & UI/UX):** Zero Carbon Analytics (Original & 2025 Rebrand), SteelWatch, GasOutlook, and CORE (Climate Opinion Research Exchange).
-2. **The Engineering Era (SPICED & Interactive):** Apple 3D Showcase, GSAP Cocktail Website, Financial Platform & Interactive Calculator, and Plant-Pal App.
+2. **The Engineering Era (SPICED & Interactive):** Apple 3D Showcase, GSAP Cocktail Website, Orryana Financial Platform, Interactive Calculator, and Plant-Pal App.
 3. **The CV Integration:** Work history (Meliore Foundation, European Climate Foundation, Skyscanner/Capital GES), SPICED Academy Bootcamp (2026), academic degrees (MSc University of Edinburgh, BAs Edinburgh Napier & Hanze Groningen), and languages.
 
 ### Content rules
 
 - **Never invent** project details, metrics, dates, client names, or outcomes. If data is missing, stop and ask me, or use `"TO BE PROVIDED"` in the data and list which fields need real content.
 - All content lives in typed domain files under src/constants/, re-exported from src/constants/index.ts; components import only from @/constants.
-- Every project entry must have a strict interface covering at least: `id`, `era`, `title`, `role`, `year`, `summary`, `stack`, `accentColor`, `links`, and `media`.
+- Every project entry must have a strict interface covering at least: `id`, `era`, `discipline`, `title`, `role`, `year`, `summary`, `stack`, `links`, and `media`. `accentColor` is derived from `discipline` via a single typed lookup map rather than stored per project.
 
 ---
 
@@ -111,7 +111,7 @@ We are merging three eras of work into `src/constants/index.ts` (converting from
   - **Centerpiece:** Centered circular portrait (`/images/profile.jpg` on `#ffc14d` background), bold display name, monospace subtitle (`Creative UI Engineer | Motion & 3D Web Specialist`), concise intro copy, and two sharp rectangular CTAs (`see my work` solid white, `resume` hairline border).
   - **3D Layer:** An SSR-safe R3F `<Canvas>` rendering tilted 3D luminous orbital rings and geometric meshes (spheres, tetrahedrons/pyramids, rotated cubes) in `#ffc14d`, `#e0368f`, and `#14a9c4` orbiting the centerpiece with retro-futuristic specular/Fresnel materials and subtle mouse-parallax tilt.
 - **Project Lineup (`ProjectLineup.tsx`):**
-  - Modeled after `getartcraft.com`'s "Lineup" section: full-width stacked editorial rows separated by `1px` borders (`border-white/10`), large accented index numbers (`01`–`08`), category pills, concise role/impact summary, action links, and clean visual mockups.
+  - Modeled after `getartcraft.com`'s "Lineup" section: full-width stacked editorial rows separated by `1px` borders (`border-white/10`), large accented index numbers (`01`–`10`), category pills, concise role/impact summary, action links, and clean visual mockups.
 - **Experience & Tech Stack:** Clean editorial timeline for CV history/education/languages and a categorized grid for the tech stack (replacing the heavy multi-canvas `.glb` icons).
 - **Contact (`Contact.tsx`):** Dark editorial form wired to EmailJS (`process.env.NEXT_PUBLIC_EMAILJS_*` without `!` non-null assertions—use runtime guards) paired with a lightweight custom 3D geometric accent or shader card.
 - **Design tokens first:** Define colors, type scale, spacing, and borders as Tailwind v4 `@theme` tokens before building components.
