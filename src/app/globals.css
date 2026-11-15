@@ -1,4 +1,3 @@
-@import url("https://fonts.googleapis.com/css2?family=Mona+Sans:ital,wght@0,200..900;1,200..900&display=swap");
 @import "tailwindcss";
 
 :root {
@@ -9,10 +8,10 @@ html,
 body {
   width: 100dvw;
   overflow-x: hidden;
-  background-color: black;
-  color: white;
+  background-color: var(--color-canvas);
+  color: var(--color-ink);
   scroll-behavior: smooth;
-  font-family: "Mona Sans", sans-serif;
+  font-family: var(--font-sans);
 }
 
 section {
@@ -20,13 +19,26 @@ section {
 }
 
 @theme {
-  --font-sans: "Mona Sans", sans-serif;
+  --font-sans: "Satoshi", ui-sans-serif, system-ui, sans-serif;
+
+  --color-canvas: #070709;
+  --color-surface: #0e0e12;
+  --color-ink: #f4f4f6;
+  --color-ink-muted: #9ca3af;
+  --color-brand-yellow: #ffc14d;
+  --color-brand-pink: #e0368f;
+  --color-brand-teal: #14a9c4;
+
   --color-white-50: #d9ecff;
   --color-black-50: #1c1c21;
   --color-black-100: #0e0e10;
   --color-black-200: #282732;
   --color-blue-50: #839cb5;
   --color-blue-100: #2d2d38;
+}
+
+@theme inline {
+  --font-mono: var(--font-jetbrains-mono), ui-monospace, monospace;
 }
 
 @layer utilities {

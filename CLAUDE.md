@@ -76,14 +76,14 @@ We need to merge my extensive background as a Senior UI/UX Strategist (10+ years
 - **Aesthetic:** Late-80s / early-90s future nostalgia (1987 birth-year homage: early Silicon Graphics / Memphis-inspired 3D primitives and luminous orbital paths) merged with `getartcraft.com`'s dark, precision-engineered product lineup aesthetic.
 - **Mode:** Strictly Dark Mode only (no light-mode toggle on the website). The downloadable PDF CV remains light-mode while sharing the same brand accents and typography.
 - **Palette Tokens (`@theme` in `globals.css`):**
-  - `--color-bg-base: #070709` (deep obsidian canvas)
-  - `--color-surface: #0e0e12` (card/row fill with `border-white/10` hairlines)
-  - `--color-text-primary: #f4f4f6`
-  - `--color-text-muted: #9ca3af`
-  - `--color-brand-yellow: #ffc14d` (primary focus, portrait backdrop, highlight states)
-  - `--color-brand-pink: #e0368f` (3D/motion accents, secondary highlights)
-  - `--color-brand-teal: #14a9c4` (UI/UX & architecture accents, orbital paths)
-- **Typography:** Clean geometric sans-serif (`Inter` / `Satoshi`) paired with crisp monospace (`JetBrains Mono` / `Space Mono`) for role subtitles, section indices (`01`, `02`), and technical tags.
+  - `--color-canvas: #070709` (deep obsidian canvas → `bg-canvas`)
+  - `--color-surface: #0e0e12` (card/row fill → `bg-surface` with `border-white/10` hairlines)
+  - `--color-ink: #f4f4f6` (primary text → `text-ink`)
+  - `--color-ink-muted: #9ca3af` (secondary/metadata text → `text-ink-muted`)
+  - `--color-brand-yellow: #ffc14d` (primary focus, portrait backdrop, highlight states → `text-brand-yellow`, `bg-brand-yellow`)
+  - `--color-brand-pink: #e0368f` (3D/motion accents, secondary highlights → `text-brand-pink`, `bg-brand-pink`)
+  - `--color-brand-teal: #14a9c4` (UI/UX & architecture accents, orbital paths → `text-brand-teal`, `bg-brand-teal`)
+- **Typography:** `Satoshi` for headings and body copy paired with `JetBrains Mono` for role subtitles, section indices (`01`, `02`), and technical tags.
 
 ---
 
