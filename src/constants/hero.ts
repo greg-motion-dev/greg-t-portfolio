@@ -3,7 +3,7 @@ export interface WordItem {
   readonly imgPath: string;
 }
 
-export const words: readonly WordItem[] = [
+export const words = [
   { text: "Ideas", imgPath: "/images/ideas.svg" },
   { text: "Concepts", imgPath: "/images/concepts.svg" },
   { text: "Designs", imgPath: "/images/designs.svg" },
@@ -12,4 +12,4 @@ export const words: readonly WordItem[] = [
   { text: "Concepts", imgPath: "/images/concepts.svg" },
   { text: "Designs", imgPath: "/images/designs.svg" },
   { text: "Code", imgPath: "/images/code.svg" },
-] as const;
+] as const satisfies readonly WordItem[];

@@ -71,29 +71,50 @@ We need to merge my extensive background as a Senior UI/UX Strategist (10+ years
 
 ---
 
-## 3. Content Architecture to Integrate
+## 2.5 Visual Direction & Brand Tokens (Tailwind CSS v4)
 
-We are adding three distinct eras of my work into the portfolio:
-
-1. **The Professional Era (Climate & UI/UX):** Zero Carbon Analytics, SteelWatch, GasOutlook, and CORE. These require clean, editorial UI presentations (think bento grids, high-quality typography, data visualization vibes).
-2. **The Engineering Era (SPICED & Interactive):** My SPICED Academy projects, plus my GSAP/Three.js builds (Cocktail website, Apple 3D showcase).
-3. **The CV Integration:** Merging my static A4 PDF CV data (tools, education, languages) into dynamic, interactive timeline and tech-stack components.
-
-### Content rules
-
-- **Never invent** project details, metrics, dates, client names, or outcomes. If data is missing, stop and ask me, or use an obviously fake value such as `"TO BE PROVIDED"` in the data and tell me in your reply which fields need real content.
-- All content lives in typed constants (`constants/`), never hardcoded inside components.
-- Every project entry should have a strict interface covering at least: `id`, `era`, `title`, `role`, `year`, `summary`, `stack`, `links`, and `media`.
+- **Aesthetic:** Late-80s / early-90s future nostalgia (1987 birth-year homage: early Silicon Graphics / Memphis-inspired 3D primitives and luminous orbital paths) merged with `getartcraft.com`'s dark, precision-engineered product lineup aesthetic.
+- **Mode:** Strictly Dark Mode only (no light-mode toggle on the website). The downloadable PDF CV remains light-mode while sharing the same brand accents and typography.
+- **Palette Tokens (`@theme` in `globals.css`):**
+  - `--color-bg-base: #070709` (deep obsidian canvas)
+  - `--color-surface: #0e0e12` (card/row fill with `border-white/10` hairlines)
+  - `--color-text-primary: #f4f4f6`
+  - `--color-text-muted: #9ca3af`
+  - `--color-brand-yellow: #ffc14d` (primary focus, portrait backdrop, highlight states)
+  - `--color-brand-pink: #e0368f` (3D/motion accents, secondary highlights)
+  - `--color-brand-teal: #14a9c4` (UI/UX & architecture accents, orbital paths)
+- **Typography:** Clean geometric sans-serif (`Inter` / `Satoshi`) paired with crisp monospace (`JetBrains Mono` / `Space Mono`) for role subtitles, section indices (`01`, `02`), and technical tags.
 
 ---
 
-## 4. The Design Shift (How we differentiate)
+## 3. Content Architecture to Integrate
 
-- **Kill the Template Vibe:** Replace generic tutorial assets (standard floating planets/computers) with custom geometry, WebGL shaders, or highly stylized typography driven by GSAP.
-- **Editorial UI meets WebGL:** The UI layered _on top_ of the 3D canvas must look like a high-end agency site. Use stark, elegant typography, thin borders, and subtle glassmorphism or noise textures.
-- **Scroll Storytelling:** Use GSAP ScrollTrigger not just to fade things in, but to scrub through 3D scenes or manipulate camera paths in R3F as the user reads through my case studies.
-- **Design tokens first:** Define colors, type scale, spacing, and borders as Tailwind v4 theme tokens before building components. Avoid one-off magic values.
-- **Restraint:** Fewer, better effects. If an effect doesn't support the story of the case study, cut it.
+We are merging three eras of work into `src/constants/index.ts` (converting from `.tsx` to pure `.ts` with zero JSX):
+
+1. **The Professional Era (Climate & UI/UX):** Zero Carbon Analytics (Original & 2025 Rebrand), SteelWatch, GasOutlook, and CORE (Climate Opinion Research Exchange).
+2. **The Engineering Era (SPICED & Interactive):** Apple 3D Showcase, GSAP Cocktail Website, Financial Platform & Interactive Calculator, and Plant-Pal App.
+3. **The CV Integration:** Work history (Meliore Foundation, European Climate Foundation, Skyscanner/Capital GES), SPICED Academy Bootcamp (2026), academic degrees (MSc University of Edinburgh, BAs Edinburgh Napier & Hanze Groningen), and languages.
+
+### Content rules
+
+- **Never invent** project details, metrics, dates, client names, or outcomes. If data is missing, stop and ask me, or use `"TO BE PROVIDED"` in the data and list which fields need real content.
+- All content lives in typed domain files under src/constants/, re-exported from src/constants/index.ts; components import only from @/constants.
+- Every project entry must have a strict interface covering at least: `id`, `era`, `title`, `role`, `year`, `summary`, `stack`, `accentColor`, `links`, and `media`.
+
+---
+
+## 4. Section-by-Section Redesign Plan
+
+- **Kill the Tutorial Template:** Remove the tutorial 3D room, desk, computer, and floating 3D `TechIcon` `.glb` components.
+- **Navbar:** Minimal sticky top bar — `GREG TELAKIS` on the left, clean anchor links (`about`, `work`, `techstack`, `experience`), GitHub/LinkedIn icons, and a sharp `contact` button on the right (no theme toggle).
+- **Hero (`Hero.tsx` + `OrbitalCanvas.tsx`):**
+  - **Centerpiece:** Centered circular portrait (`/images/profile.jpg` on `#ffc14d` background), bold display name, monospace subtitle (`Creative UI Engineer | Motion & 3D Web Specialist`), concise intro copy, and two sharp rectangular CTAs (`see my work` solid white, `resume` hairline border).
+  - **3D Layer:** An SSR-safe R3F `<Canvas>` rendering tilted 3D luminous orbital rings and geometric meshes (spheres, tetrahedrons/pyramids, rotated cubes) in `#ffc14d`, `#e0368f`, and `#14a9c4` orbiting the centerpiece with retro-futuristic specular/Fresnel materials and subtle mouse-parallax tilt.
+- **Project Lineup (`ProjectLineup.tsx`):**
+  - Modeled after `getartcraft.com`'s "Lineup" section: full-width stacked editorial rows separated by `1px` borders (`border-white/10`), large accented index numbers (`01`–`08`), category pills, concise role/impact summary, action links, and clean visual mockups.
+- **Experience & Tech Stack:** Clean editorial timeline for CV history/education/languages and a categorized grid for the tech stack (replacing the heavy multi-canvas `.glb` icons).
+- **Contact (`Contact.tsx`):** Dark editorial form wired to EmailJS (`process.env.NEXT_PUBLIC_EMAILJS_*` without `!` non-null assertions—use runtime guards) paired with a lightweight custom 3D geometric accent or shader card.
+- **Design tokens first:** Define colors, type scale, spacing, and borders as Tailwind v4 `@theme` tokens before building components.
 
 ---
 
@@ -221,9 +242,10 @@ Before calling any task complete, verify and report on:
 
 ## 14. First Action Item
 
-Acknowledge these instructions. Then wait for my command to either:
+Re-read the updated `CLAUDE.md`, acknowledge the merged design direction and strict rules, and present a concise step-by-step plan (following Section 5: Working Agreement) to:
 
-1. Refactor `constants/index.ts` to hold the new project data, **or**
-2. Redesign the Hero section to break away from the tutorial layout.
+1. Define the Tailwind v4 `@theme` design tokens in `globals.css`.
+2. Migrate `src/constants/index.tsx` to pure TypeScript `src/constants/index.ts` with all CV and portfolio data.
+3. Clean up unused tutorial 3D assets/components and scaffold the new `Hero` + `OrbitalCanvas`.
 
-Do not start either until I tell you which.
+Wait for my "go" before editing any files.

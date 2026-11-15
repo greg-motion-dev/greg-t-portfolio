@@ -12,7 +12,7 @@ export interface ExpLogo {
   readonly imgPath: string;
 }
 
-export const expCards: readonly ExpCard[] = [
+export const expCards = [
   {
     review:
       "Greg brings a rare mix of high-level UI/UX strategy and modern frontend craft. He elevated our WebGL interactive components and design systems with incredible speed and rhythm.",
@@ -52,9 +52,9 @@ export const expCards: readonly ExpCard[] = [
       "Collaborated with backend engineers and content creators to deliver fast, SEO-optimized web experiences.",
     ],
   },
-] as const;
+] as const satisfies readonly ExpCard[];
 
-export const expLogos: readonly ExpLogo[] = [
+export const expLogos = [
   {
     name: "Meliore & ECF",
     imgPath: "/images/logo1.png",
@@ -67,4 +67,4 @@ export const expLogos: readonly ExpLogo[] = [
     name: "Creative Engineering",
     imgPath: "/images/logo3.png",
   },
-] as const;
+] as const satisfies readonly ExpLogo[];

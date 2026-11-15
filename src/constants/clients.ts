@@ -3,7 +3,7 @@ export interface LogoIcon {
   readonly alt?: string;
 }
 
-export const logoIconsList: readonly LogoIcon[] = [
+export const logoIconsList = [
   { imgPath: "/images/logos/company-logo-1.png", alt: "Skyscanner" },
   { imgPath: "/images/logos/company-logo-2.png", alt: "The Lancet" },
   { imgPath: "/images/logos/company-logo-3.png", alt: "BigPoint" },
@@ -15,4 +15,4 @@ export const logoIconsList: readonly LogoIcon[] = [
   { imgPath: "/images/logos/company-logo-9.png", alt: "Company 9" },
   { imgPath: "/images/logos/company-logo-10.png", alt: "Company 10" },
   { imgPath: "/images/logos/company-logo-11.png", alt: "Company 11" },
-] as const;
+] as const satisfies readonly LogoIcon[];

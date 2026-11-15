@@ -10,7 +10,7 @@ export interface TechStackImg {
   readonly imgPath: string;
 }
 
-export const techStackIcons: readonly TechStackIcon[] = [
+export const techStackIcons = [
   {
     name: "React Developer",
     modelPath: "/models/react_logo-transformed.glb",
@@ -41,9 +41,9 @@ export const techStackIcons: readonly TechStackIcon[] = [
     scale: 0.05,
     rotation: [0, -Math.PI / 4, 0],
   },
-] as const;
+] as const satisfies readonly TechStackIcon[];
 
-export const techStackImgs: readonly TechStackImg[] = [
+export const techStackImgs = [
   {
     name: "React Developer",
     imgPath: "/images/logos/react.png",
@@ -64,4 +64,4 @@ export const techStackImgs: readonly TechStackImg[] = [
     name: "Project Manager",
     imgPath: "/images/logos/git.svg",
   },
-] as const;
+] as const satisfies readonly TechStackImg[];

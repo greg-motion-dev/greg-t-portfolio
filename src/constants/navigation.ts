@@ -3,7 +3,7 @@ export interface NavLink {
   readonly link: string;
 }
 
-export const navLinks: readonly NavLink[] = [
+export const navLinks = [
   {
     name: "Work",
     link: "#work",
@@ -20,4 +20,4 @@ export const navLinks: readonly NavLink[] = [
     name: "Testimonials",
     link: "#testimonials",
   },
-] as const;
+] as const satisfies readonly NavLink[];

@@ -4,7 +4,7 @@ export interface Ability {
   readonly desc: string;
 }
 
-export const abilities: readonly Ability[] = [
+export const abilities = [
   {
     imgPath: "/images/seo.png",
     title: "Quality Focus",
@@ -20,4 +20,4 @@ export const abilities: readonly Ability[] = [
     title: "On-Time Delivery",
     desc: "Making sure projects are completed on schedule, with quality & attention to detail.",
   },
-] as const;
+] as const satisfies readonly Ability[];
