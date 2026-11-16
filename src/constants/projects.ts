@@ -10,6 +10,8 @@ export type ProjectTag =
   | "motion"
   | "tool";
 export type AccentColor = "yellow" | "pink" | "teal";
+export type BrandShape = "circle" | "square" | "diamond" | "triangle";
+export type DisciplineShape = Exclude<BrandShape, "circle">;
 export type ProjectLinkKind = "live" | "repo" | "case-study";
 export type ProjectMediaKind = "image" | "video";
 
@@ -47,6 +49,12 @@ export const disciplineAccent = {
   design: "teal",
   motion: "pink",
 } as const satisfies Record<ProjectDiscipline, AccentColor>;
+
+export const disciplineShape = {
+  frontend: "square",
+  design: "diamond",
+  motion: "triangle",
+} as const satisfies Record<ProjectDiscipline, DisciplineShape>;
 
 export const disciplineLabels = {
   frontend: "Front-end",
@@ -181,8 +189,9 @@ export const projects = [
     title: "Interactive Calculator",
     role: "designed-and-built",
     year: TO_BE_PROVIDED,
-    summary: TO_BE_PROVIDED,
-    stack: [TO_BE_PROVIDED],
+    summary:
+      "Engineered a custom interactive financial calculator enabling users to simulate real-time compound interest, investment returns, and personalized financial planning.",
+    stack: ["Next.js", "React", "TypeScript", "Tailwind CSS"],
     tags: ["tool"],
     links: [],
     media: [],
@@ -195,8 +204,9 @@ export const projects = [
     title: "Plant-Pal",
     role: "designed-and-built",
     year: TO_BE_PROVIDED,
-    summary: TO_BE_PROVIDED,
-    stack: [TO_BE_PROVIDED],
+    summary:
+      "Developed a full-featured plant tracking web application featuring custom SVG status indicators, multi-tier filtering controls, and responsive UI components.",
+    stack: ["React", "Next.js", "TypeScript", "REST API", "Tailwind CSS"],
     tags: ["tool"],
     links: [],
     media: [],
