@@ -96,6 +96,11 @@ export interface SkillGroup {
   readonly skills: readonly string[];
 }
 
+export const profileLinkLabels = {
+  linkedin: "LinkedIn",
+  github: "GitHub",
+} as const satisfies Record<ProfileLinkKind, string>;
+
 export const profile = {
   name: "Greg Telakis",
   title: "Creative UI Engineer | Motion & 3D Web Specialist",

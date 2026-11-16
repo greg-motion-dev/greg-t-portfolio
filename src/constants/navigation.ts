@@ -4,20 +4,13 @@ export interface NavLink {
 }
 
 export const navLinks = [
-  {
-    name: "Work",
-    link: "#work",
-  },
-  {
-    name: "Experience",
-    link: "#experience",
-  },
-  {
-    name: "Skills",
-    link: "#skills",
-  },
-  {
-    name: "Testimonials",
-    link: "#testimonials",
-  },
+  { name: "about", link: "#about" },
+  { name: "work", link: "#work" },
+  { name: "techstack", link: "#techstack" },
+  { name: "experience", link: "#experience" },
 ] as const satisfies readonly NavLink[];
+
+export const navContact = {
+  name: "contact",
+  link: "#contact",
+} as const satisfies NavLink;
