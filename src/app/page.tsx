@@ -1,6 +1,4 @@
-"use client";
-
-import NavBar from "@/components/HeroModels/NavBar";
+import NavBar from "@/components/layout/NavBar";
 import LogoSection from "@/sections/LogoSection";
 import Showcase from "@/sections/Showcase";
 import Hero from "@/sections/Hero";
@@ -13,13 +11,15 @@ export default function Home() {
   return (
     <>
       <NavBar />
-      <Hero />
-      <Showcase />
-      <LogoSection />
-      <Competencies />
-      <Experience />
-      <TechStack />
-      <Contact />
+      <main>
+        <Hero />
+        <Showcase />
+        <LogoSection />
+        <Competencies />
+        <Experience />
+        <TechStack />
+        <Contact />
+      </main>
     </>
   );
 }

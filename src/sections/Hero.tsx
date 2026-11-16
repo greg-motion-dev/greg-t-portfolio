@@ -1,77 +1,35 @@
-"use client";
+import { heroCtas, heroIntro, profile } from "@/constants";
+import PortraitPlaceholder from "@/components/hero/PortraitPlaceholder";
+import HeroCtaButton from "@/components/hero/HeroCtaButton";
 
-import React from "react";
-import { words } from "@/constants";
-import Button from "@/components/Button";
-import gsap from "gsap";
-import { useGSAP } from "@gsap/react";
-
-import HeroExperience from "@/components/HeroModels/HeroExperience";
-import AnimatedCounter from "@/components/AnimatedCounter";
-
-const Hero: React.FC = () => {
-  useGSAP(() => {
-    gsap.fromTo(
-      ".hero-text h1",
-      { y: 50, opacity: 0 },
-      { y: 0, opacity: 1, stagger: 0.2, duration: 1, ease: "power2.inOut" },
-    );
-  });
-
+export default function Hero() {
   return (
-    <section id="hero" className="relative overflow-hidden">
-      <div className="absolute top-0 left-0 z-10"></div>
-      <img src="/images/bg.png" alt="background" />
-      <div className="hero-layout">
-        {/* LEFT CONTENT */}
-        <header className="flex flex-col justify-center md:w-full w-screen md:px-20 px-5">
-          <div className="flex flex-col gap-7">
-            <div className="hero-text">
-              <h1>
-                Crafting
-                <span className="slide">
-                  <span className="wrapper">
-                    {words.map((word, index) => (
-                      <span
-                        key={`${word.text}-${index}`}
-                        className="flex items-center md:gap-3 gap-1 pb-2"
-                      >
-                        <img
-                          src={word.imgPath}
-                          alt={word.text}
-                          className="xl:size-12 md:size-10 size-7 md:p-2 p-1 rounded-full bg-white-50"
-                        />
-                        <span>{word.text}</span>
-                      </span>
-                    ))}
-                  </span>
-                </span>
-              </h1>
-              <h1>into interfaces that move</h1>
-              <h1>with intent & rhythm</h1>
-            </div>
-            <p className="text-white-50 md:text-xl relative z-10 pointer-events-none">
-              Ahoi! I'm Greg, a developer in Berlin with a real passion for
-              code, especially where it meets motion and 3D.
-            </p>
-            <Button
-              className="md:w-80 md:h-16 w-60 h-12"
-              id="button"
-              text="See my work"
-            />
-          </div>
-        </header>
+    <section
+      id="about"
+      aria-labelledby="hero-title"
+      className="relative flex min-h-dvh items-center justify-center px-5 pt-nav pb-16 md:px-10"
+    >
+      <div className="flex max-w-4xl flex-col items-center text-center">
+        <PortraitPlaceholder />
 
-        {/* RIGHT CONTENT */}
-        <figure>
-          <div className="hero-3d-layout">
-            <HeroExperience />
-          </div>
-        </figure>
+        <h1 id="hero-title" className="mt-10 text-display text-ink uppercase">
+          {profile.name}
+        </h1>
+
+        <p className="mt-6 font-mono text-sm text-ink-muted md:text-base">
+          {profile.title}
+        </p>
+
+        <p className="mt-8 max-w-2xl text-lg text-ink md:text-xl">
+          {heroIntro}
+        </p>
+
+        <div className="mt-10 flex flex-col gap-4 sm:flex-row">
+          {heroCtas.map((cta) => (
+            <HeroCtaButton key={cta.id} cta={cta} />
+          ))}
+        </div>
       </div>
-      <AnimatedCounter />
     </section>
   );
-};
-
-export default Hero;
+}

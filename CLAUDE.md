@@ -154,7 +154,7 @@ We are merging three eras of work into `src/constants/index.ts` (converting from
 - **Use `useGSAP` (from `@gsap/react`) or `gsap.context()`** for all GSAP code, with proper scoping and cleanup. Kill ScrollTriggers on unmount.
 - **One library per element.** Never animate the same element with both GSAP and `motion`.
   - **GSAP:** scroll-scrubbed storytelling, timelines, camera paths, pinned sections.
-  - **`motion`:** UI-level interactions (hover, presence, layout transitions, mounting/unmounting).
+  - **`motion`:** only where CSS can't do the job well: presence (mount/unmount), layout transitions, gesture/drag, spring physics, or orchestrated UI sequences. Simple hover/focus states use CSS transitions so components can stay Server Components.
 - **Imports:** always from `motion/react` (e.g. `import { motion, AnimatePresence } from "motion/react"`). Never import from or install `framer-motion`.
 - Prefer animating `transform` and `opacity`. Avoid animating layout properties.
 - In R3F, drive per-frame updates with `useFrame`. Avoid React state updates inside it. Mutate refs instead.

@@ -40,7 +40,7 @@ const TechStack: React.FC = () => {
   );
 
   return (
-    <div id="skills" ref={containerRef} className="flex-center section-padding">
+    <div id="techstack" ref={containerRef} className="flex-center section-padding">
       <div className="w-full h-full md:px-10 px-5">
         <TitleHeader
           title="My preferred TechStack"
