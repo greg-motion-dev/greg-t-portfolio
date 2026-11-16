@@ -1,6 +1,6 @@
 import NavBar from "@/components/layout/NavBar";
 import LogoSection from "@/sections/LogoSection";
-import Showcase from "@/sections/Showcase";
+import ProjectLineup from "@/sections/ProjectLineup";
 import Hero from "@/sections/Hero";
 import Competencies from "@/sections/Competencies";
 import Experience from "@/sections/Experience";
@@ -13,7 +13,7 @@ export default function Home() {
       <NavBar />
       <main>
         <Hero />
-        <Showcase />
+        <ProjectLineup />
         <LogoSection />
         <Competencies />
         <Experience />

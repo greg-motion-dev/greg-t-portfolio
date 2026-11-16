@@ -56,11 +56,34 @@ export const disciplineShape = {
   motion: "triangle",
 } as const satisfies Record<ProjectDiscipline, DisciplineShape>;
 
+export const disciplineOrder = [
+  "frontend",
+  "design",
+  "motion",
+] as const satisfies readonly ProjectDiscipline[];
+
 export const disciplineLabels = {
   frontend: "Front-end",
   design: "UX/UI & Brand",
   motion: "Motion & 3D",
 } as const satisfies Record<ProjectDiscipline, string>;
+
+export interface LineupContent {
+  readonly title: string;
+  readonly linkPendingLabel: string;
+  readonly githubCtaLabel: string;
+}
+
+export const lineupContent = {
+  title: "Selected work",
+  linkPendingLabel: "Link soon",
+  githubCtaLabel: "More on GitHub",
+} as const satisfies LineupContent;
+
+export const eraLabels = {
+  professional: "Climate & UI/UX",
+  engineering: "SPICED & Interactive",
+} as const satisfies Record<ProjectEra, string>;
 
 export const roleLabels = {
   built: "Built",
