@@ -181,8 +181,9 @@ export const projects = [
     title: "Interactive Calculator",
     role: "designed-and-built",
     year: TO_BE_PROVIDED,
-    summary: TO_BE_PROVIDED,
-    stack: [TO_BE_PROVIDED],
+    summary:
+      "Engineered a custom interactive financial calculator enabling users to simulate real-time compound interest, investment returns, and personalized financial planning.",
+    stack: ["Next.js", "React", "TypeScript", "Tailwind CSS"],
     tags: ["tool"],
     links: [],
     media: [],
@@ -195,8 +196,9 @@ export const projects = [
     title: "Plant-Pal",
     role: "designed-and-built",
     year: TO_BE_PROVIDED,
-    summary: TO_BE_PROVIDED,
-    stack: [TO_BE_PROVIDED],
+    summary:
+      "Developed a full-featured plant tracking web application featuring custom SVG status indicators, multi-tier filtering controls, and responsive UI components.",
+    stack: ["React", "Next.js", "TypeScript", "REST API", "Tailwind CSS"],
     tags: ["tool"],
     links: [],
     media: [],

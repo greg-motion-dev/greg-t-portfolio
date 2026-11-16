@@ -84,6 +84,12 @@ We need to merge my extensive background as a Senior UI/UX Strategist (10+ years
   - `--color-brand-pink: #e0368f` (3D/motion accents, secondary highlights → `text-brand-pink`, `bg-brand-pink`)
   - `--color-brand-teal: #14a9c4` (UI/UX & architecture accents, orbital paths → `text-brand-teal`, `bg-brand-teal`)
 - **Typography:** `Satoshi` for headings and body copy paired with `JetBrains Mono` for role subtitles, section indices (`01`, `02`), and technical tags.
+- **Shape System (shared by website and PDF CV):** Four primitives; shape and colour always travel together.
+  - ● circle / sphere → **Greg (identity)**: the portrait frame. Not a discipline, no discipline colour.
+  - ■ square / cube → **Front-end** → `brand-yellow`
+  - ◆ diamond / octahedron → **UX/UI & Brand** → `brand-teal`
+  - ▲ triangle / tetrahedron → **Motion & 3D** → `brand-pink`
+  - The single source of truth is `disciplineShape` + `disciplineAccent` in `src/constants/projects.ts`. Never add a 4th accent colour without a matching 4th discipline.
 
 ---
 
@@ -109,9 +115,9 @@ We are merging three eras of work into `src/constants/index.ts` (converting from
 - **Navbar:** Minimal sticky top bar — `GREG TELAKIS` on the left, clean anchor links (`about`, `work`, `techstack`, `experience`), GitHub/LinkedIn icons, and a sharp `contact` button on the right (no theme toggle).
 - **Hero (`Hero.tsx` + `OrbitalCanvas.tsx`):**
   - **Centerpiece:** Centered circular portrait (`/images/profile.jpg` on `#ffc14d` background), bold display name, monospace subtitle (`Creative UI Engineer | Motion & 3D Web Specialist`), concise intro copy, and two sharp rectangular CTAs (`see my work` solid white, `resume` hairline border).
-  - **3D Layer:** An SSR-safe R3F `<Canvas>` rendering tilted 3D luminous orbital rings and geometric meshes (spheres, tetrahedrons/pyramids, rotated cubes) in `#ffc14d`, `#e0368f`, and `#14a9c4` orbiting the centerpiece with retro-futuristic specular/Fresnel materials and subtle mouse-parallax tilt.
+  - **3D Layer:** An SSR-safe R3F `<Canvas>` rendering tilted luminous orbital rings carrying the Shape System primitives (cubes in `brand-yellow`, octahedrons in `brand-teal`, tetrahedrons in `brand-pink`) orbiting the circular portrait, which is the identity circle, with retro-futuristic specular/Fresnel materials and subtle mouse-parallax tilt.
 - **Project Lineup (`ProjectLineup.tsx`):**
-  - Modeled after `getartcraft.com`'s "Lineup" section: full-width stacked editorial rows separated by `1px` borders (`border-white/10`), large accented index numbers (`01`–`10`), category pills, concise role/impact summary, action links, and clean visual mockups.
+  - Modeled after `getartcraft.com`'s "Lineup" section: full-width stacked editorial rows separated by `1px` borders (`border-white/10`), large accented index numbers (`01`–`10`), a discipline pill with its shape marker, plus a monospace role label (e.g. `■ Front-end · Designed & built`) , concise role/impact summary, action links, and clean visual mockups.
 - **Experience & Tech Stack:** Clean editorial timeline for CV history/education/languages and a categorized grid for the tech stack (replacing the heavy multi-canvas `.glb` icons).
 - **Contact (`Contact.tsx`):** Dark editorial form wired to EmailJS (`process.env.NEXT_PUBLIC_EMAILJS_*` without `!` non-null assertions—use runtime guards) paired with a lightweight custom 3D geometric accent or shader card.
 - **Design tokens first:** Define colors, type scale, spacing, and borders as Tailwind v4 `@theme` tokens before building components.
