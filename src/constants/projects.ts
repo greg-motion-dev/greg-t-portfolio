@@ -10,6 +10,8 @@ export type ProjectTag =
   | "motion"
   | "tool";
 export type AccentColor = "yellow" | "pink" | "teal";
+export type BrandShape = "circle" | "square" | "diamond" | "triangle";
+export type DisciplineShape = Exclude<BrandShape, "circle">;
 export type ProjectLinkKind = "live" | "repo" | "case-study";
 export type ProjectMediaKind = "image" | "video";
 
@@ -47,6 +49,12 @@ export const disciplineAccent = {
   design: "teal",
   motion: "pink",
 } as const satisfies Record<ProjectDiscipline, AccentColor>;
+
+export const disciplineShape = {
+  frontend: "square",
+  design: "diamond",
+  motion: "triangle",
+} as const satisfies Record<ProjectDiscipline, DisciplineShape>;
 
 export const disciplineLabels = {
   frontend: "Front-end",
