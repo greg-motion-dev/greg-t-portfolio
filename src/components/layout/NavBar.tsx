@@ -7,7 +7,7 @@ export default function NavBar() {
       <div className="mx-auto flex h-nav max-w-7xl items-center justify-between gap-6 px-5 md:px-10">
         <a
           href="#about"
-          className="focus-ring font-mono text-sm font-bold tracking-widest text-ink uppercase"
+          className="focus-ring font-mono text-base font-extrabold tracking-widest text-ink uppercase md:text-lg"
         >
           {profile.name}
         </a>

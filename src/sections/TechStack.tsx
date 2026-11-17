@@ -1,89 +1,19 @@
-"use client";
+import { skillGroups, techStackContent } from "@/constants";
+import SkillColumn from "@/components/techstack/SkillColumn";
+import SectionHeading from "@/components/ui/SectionHeading";
 
-import React, { useRef } from "react";
-import TechIcon from "@/components/Models/TechLogos/TechIcon";
-import TitleHeader from "@/components/TitleHeader";
-import {
-  techStackIcons,
-  techStackImgs,
-  TechStackIcon,
-  TechStackImg,
-} from "@/constants";
-import { useGSAP } from "@gsap/react";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-
-gsap.registerPlugin(ScrollTrigger);
-
-const TechStack: React.FC = () => {
-  const containerRef = useRef<HTMLDivElement>(null);
-
-  useGSAP(
-    () => {
-      gsap.fromTo(
-        ".tech-card",
-        { y: 50, opacity: 0 },
-        {
-          y: 0,
-          opacity: 1,
-          duration: 1,
-          ease: "power2.inOut",
-          stagger: 0.2,
-          scrollTrigger: {
-            trigger: "#skills",
-            start: "top center",
-          },
-        },
-      );
-    },
-    { scope: containerRef },
-  );
-
+export default function TechStack() {
   return (
-    <div id="techstack" ref={containerRef} className="flex-center section-padding">
-      <div className="w-full h-full md:px-10 px-5">
-        <TitleHeader
-          title="My preferred TechStack"
-          sub="The skills I bring to the table"
-        />
-        <div className="tech-grid">
-          {techStackIcons.map((icon: TechStackIcon) => (
-            <div
-              key={icon.name}
-              className="card-border tech-card overflow-hidden group xl:rounded-full rounded-lg"
-            >
-              <div className="tech-card-animated-bg" />
-              <div className="tech-card-content">
-                <div className="tech-icon-wrapper">
-                  <TechIcon model={icon} />
-                </div>
-                <div className="padding-x w-full">
-                  <p>{icon.name}</p>
-                </div>
-              </div>
-            </div>
-          ))}
-
-          {techStackImgs.map((icon: TechStackImg) => (
-            <div
-              key={icon.name}
-              className="card-border tech-card overflow-hidden group xl:rounded-full rounded-lg"
-            >
-              <div className="tech-card-animated-bg" />
-              <div className="tech-card-content">
-                <div className="tech-icon-wrapper">
-                  <img src={icon.imgPath} alt={icon.name} />
-                </div>
-                <div className="padding-x w-full">
-                  <p>{icon.name}</p>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
+    <section id="techstack" aria-labelledby="techstack-title" className="py-24 md:py-32">
+      <div className="mx-auto max-w-7xl px-5 md:px-10">
+        <SectionHeading id="techstack-title" title={techStackContent.title} />
       </div>
-    </div>
-  );
-};
 
-export default TechStack;
+      <ul className="mt-12 grid gap-px border-y border-white/10 bg-white/10 md:mt-16 md:grid-cols-2 xl:grid-cols-4">
+        {skillGroups.map((group) => (
+          <SkillColumn key={group.id} group={group} />
+        ))}
+      </ul>
+    </section>
+  );
+}

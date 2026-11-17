@@ -12,13 +12,10 @@ export default function Hero() {
       <div className="flex max-w-4xl flex-col items-center text-center">
         <PortraitPlaceholder />
 
-        <h1 id="hero-title" className="mt-10 text-display text-ink uppercase">
-          {profile.name}
-        </h1>
-
-        <p className="mt-6 font-mono text-sm text-ink-muted md:text-base">
+        <h1 id="hero-title" className="mt-10 font-mono text-sm text-ink-muted md:text-base">
+          <span className="sr-only">{profile.name}, </span>
           {profile.title}
-        </p>
+        </h1>
 
         <p className="mt-8 max-w-2xl text-lg text-ink md:text-xl">
           {heroIntro}

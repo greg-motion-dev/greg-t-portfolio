@@ -10,6 +10,7 @@ import LanguageList from "@/components/experience/LanguageList";
 import TimelineItem from "@/components/experience/TimelineItem";
 import TimelineMilestoneItem from "@/components/experience/TimelineMilestoneItem";
 import TimelineScroll from "@/components/experience/TimelineScroll";
+import SectionHeading from "@/components/ui/SectionHeading";
 import { timelineAccentAt } from "@/components/experience/timelineRail";
 
 const columnTitleClasses = "font-mono text-xs tracking-widest text-ink uppercase";
@@ -24,14 +25,8 @@ export default function Experience() {
 
   return (
     <section id="experience" aria-labelledby="experience-title" className="py-24 md:py-32">
-      <div className="mx-auto flex max-w-7xl items-baseline gap-4 px-5 md:px-10">
-        <h2
-          id="experience-title"
-          className="text-4xl font-black tracking-tight text-ink uppercase md:text-6xl"
-        >
-          {experienceContent.title}
-        </h2>
-        <span className="font-mono text-sm text-ink-muted">({roleCount})</span>
+      <div className="mx-auto max-w-7xl px-5 md:px-10">
+        <SectionHeading id="experience-title" title={experienceContent.title} count={roleCount} />
       </div>
 
       <div className="mx-auto mt-16 max-w-7xl px-5 md:mt-24 md:px-10">
