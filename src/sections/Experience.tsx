@@ -1,134 +1,72 @@
-"use client";
+import {
+  experienceContent,
+  timeline,
+  type TimelineItem as TimelineItemData,
+  type TimelineMilestone,
+} from "@/constants";
+import AlsoList from "@/components/experience/AlsoList";
+import EducationList from "@/components/experience/EducationList";
+import LanguageList from "@/components/experience/LanguageList";
+import TimelineItem from "@/components/experience/TimelineItem";
+import TimelineMilestoneItem from "@/components/experience/TimelineMilestoneItem";
+import TimelineScroll from "@/components/experience/TimelineScroll";
 
-import React, { useRef } from "react";
-import TitleHeader from "@/components/TitleHeader";
-import { expCards, ExpCard } from "@/constants";
-import GlowCard from "@/components/GlowCard";
-import gsap from "gsap";
-import { useGSAP } from "@gsap/react";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+const columnTitleClasses = "font-mono text-xs tracking-widest text-ink uppercase";
 
-gsap.registerPlugin(ScrollTrigger);
+function isMilestone(item: TimelineItemData): item is TimelineMilestone {
+  return item.kind === "certification" || item.kind === "project";
+}
 
-const Experience: React.FC = () => {
-  const containerRef = useRef<HTMLElement>(null);
-
-  useGSAP(
-    () => {
-      gsap.utils.toArray<HTMLElement>(".timeline-card").forEach((card) => {
-        gsap.from(card, {
-          xPercent: -100,
-          opacity: 0,
-          transformOrigin: "left left",
-          duration: 1,
-          ease: "power2.inOut",
-          scrollTrigger: {
-            trigger: card,
-            start: "top 80%",
-          },
-        });
-      });
-
-      gsap.to(".timeline", {
-        transformOrigin: "bottom bottom",
-        ease: "power1.inOut",
-        scrollTrigger: {
-          trigger: ".timeline",
-          start: "top center",
-          end: "70% center",
-          onUpdate: (self) => {
-            gsap.to(".timeline", {
-              scaleY: 1 - self.progress,
-            });
-          },
-        },
-      });
-
-      gsap.utils.toArray<HTMLElement>(".expText").forEach((text) => {
-        gsap.from(text, {
-          xPercent: 0,
-          opacity: 0,
-          duration: 1,
-          ease: "power2.inOut",
-          scrollTrigger: {
-            trigger: text,
-            start: "top 60%",
-          },
-        });
-      });
-    },
-    { scope: containerRef },
-  );
+export default function Experience() {
+  const items: readonly TimelineItemData[] = timeline;
+  const roleCount = items.filter((item) => !isMilestone(item)).length;
 
   return (
-    <section
-      id="experience"
-      ref={containerRef}
-      className="w-full md:mt-40 mt-20 section-padding xl:px-0"
-    >
-      <div className="w-full h-full md:px-20 px-5">
-        <TitleHeader
-          title="Professional Work Experience"
-          sub="My Career Overview"
-        />
-        <div className="mt-32 relative">
-          <div className="relative z-50 xl:space-y-32 space-y-10">
-            {expCards.map((card: ExpCard) => (
-              <div
-                key={card.title}
-                className="exp-card-wrapper flex xl:flex-row flex-col gap-10"
-              >
-                {/* Left Side: Card */}
-                <div className="xl:w-2/6 w-full">
-                  <GlowCard card={card}>
-                    <div className="flex items-center gap-4 mt-5">
-                      <img
-                        src={card.logoPath}
-                        alt={card.title}
-                        className="size-12 rounded-full object-contain"
-                      />
-                      <div>
-                        <h3 className="text-white font-semibold text-lg">
-                          {card.title}
-                        </h3>
-                        <p className="text-white-50 text-sm">{card.date}</p>
-                      </div>
-                    </div>
-                  </GlowCard>
-                </div>
-
-                {/* Right Side: Timeline & Details */}
-                <div className="xl:w-4/6 w-full flex items-start">
-                  <div className="timeline-wrapper">
-                    <div className="timeline" />
-                    <div className="gradient-line w-1 h-full" />
-                  </div>
-                  <div className="expText flex xl:gap-20 md:gap-10 gap-5 relative z-20">
-                    <div className="timeline-logo">
-                      <img src={card.logoPath} alt="logo" />
-                    </div>
-                    <div>
-                      <h1 className="font-semibold text-3xl">{card.title}</h1>
-                      <p className="my-5 text-white-50">{card.date}</p>
-                      <p className="text-[#839cb5] italic">Responsibilities</p>
-
-                      <ul className="list-disc ms-5 mt-5 flex flex-col gap-5 text-white-50">
-                        {card.responsibilities.map((responsibility) => (
-                          <li key={responsibility} className="text-lg">
-                            {responsibility}
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
+    <section id="experience" aria-labelledby="experience-title" className="py-24 md:py-32">
+      <div className="mx-auto flex max-w-7xl items-baseline gap-4 px-5 md:px-10">
+        <h2
+          id="experience-title"
+          className="text-4xl font-black tracking-tight text-ink uppercase md:text-6xl"
+        >
+          {experienceContent.title}
+        </h2>
+        <span className="font-mono text-sm text-ink-muted">({roleCount})</span>
       </div>
+
+      <div className="mx-auto mt-16 max-w-7xl px-5 md:mt-24 md:px-10">
+        <TimelineScroll>
+          <ol className="flex flex-col gap-16 md:gap-20">
+            {items.map((item) =>
+              isMilestone(item) ? (
+                <TimelineMilestoneItem key={item.id} milestone={item} />
+              ) : (
+                <TimelineItem key={item.id} entry={item} />
+              ),
+            )}
+          </ol>
+        </TimelineScroll>
+      </div>
+
+      <ul className="mt-24 grid gap-px border-y border-white/10 bg-white/10 md:mt-32 md:grid-cols-3">
+        <li className="bg-canvas px-6 py-10 md:px-10">
+          <h3 className={columnTitleClasses}>{experienceContent.educationTitle}</h3>
+          <div className="mt-8">
+            <EducationList />
+          </div>
+        </li>
+        <li className="bg-canvas px-6 py-10 md:px-10">
+          <h3 className={columnTitleClasses}>{experienceContent.languagesTitle}</h3>
+          <div className="mt-8">
+            <LanguageList />
+          </div>
+        </li>
+        <li className="bg-canvas px-6 py-10 md:px-10">
+          <h3 className={columnTitleClasses}>{experienceContent.alsoTitle}</h3>
+          <div className="mt-8">
+            <AlsoList />
+          </div>
+        </li>
+      </ul>
     </section>
   );
-};
-
-export default Experience;
+}

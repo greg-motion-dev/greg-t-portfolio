@@ -17,6 +17,8 @@ export type CefrLevel = "A1" | "A2" | "B1" | "B2" | "C1" | "C2";
 export type CefrRange = CefrLevel | `${CefrLevel}/${CefrLevel}`;
 export type LanguageProficiency = "native" | "business fluent" | "intermediate";
 export type TimelineEntryKind = "work" | "training";
+export type TimelineMilestoneKind = "certification" | "project";
+export type TimelineKind = TimelineEntryKind | TimelineMilestoneKind;
 export type ProfileLinkKind = "linkedin" | "github";
 export type PublicationKind = "master-thesis";
 
@@ -43,6 +45,30 @@ export interface TimelineEntry {
   readonly start: YearMonth;
   readonly end: YearMonth | "present";
   readonly highlights: readonly string[];
+}
+
+export interface TimelineMilestoneLink {
+  readonly href: string;
+  readonly external: boolean;
+}
+
+export interface TimelineMilestone {
+  readonly id: string;
+  readonly kind: TimelineMilestoneKind;
+  readonly title: string;
+  readonly subtitle: string;
+  readonly start: YearMonth;
+  readonly end?: YearMonth | "present";
+  readonly link?: TimelineMilestoneLink;
+}
+
+export type TimelineItem = TimelineEntry | TimelineMilestone;
+
+export interface Course {
+  readonly id: string;
+  readonly title: string;
+  readonly provider: string;
+  readonly completed: YearMonth;
 }
 
 export interface EducationAward {
@@ -127,12 +153,37 @@ export const timeline = [
     kind: "training",
     title: "Modern Frontend Development Bootcamp",
     organisation: "SPICED Academy",
-    location: "Berlin (DE)",
+    location: "Berlin (DE) · Remote",
     start: "2026-06",
     end: "2026-09",
     highlights: [
-      "12-week immersive program covering modern JS/TS, React, Next.js, state management, WebGL/Three.js, animation libraries (GSAP and Motion, formerly Framer Motion), and CI/CD deployment.",
+      "16-week full-time remote program: 720 hours (960 lessons) of programming practice covering HTML, CSS, JavaScript, React, Next.js, Node.js, REST APIs and unit testing.",
+      "Built projects in pair programming and agile teams, including AI-assisted development with Claude Code.",
+      "Deepened GSAP and Motion alongside the program through dedicated courses and projects.",
     ],
+  },
+  {
+    id: "sanity-certified-content-operator",
+    kind: "certification",
+    title: "Sanity Certified Content Operator",
+    subtitle: "Sanity",
+    start: "2026-05",
+    link: {
+      href: "https://www.sanity.io/learn/certification/sanity-certified-content-operator/share/g2bqtK6YZ",
+      external: true,
+    },
+  },
+  {
+    id: "orryana",
+    kind: "project",
+    title: "Orryana",
+    subtitle: "Financial platform",
+    start: "2026-03",
+    end: "present",
+    link: {
+      href: "#work-orryana",
+      external: false,
+    },
   },
   {
     id: "meliore-foundation",
@@ -194,7 +245,7 @@ export const timeline = [
       "Coordinated a team of 150 external volunteers across 22 language teams.",
     ],
   },
-] as const satisfies readonly TimelineEntry[];
+] as const satisfies readonly TimelineItem[];
 
 export const education = [
   {
@@ -341,3 +392,57 @@ export const skillGroups = [
     ],
   },
 ] as const satisfies readonly SkillGroup[];
+
+export interface ExperienceContent {
+  readonly title: string;
+  readonly presentLabel: string;
+  readonly educationTitle: string;
+  readonly languagesTitle: string;
+  readonly alsoTitle: string;
+  readonly freelanceLabel: string;
+  readonly earlyWorkLabel: string;
+  readonly coursesLabel: string;
+}
+
+export const experienceContent = {
+  title: "Experience",
+  presentLabel: "Present",
+  educationTitle: "Education",
+  languagesTitle: "Languages",
+  alsoTitle: "Also",
+  freelanceLabel: "Freelance",
+  earlyWorkLabel: "Projection mapping",
+  coursesLabel: "Courses",
+} as const satisfies ExperienceContent;
+
+export const timelineKindLabels = {
+  work: "Work",
+  training: "Training",
+  certification: "Certification",
+  project: "Project",
+} as const satisfies Record<TimelineKind, string>;
+
+export const courses = [
+  {
+    id: "creative-coding-club-scrolltrigger-express",
+    title: "ScrollTrigger Express",
+    provider: "Creative Coding Club",
+    completed: "2026-10",
+  },
+  {
+    id: "creative-coding-club-gsap-3-express",
+    title: "GSAP 3 Express",
+    provider: "Creative Coding Club",
+    completed: "2026-10",
+  },
+  {
+    id: "scrimba-learn-typescript",
+    title: "Learn TypeScript",
+    provider: "Scrimba",
+    completed: "2026-09",
+  },
+] as const satisfies readonly Course[];
+
+export const publicationKindLabels = {
+  "master-thesis": "Master thesis",
+} as const satisfies Record<PublicationKind, string>;
