@@ -10,6 +10,7 @@ import LanguageList from "@/components/experience/LanguageList";
 import TimelineItem from "@/components/experience/TimelineItem";
 import TimelineMilestoneItem from "@/components/experience/TimelineMilestoneItem";
 import TimelineScroll from "@/components/experience/TimelineScroll";
+import { timelineAccentAt } from "@/components/experience/timelineRail";
 
 const columnTitleClasses = "font-mono text-xs tracking-widest text-ink uppercase";
 
@@ -36,11 +37,19 @@ export default function Experience() {
       <div className="mx-auto mt-16 max-w-7xl px-5 md:mt-24 md:px-10">
         <TimelineScroll>
           <ol className="flex flex-col gap-16 md:gap-20">
-            {items.map((item) =>
+            {items.map((item, index) =>
               isMilestone(item) ? (
-                <TimelineMilestoneItem key={item.id} milestone={item} />
+                <TimelineMilestoneItem
+                  key={item.id}
+                  milestone={item}
+                  accent={timelineAccentAt(index, items.length)}
+                />
               ) : (
-                <TimelineItem key={item.id} entry={item} />
+                <TimelineItem
+                  key={item.id}
+                  entry={item}
+                  accent={timelineAccentAt(index, items.length)}
+                />
               ),
             )}
           </ol>

@@ -1,3 +1,5 @@
+import type { AccentColor } from "./projects";
+
 type CalendarMonth =
   | "01"
   | "02"
@@ -64,12 +66,6 @@ export interface TimelineMilestone {
 
 export type TimelineItem = TimelineEntry | TimelineMilestone;
 
-export interface Course {
-  readonly id: string;
-  readonly title: string;
-  readonly provider: string;
-  readonly completed: YearMonth;
-}
 
 export interface EducationAward {
   readonly name: string;
@@ -157,7 +153,7 @@ export const timeline = [
     start: "2026-06",
     end: "2026-09",
     highlights: [
-      "16-week full-time remote program: 720 hours (960 lessons) of programming practice covering HTML, CSS, JavaScript, React, Next.js, Node.js, REST APIs and unit testing.",
+      "16-week full-time remote program: 720 hours (960 lessons) of programming practice covering JavaScript, React, Next.js, Node.js, REST APIs and unit testing.",
       "Built projects in pair programming and agile teams, including AI-assisted development with Claude Code.",
       "Deepened GSAP and Motion alongside the program through dedicated courses and projects.",
     ],
@@ -279,7 +275,7 @@ export const freelance = [
   {
     id: "canva",
     client: "Canva",
-    role: "Content Writer",
+    role: "Content Writer (Design)",
     start: "2019-12",
     end: "2022-07",
     summary:
@@ -323,6 +319,12 @@ export const publications = [
     href: "https://drive.google.com/file/d/0B-xQlVkklvCwZ2JQS1QzT3lzcTA/view?usp=sharing&resourcekey=0-TU_98FWqdkHiVyyNlUoxlw",
   },
 ] as const satisfies readonly Publication[];
+
+export const languageProficiencyAccent = {
+  native: "yellow",
+  "business fluent": "teal",
+  intermediate: "pink",
+} as const satisfies Record<LanguageProficiency, AccentColor>;
 
 export const languages = [
   { name: "German", proficiency: "native", cefr: "C2" },
@@ -401,7 +403,6 @@ export interface ExperienceContent {
   readonly alsoTitle: string;
   readonly freelanceLabel: string;
   readonly earlyWorkLabel: string;
-  readonly coursesLabel: string;
 }
 
 export const experienceContent = {
@@ -412,7 +413,6 @@ export const experienceContent = {
   alsoTitle: "Also",
   freelanceLabel: "Freelance",
   earlyWorkLabel: "Projection mapping",
-  coursesLabel: "Courses",
 } as const satisfies ExperienceContent;
 
 export const timelineKindLabels = {
@@ -421,27 +421,6 @@ export const timelineKindLabels = {
   certification: "Certification",
   project: "Project",
 } as const satisfies Record<TimelineKind, string>;
-
-export const courses = [
-  {
-    id: "creative-coding-club-scrolltrigger-express",
-    title: "ScrollTrigger Express",
-    provider: "Creative Coding Club",
-    completed: "2026-10",
-  },
-  {
-    id: "creative-coding-club-gsap-3-express",
-    title: "GSAP 3 Express",
-    provider: "Creative Coding Club",
-    completed: "2026-10",
-  },
-  {
-    id: "scrimba-learn-typescript",
-    title: "Learn TypeScript",
-    provider: "Scrimba",
-    completed: "2026-09",
-  },
-] as const satisfies readonly Course[];
 
 export const publicationKindLabels = {
   "master-thesis": "Master thesis",
