@@ -1,4 +1,4 @@
-import type { AccentColor } from "./projects";
+import type { AccentColor, ProjectDiscipline } from "./projects";
 
 type CalendarMonth =
   | "01"
@@ -115,6 +115,7 @@ export interface Language {
 export interface SkillGroup {
   readonly id: string;
   readonly title: string;
+  readonly discipline: ProjectDiscipline | null;
   readonly skills: readonly string[];
 }
 
@@ -337,42 +338,52 @@ export const languages = [
 
 export const skillGroups = [
   {
-    id: "frontend-creative-tech",
-    title: "Frontend & Creative Tech",
+    id: "frontend",
+    title: "Front-end",
+    discipline: "frontend",
     skills: [
       "React",
       "Next.js",
       "TypeScript",
       "JavaScript (ES6+)",
-      "Three.js",
-      "React Three Fiber (R3F)",
-      "WebGL",
-      "GSAP (ScrollTrigger)",
-      "Motion (formerly Framer Motion)",
       "HTML5",
       "Tailwind CSS v4",
       "Vite",
     ],
   },
   {
-    id: "design-motion-systems",
-    title: "Design & Motion Systems",
+    id: "ux-ui-brand",
+    title: "UX/UI & Brand",
+    discipline: "design",
     skills: [
       "Figma",
       "Design Systems",
-      "Adobe XD",
-      "After Effects",
-      "Lottie",
-      "Blender (3D Modeling)",
       "UI/UX Strategy",
       "Prototyping",
+      "Adobe XD",
       "Photoshop",
       "Illustrator",
     ],
   },
   {
-    id: "cms-tooling-workflow",
-    title: "CMS, Tooling & Workflow",
+    id: "motion-3d",
+    title: "Motion & 3D",
+    discipline: "motion",
+    skills: [
+      "Three.js",
+      "React Three Fiber (R3F)",
+      "WebGL",
+      "GSAP (ScrollTrigger)",
+      "Motion (formerly Framer Motion)",
+      "After Effects",
+      "Lottie",
+      "Blender (3D Modeling)",
+    ],
+  },
+  {
+    id: "cms-tooling",
+    title: "CMS & Tooling",
+    discipline: null,
     skills: [
       "Sanity",
       "WordPress",
@@ -385,15 +396,23 @@ export const skillGroups = [
       "Cursor",
       "Chrome DevTools",
       "SQL",
-      "CloudFlare",
-      "CloudWays",
+      "Cloudflare",
+      "Cloudways",
       "Jira",
       "Monday.com",
-      "miro",
-      "slack",
+      "Miro",
+      "Slack",
     ],
   },
 ] as const satisfies readonly SkillGroup[];
+
+export interface TechStackContent {
+  readonly title: string;
+}
+
+export const techStackContent = {
+  title: "Tech Stack",
+} as const satisfies TechStackContent;
 
 export interface ExperienceContent {
   readonly title: string;
