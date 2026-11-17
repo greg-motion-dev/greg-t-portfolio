@@ -1,3 +1,5 @@
+import type { AccentColor } from "./projects";
+
 type CalendarMonth =
   | "01"
   | "02"
@@ -17,6 +19,8 @@ export type CefrLevel = "A1" | "A2" | "B1" | "B2" | "C1" | "C2";
 export type CefrRange = CefrLevel | `${CefrLevel}/${CefrLevel}`;
 export type LanguageProficiency = "native" | "business fluent" | "intermediate";
 export type TimelineEntryKind = "work" | "training";
+export type TimelineMilestoneKind = "certification" | "project";
+export type TimelineKind = TimelineEntryKind | TimelineMilestoneKind;
 export type ProfileLinkKind = "linkedin" | "github";
 export type PublicationKind = "master-thesis";
 
@@ -44,6 +48,24 @@ export interface TimelineEntry {
   readonly end: YearMonth | "present";
   readonly highlights: readonly string[];
 }
+
+export interface TimelineMilestoneLink {
+  readonly href: string;
+  readonly external: boolean;
+}
+
+export interface TimelineMilestone {
+  readonly id: string;
+  readonly kind: TimelineMilestoneKind;
+  readonly title: string;
+  readonly subtitle: string;
+  readonly start: YearMonth;
+  readonly end?: YearMonth | "present";
+  readonly link?: TimelineMilestoneLink;
+}
+
+export type TimelineItem = TimelineEntry | TimelineMilestone;
+
 
 export interface EducationAward {
   readonly name: string;
@@ -127,12 +149,37 @@ export const timeline = [
     kind: "training",
     title: "Modern Frontend Development Bootcamp",
     organisation: "SPICED Academy",
-    location: "Berlin (DE)",
+    location: "Berlin (DE) · Remote",
     start: "2026-06",
     end: "2026-09",
     highlights: [
-      "12-week immersive program covering modern JS/TS, React, Next.js, state management, WebGL/Three.js, animation libraries (GSAP and Motion, formerly Framer Motion), and CI/CD deployment.",
+      "16-week full-time remote program: 720 hours (960 lessons) of programming practice covering JavaScript, React, Next.js, Node.js, REST APIs and unit testing.",
+      "Built projects in pair programming and agile teams, including AI-assisted development with Claude Code.",
+      "Deepened GSAP and Motion alongside the program through dedicated courses and projects.",
     ],
+  },
+  {
+    id: "sanity-certified-content-operator",
+    kind: "certification",
+    title: "Sanity Certified Content Operator",
+    subtitle: "Sanity",
+    start: "2026-05",
+    link: {
+      href: "https://www.sanity.io/learn/certification/sanity-certified-content-operator/share/g2bqtK6YZ",
+      external: true,
+    },
+  },
+  {
+    id: "orryana",
+    kind: "project",
+    title: "Orryana",
+    subtitle: "Financial platform",
+    start: "2026-03",
+    end: "present",
+    link: {
+      href: "#work-orryana",
+      external: false,
+    },
   },
   {
     id: "meliore-foundation",
@@ -194,7 +241,7 @@ export const timeline = [
       "Coordinated a team of 150 external volunteers across 22 language teams.",
     ],
   },
-] as const satisfies readonly TimelineEntry[];
+] as const satisfies readonly TimelineItem[];
 
 export const education = [
   {
@@ -228,7 +275,7 @@ export const freelance = [
   {
     id: "canva",
     client: "Canva",
-    role: "Content Writer",
+    role: "Content Writer (Design)",
     start: "2019-12",
     end: "2022-07",
     summary:
@@ -272,6 +319,12 @@ export const publications = [
     href: "https://drive.google.com/file/d/0B-xQlVkklvCwZ2JQS1QzT3lzcTA/view?usp=sharing&resourcekey=0-TU_98FWqdkHiVyyNlUoxlw",
   },
 ] as const satisfies readonly Publication[];
+
+export const languageProficiencyAccent = {
+  native: "yellow",
+  "business fluent": "teal",
+  intermediate: "pink",
+} as const satisfies Record<LanguageProficiency, AccentColor>;
 
 export const languages = [
   { name: "German", proficiency: "native", cefr: "C2" },
@@ -341,3 +394,34 @@ export const skillGroups = [
     ],
   },
 ] as const satisfies readonly SkillGroup[];
+
+export interface ExperienceContent {
+  readonly title: string;
+  readonly presentLabel: string;
+  readonly educationTitle: string;
+  readonly languagesTitle: string;
+  readonly alsoTitle: string;
+  readonly freelanceLabel: string;
+  readonly earlyWorkLabel: string;
+}
+
+export const experienceContent = {
+  title: "Experience",
+  presentLabel: "Present",
+  educationTitle: "Education",
+  languagesTitle: "Languages",
+  alsoTitle: "Also",
+  freelanceLabel: "Freelance",
+  earlyWorkLabel: "Projection mapping",
+} as const satisfies ExperienceContent;
+
+export const timelineKindLabels = {
+  work: "Work",
+  training: "Training",
+  certification: "Certification",
+  project: "Project",
+} as const satisfies Record<TimelineKind, string>;
+
+export const publicationKindLabels = {
+  "master-thesis": "Master thesis",
+} as const satisfies Record<PublicationKind, string>;

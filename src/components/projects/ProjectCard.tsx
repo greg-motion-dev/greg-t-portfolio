@@ -24,7 +24,10 @@ export default function ProjectCard({ project, position }: ProjectCardProps) {
   const titleId = `project-${project.id}`;
 
   return (
-    <li className="group/card relative flex bg-canvas transition-colors duration-300 hover:bg-surface motion-reduce:transition-none">
+    <li
+      id={`work-${project.id}`}
+      className="group/card relative flex scroll-mt-nav bg-canvas transition-colors duration-300 hover:bg-surface motion-reduce:transition-none"
+    >
       <span
         aria-hidden="true"
         className={`absolute inset-x-0 top-0 h-0.5 origin-left scale-x-0 transition-transform duration-500 ease-out group-hover/card:scale-x-100 motion-reduce:transition-none ${accentBgClasses[accent]}`}

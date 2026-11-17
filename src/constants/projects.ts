@@ -197,7 +197,7 @@ export const projects = [
     discipline: "motion",
     title: "Orryana",
     role: "designed-and-built",
-    year: TO_BE_PROVIDED,
+    year: "2026",
     summary: TO_BE_PROVIDED,
     stack: [TO_BE_PROVIDED],
     tags: [],
