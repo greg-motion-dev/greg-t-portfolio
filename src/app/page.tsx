@@ -1,3 +1,4 @@
+import Footer from "@/components/layout/Footer";
 import NavBar from "@/components/layout/NavBar";
 import LogoSection from "@/sections/LogoSection";
 import ProjectLineup from "@/sections/ProjectLineup";
@@ -20,6 +21,7 @@ export default function Home() {
         <TechStack />
         <Contact />
       </main>
+      <Footer />
     </>
   );
 }
