@@ -5,3 +5,5 @@ export * from "./clients";
 export * from "./competencies";
 export * from "./projects";
 export * from "./cv";
+export * from "./contact";
+export * from "./legal";

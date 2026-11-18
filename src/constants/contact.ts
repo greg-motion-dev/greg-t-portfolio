@@ -1,0 +1,20 @@
+export interface ContactContent {
+  readonly title: string;
+  readonly intro: string;
+  readonly availability: string;
+  readonly email: string;
+  readonly copyLabel: string;
+  readonly copiedLabel: string;
+  readonly copyFailedLabel: string;
+}
+
+export const contactContent = {
+  title: "Contact",
+  intro:
+    "I'm always happy to talk about new roles and projects. The best way to reach me is by email.",
+  availability: "Open to full-time roles, based in Germany.",
+  email: "gtelakis@duck.com",
+  copyLabel: "Copy email",
+  copiedLabel: "Copied",
+  copyFailedLabel: "Copy failed",
+} as const satisfies ContactContent;

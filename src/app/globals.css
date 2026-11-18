@@ -28,7 +28,6 @@ section {
 }
 
 @theme {
-  --font-sans: "Satoshi", ui-sans-serif, system-ui, sans-serif;
 
   --color-canvas: #070709;
   --color-surface: #0e0e12;
@@ -54,6 +53,7 @@ section {
 }
 
 @theme inline {
+  --font-sans: var(--font-plus-jakarta-sans), ui-sans-serif, system-ui, sans-serif;
   --font-mono: var(--font-jetbrains-mono), ui-monospace, monospace;
 }
 
@@ -187,51 +187,7 @@ section {
   .gradient-edge {
     @apply w-36 h-full absolute bottom-0 z-20;
   }
-
-  form {
-    label {
-      @apply block text-white-50 mb-2;
-    }
-
-    input,
-    textarea {
-      @apply w-full px-4 py-4 md:text-base text-sm placeholder:text-blue-50 bg-blue-100 rounded-md;
-    }
-
-    a {
-      @apply w-full py-4 bg-white text-black font-semibold rounded-md flex justify-center items-center gap-2;
-
-      img {
-        @apply inline-block;
-      }
-    }
-  }
-
-  .footer {
-    @apply my-10 md:mt-20 mt-10 text-white-50 px-5 md:px-20 xl:px-20 flex items-center justify-center;
-
-    .footer-container {
-      @apply grid grid-cols-1 md:grid-cols-3 gap-5 md:gap-0 w-full;
-    }
-
-    p {
-      @apply text-center md:text-start;
-    }
-
-    .socials {
-      @apply flex items-center justify-center gap-5;
-
-      .icon {
-        @apply border border-black-50 bg-black-100 flex justify-center items-center rounded-xl size-10 md:size-12 cursor-pointer transition-all duration-500 hover:bg-black-50;
-      }
-
-      img {
-        @apply inline-block;
-      }
-    }
-  }
 }
-
 
 .gradient-edge:nth-of-type(1) {
   left: 0;
