@@ -37,3 +37,21 @@ export const heroCtas = [
     pendingLabel: "soon",
   },
 ] as const satisfies readonly HeroCta[];
+
+export interface HeroPortrait {
+  readonly src: string;
+  readonly alt: string;
+  readonly width: number;
+  readonly height: number;
+}
+
+export const heroPortrait = {
+  src: "/images/profile.jpg",
+  alt: "Portrait of Greg Telakis",
+  width: 832,
+  height: 832,
+} as const satisfies HeroPortrait;
+
+export const heroGreeting = "Ahoi! My name is Greg.";
+
+export const heroOrbitHint = "drag to orbit";

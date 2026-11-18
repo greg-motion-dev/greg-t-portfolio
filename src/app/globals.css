@@ -33,7 +33,7 @@ section {
   --color-surface: #0e0e12;
   --color-ink: #f4f4f6;
   --color-ink-muted: #9ca3af;
-  --color-brand-yellow: #ffc14d;
+  --color-brand-yellow: #f3b43f;
   --color-brand-pink: #e0368f;
   --color-brand-teal: #14a9c4;
 
@@ -41,6 +41,10 @@ section {
   --text-heading--line-height: 1.1;
   --text-heading-lg: 3.55rem;
   --text-heading-lg--line-height: 1;
+  --text-hero: 1.375rem;
+  --text-hero--line-height: 1.25;
+  --text-hero-lg: 2.5rem;
+  --text-hero-lg--line-height: 1.25;
 
   --spacing-nav: 4rem;
 
