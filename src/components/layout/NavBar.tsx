@@ -1,19 +1,20 @@
 import { navContact, navLinks, profile, profileLinkLabels } from "@/constants";
 import Link from "next/link";
 import SocialIcon from "@/components/icons/SocialIcon";
+import MobileNav from "@/components/layout/MobileNav";
 
 export default function NavBar() {
   return (
     <header className="glass fixed inset-x-0 top-0 z-50 border-b border-white/10">
-      <div className="mx-auto flex h-nav max-w-7xl items-center justify-between gap-6 px-5 md:px-10">
+      <div className="mx-auto flex h-nav max-w-7xl items-center justify-between gap-3 px-5 md:px-10 lg:gap-6">
         <Link
           href="/#about"
-          className="focus-ring font-mono text-base font-extrabold tracking-widest text-ink uppercase md:text-lg"
+          className="focus-ring font-mono text-sm font-extrabold tracking-widest text-ink uppercase sm:text-base md:text-lg"
         >
           {profile.name}
         </Link>
 
-        <nav aria-label="Primary" className="hidden md:block">
+        <nav aria-label="Primary" className="hidden lg:block">
           <ul className="flex items-center gap-8">
             {navLinks.map(({ name, link }) => (
               <li key={name}>
@@ -28,8 +29,8 @@ export default function NavBar() {
           </ul>
         </nav>
 
-        <div className="flex items-center gap-5">
-          <ul className="flex items-center gap-4">
+        <div className="flex items-center gap-3 lg:gap-5">
+          <ul className="hidden items-center gap-4 lg:flex">
             {profile.links.map(({ kind, href }) => (
               <li key={kind}>
                 <a
@@ -46,10 +47,13 @@ export default function NavBar() {
           </ul>
           <Link
             href={navContact.link}
-            className="focus-ring border border-ink px-4 py-2 font-mono text-sm text-ink transition-colors hover:bg-ink hover:text-canvas"
+            className="focus-ring border border-ink px-3 py-2 font-mono text-sm text-ink transition-colors hover:bg-ink hover:text-canvas sm:px-4"
           >
             {navContact.name}
           </Link>
+          <div className="-mr-2 lg:hidden">
+            <MobileNav />
+          </div>
         </div>
       </div>
     </header>

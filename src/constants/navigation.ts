@@ -26,3 +26,15 @@ export const footerContent = {
   backToTopLabel: "Back to top",
   privacyLink: { name: "Privacy Policy", link: "/privacy" },
 } as const satisfies FooterContent;
+
+export interface MobileNavLabels {
+  readonly openMenu: string;
+  readonly closeMenu: string;
+  readonly menu: string;
+}
+
+export const mobileNavLabels = {
+  openMenu: "Open menu",
+  closeMenu: "Close menu",
+  menu: "Menu",
+} as const satisfies MobileNavLabels;
