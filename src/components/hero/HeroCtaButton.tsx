@@ -28,6 +28,8 @@ export default function HeroCtaButton({ cta }: HeroCtaButtonProps) {
   return (
     <a
       href={cta.href}
+      target={cta.opensInNewTab ? "_blank" : undefined}
+      rel={cta.opensInNewTab ? "noopener" : undefined}
       className={`focus-ring ${baseClasses} border border-ink/40 text-ink transition-colors hover:border-ink`}
     >
       {cta.label}

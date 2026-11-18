@@ -1,25 +1,27 @@
 @import "tailwindcss";
 @source not "../../_archive";
 
-html,
-body {
-  width: 100dvw;
-  overflow-x: hidden;
-  background-color: var(--color-canvas);
-  color: var(--color-ink);
-  scroll-behavior: smooth;
-  font-family: var(--font-sans);
-}
-
-section {
-  width: 100dvw;
-  scroll-margin-top: var(--spacing-nav);
-}
-
-@media (prefers-reduced-motion: reduce) {
+@layer base {
   html,
   body {
-    scroll-behavior: auto;
+    width: 100dvw;
+    overflow-x: hidden;
+    background-color: var(--color-canvas);
+    color: var(--color-ink);
+    scroll-behavior: smooth;
+    font-family: var(--font-sans);
+  }
+
+  section {
+    width: 100dvw;
+    scroll-margin-top: var(--spacing-nav);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html,
+    body {
+      scroll-behavior: auto;
+    }
   }
 }
 
@@ -40,6 +42,16 @@ section {
   --text-hero--line-height: 1.25;
   --text-hero-lg: 2.5rem;
   --text-hero-lg--line-height: 1.25;
+
+  --color-paper: #ffffff;
+  --color-paper-ink: #111114;
+  --color-paper-muted: #5b5f68;
+  --color-paper-line: #e2e2e6;
+
+  --text-cv: 0.75rem;
+  --text-cv--line-height: 1.45;
+  --text-cv-sm: 0.6875rem;
+  --text-cv-sm--line-height: 1.45;
 
   --spacing-nav: 4rem;
 
@@ -75,4 +87,16 @@ section {
 
 html:has(dialog[open]) {
   overflow: hidden;
+}
+
+@page {
+  size: A4;
+  margin: 14mm;
+}
+
+@media print {
+  html,
+  body {
+    background-color: var(--color-paper);
+  }
 }

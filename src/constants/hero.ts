@@ -9,6 +9,7 @@ interface HeroCtaBase {
 export interface HeroLinkCta extends HeroCtaBase {
   readonly status: "available";
   readonly href: string;
+  readonly opensInNewTab: boolean;
 }
 
 export interface HeroPendingCta extends HeroCtaBase {
@@ -28,13 +29,15 @@ export const heroCtas = [
     variant: "solid",
     status: "available",
     href: "#work",
+    opensInNewTab: false,
   },
   {
     id: "resume",
     label: "resume",
     variant: "outline",
-    status: "pending",
-    pendingLabel: "soon",
+    status: "available",
+    href: "/greg-telakis-cv.pdf",
+    opensInNewTab: true,
   },
 ] as const satisfies readonly HeroCta[];
 
