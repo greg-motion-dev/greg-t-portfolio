@@ -34,13 +34,7 @@ const labelClasses = [
   "group-hover:-translate-x-2 group-focus-visible:-translate-x-2 pointer-coarse:-translate-x-2",
 ].join(" ");
 
-const arrowClasses = [
-  "size-4 -translate-y-8 opacity-0 transition-all",
-  easing,
-  "group-hover:translate-y-0 group-hover:opacity-100 group-hover:motion-safe:animate-bounce",
-  "group-focus-visible:translate-y-0 group-focus-visible:opacity-100",
-  "pointer-coarse:translate-y-0 pointer-coarse:opacity-100",
-].join(" ");
+const arrowClasses = "size-4 group-hover:motion-safe:animate-bounce";
 
 export default function CircleRevealLink({ href, label }: CircleRevealLinkProps) {
   return (

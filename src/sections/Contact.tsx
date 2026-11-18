@@ -9,8 +9,12 @@ export default function Contact() {
       <div className="mx-auto max-w-7xl px-5 md:px-10">
         <SectionHeading id="contact-title" title={contactContent.title} />
 
-        <p className="mt-12 max-w-2xl text-lg text-ink md:mt-16 md:text-2xl">
-          {contactContent.intro}
+        <p className="mt-12 text-lg text-ink md:mt-16 md:text-2xl">
+          {contactContent.introLines.map((line) => (
+            <span key={line} className="block">
+              {line}
+            </span>
+          ))}
         </p>
 
         <p className="mt-6 flex items-center gap-3 font-mono text-xs tracking-wider text-ink-muted uppercase">
