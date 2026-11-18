@@ -1,15 +1,14 @@
-import { navContact, navLinks, profile, profileLinkLabels } from "@/constants";
+import { navContact, navLinks, profile } from "@/constants";
 import Link from "next/link";
-import SocialIcon from "@/components/icons/SocialIcon";
 import MobileNav from "@/components/layout/MobileNav";
 
 export default function NavBar() {
   return (
     <header className="glass fixed inset-x-0 top-0 z-50 border-b border-white/10">
-      <div className="mx-auto flex h-nav max-w-7xl items-center justify-between gap-3 px-5 md:px-10 lg:gap-6">
+      <div className="mx-auto flex h-nav max-w-7xl items-center justify-between gap-3 px-5 md:px-10 lg:grid lg:grid-cols-[1fr_auto_1fr] lg:gap-6">
         <Link
           href="/#about"
-          className="focus-ring font-mono text-sm font-extrabold tracking-widest text-ink uppercase sm:text-base md:text-lg"
+          className="focus-ring justify-self-start font-mono text-sm font-extrabold tracking-widest text-ink uppercase sm:text-base md:text-lg"
         >
           {profile.name}
         </Link>
@@ -29,22 +28,7 @@ export default function NavBar() {
           </ul>
         </nav>
 
-        <div className="flex items-center gap-3 lg:gap-5">
-          <ul className="hidden items-center gap-4 lg:flex">
-            {profile.links.map(({ kind, href }) => (
-              <li key={kind}>
-                <a
-                  href={href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label={`${profileLinkLabels[kind]} profile`}
-                  className="focus-ring block text-ink-muted transition-colors hover:text-ink"
-                >
-                  <SocialIcon kind={kind} className="size-5" />
-                </a>
-              </li>
-            ))}
-          </ul>
+        <div className="flex items-center gap-3 justify-self-end">
           <Link
             href={navContact.link}
             className="focus-ring border border-ink px-3 py-2 font-mono text-sm text-ink transition-colors hover:bg-ink hover:text-canvas sm:px-4"
