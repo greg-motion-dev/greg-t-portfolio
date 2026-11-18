@@ -80,16 +80,28 @@ We need to merge my extensive background as a Senior UI/UX Strategist (10+ years
   - `--color-surface: #0e0e12` (card/row fill → `bg-surface` with `border-white/10` hairlines)
   - `--color-ink: #f4f4f6` (primary text → `text-ink`)
   - `--color-ink-muted: #9ca3af` (secondary/metadata text → `text-ink-muted`)
-  - `--color-brand-yellow: #ffc14d` (primary focus, portrait backdrop, highlight states → `text-brand-yellow`, `bg-brand-yellow`)
+  - `--color-brand-yellow: #f3b43f` (primary focus, portrait backdrop, highlight states → `text-brand-yellow`, `bg-brand-yellow`)
   - `--color-brand-pink: #e0368f` (3D/motion accents, secondary highlights → `text-brand-pink`, `bg-brand-pink`)
   - `--color-brand-teal: #14a9c4` (UI/UX & architecture accents, orbital paths → `text-brand-teal`, `bg-brand-teal`)
-- **Typography:** `Satoshi` for headings and body copy paired with `JetBrains Mono` for role subtitles, section indices (`01`, `02`), and technical tags.
+- **Typography:** `Plus Jakarta Sans` for headings and body copy paired with `JetBrains Mono` for the hero greeting, section indices (`01`, `02`), and technical tags. Both are loaded via `next/font/google`, which self-hosts them at build time (no requests to Google at runtime).
 - **Shape System (shared by website and PDF CV):** Four primitives; shape and colour always travel together.
   - ● circle / sphere → **Greg (identity)**: the portrait frame. Not a discipline, no discipline colour.
   - ■ square / cube → **Front-end** → `brand-yellow`
   - ◆ diamond / octahedron → **UX/UI & Brand** → `brand-teal`
   - ▲ triangle / tetrahedron → **Motion & 3D** → `brand-pink`
   - The single source of truth is `disciplineShape` + `disciplineAccent` in `src/constants/projects.ts`. Never add a 4th accent colour without a matching 4th discipline.
+
+---
+
+## 2.6 Privacy & Hosting Rules (NON-NEGOTIABLE)
+
+- **No tracking:** no analytics, no third-party embeds, no cookies, no `localStorage`/`sessionStorage`.
+- **No external requests at runtime:** no CDNs, no externally hosted fonts, scripts, images, or 3D assets. Everything ships from our own domain.
+- **3D assets:** never use drei `Environment` presets or any loader that fetches from a CDN. Lighting is done with custom shaders or local assets.
+- **Indexing:** the site stays unindexed until launch: `robots` noindex metadata on every page (root layout) plus `Disallow: /` in `src/app/robots.ts`.
+- **Personal data:** no phone number anywhere. The only published contact is `gtelakis@duck.com`.
+- **Legal pages:** English terminology only ("Privacy Policy", `/privacy`). No Impressum yet; revisit before launch.
+- **Hosting:** EU region preferred. Provider still to be decided; the Privacy Policy text depends on it.
 
 ---
 
@@ -112,14 +124,14 @@ We are merging three eras of work into `src/constants/index.ts` (converting from
 ## 4. Section-by-Section Redesign Plan
 
 - **Kill the Tutorial Template:** Remove the tutorial 3D room, desk, computer, and floating 3D `TechIcon` `.glb` components.
-- **Navbar:** Minimal sticky top bar — `GREG TELAKIS` on the left, clean anchor links (`about`, `work`, `techstack`, `experience`), GitHub/LinkedIn icons, and a sharp `contact` button on the right (no theme toggle).
+- **Navbar:** Minimal sticky top bar — `GREG TELAKIS` on the left, clean anchor links (`about`, `work`, `techstack`, `experience`), GitHub/LinkedIn icons, and a sharp `contact` button on the right (no theme toggle). Below `lg`, the links and icons move into a full-screen menu built on a native `<dialog>`; the `contact` button stays visible in the bar.
 - **Hero (`Hero.tsx` + `OrbitalCanvas.tsx`):**
-  - **Centerpiece:** Centered circular portrait (`/images/profile.jpg` on `#ffc14d` background), monospace subtitle (`Creative UI Engineer | Motion & 3D Web Specialist`), concise intro copy, and two sharp rectangular CTAs (`see my work` solid white, `resume` hairline border).
-  - **3D Layer:** An SSR-safe R3F `<Canvas>` rendering tilted luminous orbital rings carrying the Shape System primitives (cubes in `brand-yellow`, octahedrons in `brand-teal`, tetrahedrons in `brand-pink`) orbiting the circular portrait, which is the identity circle, with retro-futuristic specular/Fresnel materials and subtle mouse-parallax tilt.
+  - **Centerpiece:** Centered circular portrait (`/images/profile.jpg` on `brand-yellow`), a yellow monospace greeting (`Ahoi! My name is Greg.`), the role as a two-line display `h1` (`Creative UI Engineer` / `Motion & 3D Web Specialist`), muted intro copy, and two sharp rectangular CTAs (`see my work` solid white, `resume` hairline border).
+- **3D Layer:** An SSR-safe R3F `<Canvas>` (lazy-loaded, CSS ring fallback) rendering three tilted orbits around the portrait, which is the identity circle and acts as a sun: tetrahedrons in `brand-pink` (inner), octahedrons in `brand-teal` (middle), cubes in `brand-yellow` (outer). Shapes use a custom Fresnel shader and may pass in front of or behind the portrait (depth-masked by an invisible sphere). Orbit paths are `white/10` hairlines that fade with depth and light up with a 3s colour trail behind each shape. The portrait casts a soft black shadow with a fine, slowly pulsing yellow glow. A sparse, seeded, twinkling starfield sits behind. Users can drag to rotate (three's `OrbitControls`, mouse/trackpad only, rotate only, eases back to rest); a one-time intro nudge and a corner `drag to orbit` hint aid discovery. All tuning lives in `src/components/three/orbitConfig.ts`. Reduced motion renders a single static frame.
 - **Project Lineup (`ProjectLineup.tsx`):**
   - Modeled after `getartcraft.com`'s "Lineup" section: full-width stacked editorial rows separated by `1px` borders (`border-white/10`), large accented index numbers (`01`–`10`), a discipline pill with its shape marker, plus a monospace role label (e.g. `■ Front-end · Designed & built`) , concise role/impact summary, action links, and clean visual mockups.
 - **Experience & Tech Stack:** Clean editorial timeline for CV history/education/languages and a categorized grid for the tech stack (replacing the heavy multi-canvas `.glb` icons).
-- **Contact (`Contact.tsx`):** Dark editorial form wired to EmailJS (`process.env.NEXT_PUBLIC_EMAILJS_*` without `!` non-null assertions—use runtime guards) paired with a lightweight custom 3D geometric accent or shader card.
+- **Contact (`Contact.tsx`):** No form and no EmailJS. A Server Component with a short intro (one sentence per line), an availability line, the email as a `mailto:` link, and a small client-side copy-to-clipboard button. Social links live only in the footer. A lightweight 3D accent is deferred and may be dropped, since the hero carries the 3D.
 - **Design tokens first:** Define colors, type scale, spacing, and borders as Tailwind v4 `@theme` tokens before building components.
 
 ---
