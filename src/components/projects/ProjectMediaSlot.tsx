@@ -24,7 +24,7 @@ export default function ProjectMediaSlot({ media, discipline }: ProjectMediaSlot
           alt={cover.alt}
           fill
           sizes="(min-width: 1280px) 33vw, (min-width: 768px) 50vw, 100vw"
-          className="object-cover"
+          className="object-cover object-top brightness-[0.85] transition-[filter] duration-500 group-focus-within/card:brightness-100 group-hover/card:brightness-100 motion-reduce:transition-none"
         />
       ) : (
         <div className="flex size-full items-center justify-center">
