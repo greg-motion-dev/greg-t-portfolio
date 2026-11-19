@@ -99,12 +99,40 @@ export const projects = [
     discipline: "frontend",
     title: "Zero Carbon Analytics (Original)",
     role: "designed-and-built",
-    year: TO_BE_PROVIDED,
-    summary: TO_BE_PROVIDED,
-    stack: [TO_BE_PROVIDED],
+    year: "2021",
+    summary:
+      "An independent climate-research platform spun off from the European Climate Foundation. I designed the brand and UI from scratch and built a custom WordPress theme for its briefings and explainers.",
+    stack: ["WordPress", "PHP", "ACF", "Gutenberg", "JavaScript"],
     tags: [],
-    links: [],
-    media: [],
+    links: [
+      {
+        kind: "live",
+        label: "Archived site",
+        href: "https://web.archive.org/web/20250701182944/https://zerocarbon-analytics.org/",
+      },
+    ],
+    media: [
+      {
+        kind: "image",
+        src: "/images/projects/zero-carbon-analytics-original/cover.jpg",
+        alt: "Climate Science & Impact topic page of Zero Carbon Analytics with a yellow banner and briefing cards",
+      },
+      {
+        kind: "image",
+        src: "/images/projects/zero-carbon-analytics-original/01.jpg",
+        alt: "Climate Science & Impact topic page with briefing cards",
+      },
+      {
+        kind: "image",
+        src: "/images/projects/zero-carbon-analytics-original/02.jpg",
+        alt: "Briefing page for the IPCC Sixth Assessment Report",
+      },
+      {
+        kind: "image",
+        src: "/images/projects/zero-carbon-analytics-original/03.jpg",
+        alt: "Food, Nature & Land topic page with briefing cards",
+      },
+    ],
     featured: true,
   },
   {
@@ -114,11 +142,34 @@ export const projects = [
     title: "Zero Carbon Analytics (2025 Rebrand)",
     role: "led",
     year: "2025",
-    summary: TO_BE_PROVIDED,
-    stack: [TO_BE_PROVIDED],
+    summary:
+      "The 2025 redesign of the same climate-research platform. Having co-created the original, I led the new UI design, managed the developers who built it and supported the technical implementation.",
+    stack: ["WordPress", "PHP", "ACF", "Gutenberg", "JavaScript"],
     tags: [],
-    links: [],
-    media: [],
+    links: [
+      {
+        kind: "live",
+        label: "Live site",
+        href: "https://zerocarbon-analytics.org/",
+      },
+    ],
+    media: [
+      {
+        kind: "image",
+        src: "/images/projects/zero-carbon-analytics-rebrand/cover.jpg",
+        alt: "Nature topic page of the redesigned Zero Carbon Analytics with a lavender hero and research cards",
+      },
+      {
+        kind: "image",
+        src: "/images/projects/zero-carbon-analytics-rebrand/01.jpg",
+        alt: "Briefing on Congo Basin deforestation with charts and data tables",
+      },
+      {
+        kind: "image",
+        src: "/images/projects/zero-carbon-analytics-rebrand/02.jpg",
+        alt: "Nature topic page with latest research and filterable article grid",
+      },
+    ],
     featured: true,
   },
   {
@@ -127,26 +178,69 @@ export const projects = [
     discipline: "design",
     title: "SteelWatch",
     role: "designed",
-    year: TO_BE_PROVIDED,
-    summary: TO_BE_PROVIDED,
-    stack: [TO_BE_PROVIDED],
+    year: "2023",
+    summary:
+      "An independent organisation tracking the steel industry’s climate impact, published in English, Japanese and Korean. I developed the brand identity and designed the UI, then led the external developer who built it.",
+    stack: ["WordPress", "PHP", "Custom theme", "JavaScript"],
     tags: [],
-    links: [],
-    media: [],
+    links: [
+      { kind: "live", label: "Live site", href: "https://steelwatch.org/" },
+    ],
+    media: [
+      {
+        kind: "image",
+        src: "/images/projects/steelwatch/cover.jpg",
+        alt: "SteelWatch homepage with a featured article on steel decarbonisation in 2025",
+      },
+      {
+        kind: "image",
+        src: "/images/projects/steelwatch/japanese-home.jpg",
+        alt: "Japanese version of the SteelWatch homepage with a red steel sculpture hero",
+      },
+      {
+        kind: "image",
+        src: "/images/projects/steelwatch/02.jpg",
+        alt: "Japanese reports archive with report covers and tags",
+      },
+      {
+        kind: "image",
+        src: "/images/projects/steelwatch/03.jpg",
+        alt: "Press release page with article, notes and related publications",
+      },
+    ],
     featured: true,
   },
   {
     id: "gasoutlook",
     era: "professional",
     discipline: "design",
-    title: "GasOutlook",
+    title: "Gas Outlook",
     role: "led",
-    year: TO_BE_PROVIDED,
-    summary: TO_BE_PROVIDED,
-    stack: [TO_BE_PROVIDED],
+    year: "2025",
+    summary:
+      "An independent editorial platform covering global gas markets. I supervised the UI designer and developer during the original build, and later designed a language switcher, interactive UI elements and graphics.",
+    stack: ["WordPress", "PHP", "Custom theme", "JavaScript"],
     tags: [],
-    links: [],
-    media: [],
+    links: [
+      { kind: "live", label: "Live site", href: "https://gasoutlook.com/" },
+    ],
+    media: [
+      {
+        kind: "image",
+        src: "/images/projects/gasoutlook/cover.jpg",
+        alt: "Gas Outlook long read with the EN and ES language switcher and an aerial photo of an LNG terminal",
+      },
+      {
+        kind: "image",
+        src: "/images/projects/gasoutlook/01.jpg",
+        alt: "Long read on Mexico LNG with a photo of a whale in the sea",
+      },
+      {
+        kind: "image",
+        src: "/images/projects/gasoutlook/02.jpg",
+        alt: "Mobile view of a marine species infographic in a Gas Outlook article",
+      },
+    ],
     featured: true,
   },
   {
@@ -155,12 +249,36 @@ export const projects = [
     discipline: "frontend",
     title: "CORE (Climate Opinion Research Exchange)",
     role: "built",
-    year: TO_BE_PROVIDED,
-    summary: TO_BE_PROVIDED,
-    stack: [TO_BE_PROVIDED],
+    year: "2025",
+    summary:
+      "An interactive platform sharing opinion research on climate change and the energy transition. I designed and coded the first prototype, then built the current WordPress theme from a UX/UI designer’s design.",
+    stack: ["WordPress", "PHP", "Custom theme", "JavaScript"],
     tags: [],
-    links: [],
-    media: [],
+    links: [
+      { kind: "live", label: "Live site", href: "https://climateopinion.org/" },
+    ],
+    media: [
+      {
+        kind: "image",
+        src: "/images/projects/core/cover.jpg",
+        alt: "CORE homepage with intro text and the latest publications",
+      },
+      {
+        kind: "image",
+        src: "/images/projects/core/01.jpg",
+        alt: "About CORE page with the research team and FAQs",
+      },
+      {
+        kind: "image",
+        src: "/images/projects/core/02.jpg",
+        alt: "Data Explorer with country filters, a bar chart and a data table",
+      },
+      {
+        kind: "image",
+        src: "/images/projects/core/03.jpg",
+        alt: "CORE homepage with tracking-study and investor-survey publications",
+      },
+    ],
     featured: true,
   },
   {
