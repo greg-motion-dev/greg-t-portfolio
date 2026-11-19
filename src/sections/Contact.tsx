@@ -1,12 +1,14 @@
 import { contactContent } from "@/constants";
+import ContactFluid from "@/components/contact/ContactFluid";
 import CopyEmailButton from "@/components/contact/CopyEmailButton";
 import SectionHeading from "@/components/ui/SectionHeading";
 import ShapeMarker from "@/components/ui/ShapeMarker";
 
 export default function Contact() {
   return (
-    <section id="contact" aria-labelledby="contact-title" className="pt-24 pb-16 md:pt-32 md:pb-20">
-      <div className="mx-auto max-w-7xl px-5 md:px-10">
+    <section id="contact" aria-labelledby="contact-title" className="relative overflow-hidden pt-24 pb-16 md:pt-32 md:pb-20">
+      <ContactFluid />
+      <div className="relative mx-auto max-w-7xl px-5 md:px-10">
         <SectionHeading id="contact-title" title={contactContent.title} />
 
         <p className="mt-12 text-lg text-ink md:mt-16 md:text-2xl">

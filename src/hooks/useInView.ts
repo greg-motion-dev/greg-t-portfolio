@@ -1,7 +1,10 @@
 import { useEffect, useState, type RefObject } from "react";
 
-export function useInView<T extends Element>(ref: RefObject<T | null>): boolean {
-  const [inView, setInView] = useState(true);
+export function useInView<T extends Element>(
+  ref: RefObject<T | null>,
+  initialValue = true,
+): boolean {
+  const [inView, setInView] = useState(initialValue);
 
   useEffect(() => {
     const element = ref.current;
