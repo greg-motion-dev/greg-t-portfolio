@@ -101,7 +101,7 @@ export const projects = [
     role: "designed-and-built",
     year: "2021",
     summary:
-      "An independent climate-research platform spun off from the European Climate Foundation. I designed the brand and UI from scratch and built a custom WordPress theme for its briefings and explainers.",
+      "Zero Carbon Analytics began as a European Climate Foundation spin-off publishing climate research. I created its brand and UI from scratch and built the custom WordPress theme behind its briefings and explainers.",
     stack: ["WordPress", "PHP", "ACF", "Gutenberg", "JavaScript"],
     tags: [],
     links: [
@@ -143,7 +143,7 @@ export const projects = [
     role: "led",
     year: "2025",
     summary:
-      "The 2025 redesign of the same climate-research platform. Having co-created the original, I led the new UI design, managed the developers who built it and supported the technical implementation.",
+      "Four years after launch, Zero Carbon Analytics got a full redesign. As co-creator of the original, I led the new UI, managed the developers who built it and helped with the technical implementation.",
     stack: ["WordPress", "PHP", "ACF", "Gutenberg", "JavaScript"],
     tags: [],
     links: [
@@ -180,7 +180,7 @@ export const projects = [
     role: "designed",
     year: "2023",
     summary:
-      "An independent organisation tracking the steel industry’s climate impact, published in English, Japanese and Korean. I developed the brand identity and designed the UI, then led the external developer who built it.",
+      "Brand and UI for an independent watchdog bringing climate urgency to the steel industry, published in English, Japanese and Korean. I designed both and led the external developer who built the site.",
     stack: ["WordPress", "PHP", "Custom theme", "JavaScript"],
     tags: [],
     links: [
@@ -189,7 +189,7 @@ export const projects = [
     media: [
       {
         kind: "image",
-        src: "/images/projects/steelwatch/cover.jpg",
+        src: "/images/projects/steelwatch/cover-en.jpg",
         alt: "SteelWatch homepage with a featured article on steel decarbonisation in 2025",
       },
       {
@@ -218,7 +218,7 @@ export const projects = [
     role: "led",
     year: "2025",
     summary:
-      "An independent editorial platform covering global gas markets. I supervised the UI designer and developer during the original build, and later designed a language switcher, interactive UI elements and graphics.",
+      "Long-form journalism on global gas markets. I supervised the UI designer and developer on the original build, then designed its language switcher, interactive UI elements and editorial graphics.",
     stack: ["WordPress", "PHP", "Custom theme", "JavaScript"],
     tags: [],
     links: [
@@ -227,7 +227,12 @@ export const projects = [
     media: [
       {
         kind: "image",
-        src: "/images/projects/gasoutlook/cover.jpg",
+        src: "/images/projects/gasoutlook/cover-map.jpg",
+        alt: "Gas Outlook map of shipping traffic in the Gulf of California’s Blue Corridor",
+      },
+      {
+        kind: "image",
+        src: "/images/projects/gasoutlook/long-read.jpg",
         alt: "Gas Outlook long read with the EN and ES language switcher and an aerial photo of an LNG terminal",
       },
       {
@@ -251,7 +256,7 @@ export const projects = [
     role: "built",
     year: "2025",
     summary:
-      "An interactive platform sharing opinion research on climate change and the energy transition. I designed and coded the first prototype, then built the current WordPress theme from a UX/UI designer’s design.",
+      "Public-opinion research on climate and energy, made explorable. I designed and coded a fast first prototype, then built the current WordPress theme from a UX/UI designer’s design.",
     stack: ["WordPress", "PHP", "Custom theme", "JavaScript"],
     tags: [],
     links: [
@@ -282,31 +287,172 @@ export const projects = [
     featured: true,
   },
   {
+    id: "hydrogen-science-coalition",
+    era: "professional",
+    discipline: "design",
+    title: "Hydrogen Science Coalition",
+    role: "designed",
+    year: "2025",
+    summary:
+      "A database of hydrogen projects worldwide, cancelled ones included, showing hydrogen’s real role in the energy transition. I designed the UI for the whole tracker system, from search and filters to data tables.",
+    stack: ["WordPress", "PHP", "Custom theme", "JavaScript"],
+    tags: [],
+    links: [
+      {
+        kind: "live",
+        label: "Live site",
+        href: "https://h2sciencecoalition.com/trackers/",
+      },
+    ],
+    media: [
+      {
+        kind: "image",
+        src: "/images/projects/hydrogen-science-coalition/cover.jpg",
+        alt: "Hydrogen production tracker with search, filter chips and a sortable project table",
+      },
+      {
+        kind: "image",
+        src: "/images/projects/hydrogen-science-coalition/01.jpg",
+        alt: "Tracker tabs for production projects and end uses with key findings on cancelled plans",
+      },
+      {
+        kind: "image",
+        src: "/images/projects/hydrogen-science-coalition/02.jpg",
+        alt: "Desktop design for the Hydrogen Science Coalition homepage with a wind turbine hero",
+      },
+      {
+        kind: "image",
+        src: "/images/projects/hydrogen-science-coalition/03.jpg",
+        alt: "Mobile design for the Hydrogen Science Coalition homepage",
+      },
+    ],
+    featured: true,
+  },
+  {
+    id: "action-fc",
+    era: "professional",
+    discipline: "frontend",
+    title: "Action FC",
+    role: "designed-and-built",
+    year: "2024",
+    summary:
+      "A campaign rallying women’s football fans against greenwashing in their sport. I designed and coded the site, using Lottie and other animations to tell the story.",
+    stack: ["WordPress", "PHP", "Custom theme", "JavaScript", "Lottie"],
+    tags: [],
+    links: [
+      {
+        kind: "live",
+        label: "Archived site",
+        href: "https://web.archive.org/web/20250321125955/https://actionfc.org/",
+      },
+    ],
+    media: [
+      {
+        kind: "image",
+        src: "/images/projects/action-fc/cover-problem.jpg",
+        alt: "The Problem section of Action FC with an illustration of a woman holding a football",
+      },
+      {
+        kind: "image",
+        src: "/images/projects/action-fc/campaigns.jpg",
+        alt: "Action FC campaigns page with three campaign cards on a navy background",
+      },
+      {
+        kind: "image",
+        src: "/images/projects/action-fc/01.jpg",
+        alt: "Action FC hero with the headline Women’s football fans can change the game",
+      },
+    ],
+    featured: true,
+  },
+  {
     id: "apple-3d-showcase",
     era: "engineering",
     discipline: "motion",
     title: "Apple 3D Showcase",
     role: "built",
-    year: TO_BE_PROVIDED,
-    summary: TO_BE_PROVIDED,
-    stack: [TO_BE_PROVIDED],
+    year: "2026",
+    summary:
+      "An Apple-style MacBook Pro page where an interactive 3D model shows off its features and finishes. Built to explore GSAP, Three.js and React Three Fiber.",
+    stack: [
+      "Next.js",
+      "TypeScript",
+      "React Three Fiber",
+      "GSAP",
+      "Tailwind CSS",
+    ],
     tags: ["3d", "motion"],
-    links: [],
-    media: [],
+    links: [
+      {
+        kind: "live",
+        label: "Live site",
+        href: "https://apple-3d-showcase-website.vercel.app/",
+      },
+      {
+        kind: "repo",
+        label: "GitHub",
+        href: "https://github.com/greg-motion-dev/apple-3d-showcase-website",
+      },
+    ],
+    media: [
+      {
+        kind: "image",
+        src: "/images/projects/apple-3d-showcase/cover.jpg",
+        alt: "MacBook Pro hero with a glowing laptop and the headline Built for Apple Intelligence",
+      },
+      {
+        kind: "image",
+        src: "/images/projects/apple-3d-showcase/01.jpg",
+        alt: "Take a closer look section with a 3D MacBook model and colour and size toggles",
+      },
+      {
+        kind: "image",
+        src: "/images/projects/apple-3d-showcase/02.jpg",
+        alt: "3D MacBook model shown at an angle next to feature copy",
+      },
+    ],
     featured: true,
   },
   {
     id: "gsap-cocktail-website",
     era: "engineering",
     discipline: "motion",
-    title: "GSAP Cocktail Website",
+    title: "Cosmo Cocktails",
     role: "built",
-    year: TO_BE_PROVIDED,
-    summary: TO_BE_PROVIDED,
-    stack: [TO_BE_PROVIDED],
+    year: "2026",
+    summary:
+      "A cocktail menu told as a story, with polished imagery, immersive layouts and animated transitions. I built it with GSAP driving the motion.",
+    stack: ["Next.js", "TypeScript", "GSAP", "Tailwind CSS"],
     tags: ["motion"],
-    links: [],
-    media: [],
+    links: [
+      {
+        kind: "live",
+        label: "Live site",
+        href: "https://cocktail-website-zeta.vercel.app/",
+      },
+      {
+        kind: "repo",
+        label: "GitHub",
+        href: "https://github.com/greg-motion-dev/cocktail-website",
+      },
+    ],
+    media: [
+      {
+        kind: "image",
+        src: "/images/projects/gsap-cocktail-website/cover.jpg",
+        alt: "Cocktail hero with a splashing green drink and two drinks menus",
+      },
+      {
+        kind: "image",
+        src: "/images/projects/gsap-cocktail-website/01.jpg",
+        alt: "About section with a photo collage of bartenders and cocktails",
+      },
+      {
+        kind: "image",
+        src: "/images/projects/gsap-cocktail-website/02.jpg",
+        alt: "Cocktail slider featuring a Raspberry Mojito recipe",
+      },
+    ],
     featured: true,
   },
   {
@@ -316,26 +462,76 @@ export const projects = [
     title: "Orryana",
     role: "designed-and-built",
     year: "2026",
-    summary: TO_BE_PROVIDED,
-    stack: [TO_BE_PROVIDED],
+    summary:
+      "Orryana, a finance creator with 30k+ followers, is moving from WordPress to a headless React platform. I’m designing and building it, from finance guides to calculators; launch is in progress.",
+    stack: ["Next.js", "TypeScript", "GSAP", "Tailwind CSS"],
     tags: [],
-    links: [],
-    media: [],
+    links: [
+      {
+        kind: "repo",
+        label: "GitHub",
+        href: "https://github.com/greg-motion-dev/orry-consulting",
+      },
+    ],
+    media: [
+      {
+        kind: "image",
+        src: "/images/projects/orryana/cover.jpg",
+        alt: "Orryana homepage hero with a portrait and calculator shortcuts",
+      },
+      {
+        kind: "image",
+        src: "/images/projects/orryana/01.jpg",
+        alt: "Article page explaining a savings challenge",
+      },
+      {
+        kind: "image",
+        src: "/images/projects/orryana/02.jpg",
+        alt: "Finance guides overview with topic filters and article cards",
+      },
+    ],
     featured: true,
   },
   {
     id: "interactive-calculator",
     era: "engineering",
     discipline: "frontend",
-    title: "Interactive Calculator",
+    title: "Interest-ing",
     role: "designed-and-built",
-    year: TO_BE_PROVIDED,
+    year: "2026",
     summary:
-      "Engineered a custom interactive financial calculator enabling users to simulate real-time compound interest, investment returns, and personalized financial planning.",
-    stack: ["Next.js", "React", "TypeScript", "Tailwind CSS"],
+      "Compound interest you can play with: sliders, real-time charts and saved scenarios to compare. I designed and built Interest-ing to make savings goals and long-term growth tangible.",
+    stack: ["Next.js", "TypeScript", "Tailwind CSS", "Motion"],
     tags: ["tool"],
-    links: [],
-    media: [],
+    links: [
+      {
+        kind: "live",
+        label: "Live site",
+        href: "https://interest-ing-nine.vercel.app/",
+      },
+      {
+        kind: "repo",
+        label: "GitHub",
+        href: "https://github.com/greg-motion-dev/interest-ing",
+      },
+    ],
+    media: [
+      {
+        kind: "image",
+        src: "/images/projects/interactive-calculator/cover.jpg",
+        alt: "Compound interest calculator with sliders, result cards and a growth chart comparing two scenarios",
+      },
+      {
+        kind: "image",
+        src: "/images/projects/interactive-calculator/01.jpg",
+        alt: "Calculator with a saved 5-Year Wealth Builder scenario and growth chart",
+      },
+      {
+        kind: "image",
+        src: "/images/projects/interactive-calculator/02.jpg",
+        alt: "Mobile view of the savings goal calculator",
+      },
+    ],
     featured: true,
   },
   {
@@ -344,13 +540,40 @@ export const projects = [
     discipline: "frontend",
     title: "Plant-Pal",
     role: "designed-and-built",
-    year: TO_BE_PROVIDED,
+    year: "2026",
     summary:
-      "Developed a full-featured plant tracking web application featuring custom SVG status indicators, multi-tier filtering controls, and responsive UI components.",
-    stack: ["React", "Next.js", "TypeScript", "REST API", "Tailwind CSS"],
+      "Built as a team, Plant-Pal helps people track their plant collection with custom SVG status indicators, light and water filters and responsive components. I co-designed and co-developed the app.",
+    stack: ["Next.js", "TypeScript", "Express", "MongoDB", "Groq AI"],
     tags: ["tool"],
-    links: [],
-    media: [],
+    links: [
+      {
+        kind: "live",
+        label: "Live site",
+        href: "https://plant-pal-app.vercel.app/",
+      },
+      {
+        kind: "repo",
+        label: "GitHub",
+        href: "https://github.com/Koodali-Sushma/Plant-pal-app",
+      },
+    ],
+    media: [
+      {
+        kind: "image",
+        src: "/images/projects/plant-pal/cover.jpg",
+        alt: "Explore all plants grid with search and plant cards on a dark green background",
+      },
+      {
+        kind: "image",
+        src: "/images/projects/plant-pal/01.jpg",
+        alt: "Plant detail card for the Bird of Paradise",
+      },
+      {
+        kind: "image",
+        src: "/images/projects/plant-pal/02.jpg",
+        alt: "Edit a plant form with image upload",
+      },
+    ],
     featured: true,
   },
 ] as const satisfies readonly Project[];
