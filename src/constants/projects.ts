@@ -1,6 +1,7 @@
 export type ProjectEra = "professional" | "engineering";
 export type ProjectDiscipline = "frontend" | "design" | "motion";
-export type ProjectRole = "built" | "designed-and-built" | "designed" | "led";
+export type ProjectRole =
+  "built" | "designed-and-built" | "designed" | "led" | "edited-and-animated";
 export type ProjectTag =
   | "ux-ui"
   | "branding"
@@ -12,8 +13,7 @@ export type ProjectTag =
 export type AccentColor = "yellow" | "pink" | "teal";
 export type BrandShape = "circle" | "square" | "diamond" | "triangle";
 export type DisciplineShape = Exclude<BrandShape, "circle">;
-export type ProjectLinkKind = "live" | "repo" | "case-study";
-export type ProjectMediaKind = "image" | "video";
+export type ProjectLinkKind = "live" | "repo" | "film" | "case-study";
 
 export interface ProjectLink {
   readonly kind: ProjectLinkKind;
@@ -21,11 +21,20 @@ export interface ProjectLink {
   readonly href: string;
 }
 
-export interface ProjectMedia {
-  readonly kind: ProjectMediaKind;
+export interface ProjectImageMedia {
+  readonly kind: "image";
   readonly src: string;
   readonly alt: string;
 }
+
+export interface ProjectVideoMedia {
+  readonly kind: "video";
+  readonly src: string;
+  readonly poster: string;
+  readonly alt: string;
+}
+
+export type ProjectMedia = ProjectImageMedia | ProjectVideoMedia;
 
 export interface Project {
   readonly id: string;
@@ -81,7 +90,7 @@ export const lineupContent = {
 } as const satisfies LineupContent;
 
 export const eraLabels = {
-  professional: "Climate & UI/UX",
+  professional: "Climate & Design",
   engineering: "SPICED & Interactive",
 } as const satisfies Record<ProjectEra, string>;
 
@@ -90,6 +99,7 @@ export const roleLabels = {
   "designed-and-built": "Designed & built",
   designed: "Designed",
   led: "Led",
+  "edited-and-animated": "Edited & animated",
 } as const satisfies Record<ProjectRole, string>;
 
 export const projects = [
@@ -361,6 +371,68 @@ export const projects = [
         kind: "image",
         src: "/images/projects/action-fc/01.jpg",
         alt: "Action FC hero with the headline Women’s football fans can change the game",
+      },
+    ],
+    featured: true,
+  },
+  {
+    id: "lancet-countdown",
+    era: "professional",
+    discipline: "motion",
+    title: "Lancet Countdown",
+    role: "edited-and-animated",
+    year: "2021",
+    summary:
+      "A mini-series giving healthcare workers on the front line of extreme heat a space to share how it affects their patients and their jobs. I edited it, designed the sound and created the motion graphics.",
+    stack: ["After Effects", "Premiere Pro", "Audacity"],
+    tags: ["motion"],
+    links: [
+      {
+        kind: "film",
+        label: "Watch film",
+        href: "https://vimeo.com/1248979550",
+      },
+    ],
+    media: [
+      {
+        kind: "video",
+        src: "/videos/projects/lancet-countdown/loop.mp4",
+        poster: "/images/projects/lancet-countdown/poster.jpg",
+        alt: "Patient on oxygen in a hospital bed with the subtitle Climate change is a health crisis",
+      },
+    ],
+    featured: true,
+  },
+  {
+    id: "can-big-tech-stop-flying",
+    era: "professional",
+    discipline: "motion",
+    title: "Can Big Tech Stop Flying So Much?",
+    role: "led",
+    year: "2023",
+    summary:
+      "Why fly when you can log on? An animated call on big tech to cut pointless business flights. I led it from concept to final cut: script, direction, edit, motion graphics, voice casting and sound.",
+    stack: [
+      "After Effects",
+      "Premiere Pro",
+      "Illustrator",
+      "Photoshop",
+      "Audacity",
+    ],
+    tags: ["motion"],
+    links: [
+      {
+        kind: "film",
+        label: "Watch film",
+        href: "https://vimeo.com/1248978903",
+      },
+    ],
+    media: [
+      {
+        kind: "video",
+        src: "/videos/projects/can-big-tech-stop-flying/loop.mp4",
+        poster: "/images/projects/can-big-tech-stop-flying/poster.jpg",
+        alt: "Animated title card asking Can Big Tech stop flying so much, with a plane crossing a map",
       },
     ],
     featured: true,
