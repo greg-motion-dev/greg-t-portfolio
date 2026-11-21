@@ -6,6 +6,7 @@ import {
   type ProjectMedia,
 } from "@/constants";
 import ShapeMarker from "@/components/ui/ShapeMarker";
+import ProjectVideo from "@/components/projects/ProjectVideo";
 import { accentTextClasses } from "@/components/ui/accentClasses";
 
 export interface ProjectMediaSlotProps {
@@ -13,18 +14,23 @@ export interface ProjectMediaSlotProps {
   readonly discipline: ProjectDiscipline;
 }
 
+const coverClasses =
+  "object-cover object-top brightness-[0.85] transition-[filter] duration-500 group-focus-within/card:brightness-100 group-hover/card:brightness-100 motion-reduce:transition-none";
+
 export default function ProjectMediaSlot({ media, discipline }: ProjectMediaSlotProps) {
-  const cover = media.find((item) => item.kind === "image");
+  const [cover] = media;
 
   return (
     <div className="relative aspect-[16/10] overflow-hidden bg-surface">
-      {cover ? (
+      {cover?.kind === "video" ? (
+        <ProjectVideo video={cover} className={coverClasses} />
+      ) : cover?.kind === "image" ? (
         <Image
           src={cover.src}
           alt={cover.alt}
           fill
           sizes="(min-width: 1280px) 33vw, (min-width: 768px) 50vw, 100vw"
-          className="object-cover object-top brightness-[0.85] transition-[filter] duration-500 group-focus-within/card:brightness-100 group-hover/card:brightness-100 motion-reduce:transition-none"
+          className={coverClasses}
         />
       ) : (
         <div className="flex size-full items-center justify-center">
