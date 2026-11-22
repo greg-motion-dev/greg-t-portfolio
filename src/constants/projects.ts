@@ -1,4 +1,5 @@
-export type ProjectEra = "professional" | "installation" | "engineering";
+export type ProjectEra =
+  "professional" | "product" | "installation" | "engineering";
 export type ProjectDiscipline = "frontend" | "design" | "motion";
 export type ProjectRole =
   | "built"
@@ -86,16 +87,19 @@ export interface LineupContent {
   readonly title: string;
   readonly linkPendingLabel: string;
   readonly githubCtaLabel: string;
+  readonly githubAlsoLabel: string;
 }
 
 export const lineupContent = {
   title: "Selected work",
   linkPendingLabel: "Link soon",
   githubCtaLabel: "More on GitHub",
+  githubAlsoLabel: "Also on GitHub",
 } as const satisfies LineupContent;
 
 export const eraLabels = {
   professional: "Research & Policy",
+  product: "Product & Brand",
   installation: "3D & Projection",
   engineering: "SPICED & Interactive",
 } as const satisfies Record<ProjectEra, string>;
@@ -445,6 +449,34 @@ export const projects = [
     featured: true,
   },
   {
+    id: "skyscanner-app",
+    era: "product",
+    discipline: "motion",
+    title: "Skyscanner App Explainer",
+    role: "designed-and-animated",
+    year: "2017",
+    summary:
+      "An explainer for Skyscanner’s German market, animating the app’s key features, from the price-bar month view to price alerts. Concept, animation and sound design by me, as part of a series of feature videos.",
+    stack: ["After Effects", "Illustrator", "Photoshop", "Audacity"],
+    tags: ["motion"],
+    links: [
+      {
+        kind: "film",
+        label: "Watch film",
+        href: "https://www.facebook.com/reel/10155712364119521",
+      },
+    ],
+    media: [
+      {
+        kind: "video",
+        src: "/videos/projects/skyscanner-app/loop.mp4",
+        poster: "/images/projects/skyscanner-app/poster.jpg",
+        alt: "Animated iPhone mockup of the Skyscanner app showing a price-bar month view next to the headline Flüge im günstigsten Monat finden",
+      },
+    ],
+    featured: true,
+  },
+  {
     id: "atmosphere-hellboy",
     era: "installation",
     discipline: "motion",
@@ -738,6 +770,6 @@ export const projects = [
         alt: "Edit a plant form with image upload",
       },
     ],
-    featured: true,
+    featured: false,
   },
 ] as const satisfies readonly Project[];

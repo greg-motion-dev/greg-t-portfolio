@@ -14,6 +14,10 @@ function fillSpanClasses(itemCount: number): string {
 export default function ProjectLineup() {
   const featured: readonly Project[] = projects.filter((project) => project.featured);
   const githubLink = profile.links.find((link) => link.kind === "github");
+  const githubExtras = projects.flatMap((project) => {
+    const repo = project.links.find((link) => link.kind === "repo");
+    return !project.featured && repo ? [{ title: project.title, href: repo.href }] : [];
+  });
 
   return (
     <section id="work" aria-labelledby="work-title" className="py-24 md:py-32">
@@ -27,7 +31,11 @@ export default function ProjectLineup() {
           <ProjectCard key={project.id} project={project} position={index + 1} />
         ))}
         {githubLink ? (
-          <GitHubCtaCard href={githubLink.href} spanClassName={fillSpanClasses(featured.length)} />
+          <GitHubCtaCard
+            href={githubLink.href}
+            spanClassName={fillSpanClasses(featured.length)}
+            extras={githubExtras}
+          />
         ) : null}
       </ul>
     </section>
