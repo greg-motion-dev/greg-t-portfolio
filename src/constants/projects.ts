@@ -1,7 +1,12 @@
-export type ProjectEra = "professional" | "engineering";
+export type ProjectEra = "professional" | "installation" | "engineering";
 export type ProjectDiscipline = "frontend" | "design" | "motion";
 export type ProjectRole =
-  "built" | "designed-and-built" | "designed" | "led" | "edited-and-animated";
+  | "built"
+  | "designed-and-built"
+  | "designed"
+  | "led"
+  | "edited-and-animated"
+  | "designed-and-animated";
 export type ProjectTag =
   | "ux-ui"
   | "branding"
@@ -90,7 +95,8 @@ export const lineupContent = {
 } as const satisfies LineupContent;
 
 export const eraLabels = {
-  professional: "Climate & Design",
+  professional: "Research & Policy",
+  installation: "3D & Projection",
   engineering: "SPICED & Interactive",
 } as const satisfies Record<ProjectEra, string>;
 
@@ -100,6 +106,7 @@ export const roleLabels = {
   designed: "Designed",
   led: "Led",
   "edited-and-animated": "Edited & animated",
+  "designed-and-animated": "Designed & animated",
 } as const satisfies Record<ProjectRole, string>;
 
 export const projects = [
@@ -153,7 +160,7 @@ export const projects = [
     role: "led",
     year: "2025",
     summary:
-      "Four years after launch, Zero Carbon Analytics got a full redesign. As co-creator of the original, I led the new UI, managed the developers who built it and helped with the technical implementation.",
+      "Four years after launch, Zero Carbon Analytics got a full redesign. As co-creator of the original, I led the project, coordinating the design and development agencies and supporting the technical implementation.",
     stack: ["WordPress", "PHP", "ACF", "Gutenberg", "JavaScript"],
     tags: [],
     links: [
@@ -190,7 +197,7 @@ export const projects = [
     role: "designed",
     year: "2023",
     summary:
-      "Brand and UI for an independent watchdog bringing climate urgency to the steel industry, published in English, Japanese and Korean. I designed both and led the external developer who built the site.",
+      "Brand and UI for an independent organisation analysing the steel industry’s path to decarbonisation, published in English, Japanese and Korean. I designed both and led the external developer who built the site.",
     stack: ["WordPress", "PHP", "Custom theme", "JavaScript"],
     tags: [],
     links: [
@@ -408,10 +415,10 @@ export const projects = [
     era: "professional",
     discipline: "motion",
     title: "Can Big Tech Stop Flying So Much?",
-    role: "led",
+    role: "designed-and-animated",
     year: "2023",
     summary:
-      "Why fly when you can log on? An animated call on big tech to cut pointless business flights. I led it from concept to final cut: script, direction, edit, motion graphics, voice casting and sound.",
+      "Why fly when you can log on? An animated call on big tech to cut unnecessary business flights. I created it from concept to final cut: script, direction, design, edit, motion graphics, voice casting and sound.",
     stack: [
       "After Effects",
       "Premiere Pro",
@@ -433,6 +440,91 @@ export const projects = [
         src: "/videos/projects/can-big-tech-stop-flying/loop.mp4",
         poster: "/images/projects/can-big-tech-stop-flying/poster.jpg",
         alt: "Animated title card asking Can Big Tech stop flying so much, with a plane crossing a map",
+      },
+    ],
+    featured: true,
+  },
+  {
+    id: "atmosphere-hellboy",
+    era: "installation",
+    discipline: "motion",
+    title: "Atmosphere:Hellboy",
+    role: "designed-and-built",
+    year: "2012",
+    summary:
+      "Projection mapping for the Edinburgh International Film Festival’s Hellboy screenings: 21 effects and digital landscapes that changed with the film across 65 scenes. I created the 3D in Blender; Ami Bogin led the 2D.",
+    stack: [
+      "Blender",
+      "MadMapper",
+      "After Effects",
+      "Illustrator",
+      "Photoshop",
+    ],
+    tags: ["3d", "motion"],
+    links: [
+      { kind: "film", label: "Watch film", href: "https://vimeo.com/55405563" },
+    ],
+    media: [
+      {
+        kind: "video",
+        src: "/videos/projects/atmosphere-hellboy/loop.mp4",
+        poster: "/images/projects/atmosphere-hellboy/poster.jpg",
+        alt: "Cyan fire effect projected across the cinema walls during a Hellboy screening, with a digital preview inset",
+      },
+    ],
+    featured: true,
+  },
+  {
+    id: "project-lifehouse",
+    era: "installation",
+    discipline: "motion",
+    title: "Project:Lifehouse",
+    role: "designed-and-built",
+    year: "2012",
+    summary:
+      "Projection mapping at Edinburgh’s Anatomical Museum: anatomy projected onto statues, walls and skeletons, with Kinect zones triggering randomised clips and sound as visitors moved through. With Ami Bogin and Ana Roman, I created the 3D in Blender.",
+    stack: [
+      "Blender",
+      "MadMapper",
+      "After Effects",
+      "Illustrator",
+      "Ableton",
+      "Kinect",
+    ],
+    tags: ["3d", "motion"],
+    links: [
+      { kind: "film", label: "Watch film", href: "https://vimeo.com/55392607" },
+    ],
+    media: [
+      {
+        kind: "video",
+        src: "/videos/projects/project-lifehouse/loop.mp4",
+        poster: "/images/projects/project-lifehouse/poster.jpg",
+        alt: "Glowing blue veins projected onto a Venus de Milo statue in the dark",
+      },
+    ],
+    featured: true,
+  },
+  {
+    id: "inspiration-burns",
+    era: "installation",
+    discipline: "motion",
+    title: "Inspiration:Burns",
+    role: "designed-and-built",
+    year: "2012",
+    summary:
+      "Projection mapping at Edinburgh’s Burns Monument: I rebuilt the interior in Blender as “virtual furniture” and animated a 3D tome on its marble lectern, the starting point of every sequence. Created with Ami Bogin and Ana Roman.",
+    stack: ["Blender", "MadMapper", "After Effects", "Illustrator", "Ableton"],
+    tags: ["3d", "motion"],
+    links: [
+      { kind: "film", label: "Watch film", href: "https://vimeo.com/56250302" },
+    ],
+    media: [
+      {
+        kind: "video",
+        src: "/videos/projects/inspiration-burns/loop.mp4",
+        poster: "/images/projects/inspiration-burns/poster.jpg",
+        alt: "3D animation of a tome unfolding on the marble lectern inside a stone arch",
       },
     ],
     featured: true,
