@@ -55,7 +55,7 @@
 
   --spacing-nav: 4rem;
 
-  --animate-marquee: marquee 40s linear infinite;
+  --animate-marquee: marquee 120s linear infinite;
 
   @keyframes marquee {
     to {

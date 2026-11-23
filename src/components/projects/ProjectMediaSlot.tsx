@@ -1,37 +1,70 @@
-import Image from "next/image";
 import {
   disciplineAccent,
   disciplineShape,
   type ProjectDiscipline,
+  type ProjectGalleryMedia,
   type ProjectMedia,
 } from "@/constants";
 import ShapeMarker from "@/components/ui/ShapeMarker";
+import ProjectCoverImage from "@/components/projects/ProjectCoverImage";
+import ProjectGalleryTrigger from "@/components/projects/ProjectGalleryTrigger";
 import ProjectVideo from "@/components/projects/ProjectVideo";
+import type { CoverSlide } from "@/components/projects/ProjectCoverCarousel";
 import { accentTextClasses } from "@/components/ui/accentClasses";
 
 export interface ProjectMediaSlotProps {
   readonly media: readonly ProjectMedia[];
   readonly discipline: ProjectDiscipline;
+  readonly title: string;
+  readonly note: string | undefined;
+  readonly domain: string | undefined;
 }
 
 const coverClasses =
   "object-cover object-top brightness-[0.85] transition-[filter] duration-500 group-focus-within/card:brightness-100 group-hover/card:brightness-100 motion-reduce:transition-none";
 
-export default function ProjectMediaSlot({ media, discipline }: ProjectMediaSlotProps) {
+function coverSlides(items: readonly ProjectGalleryMedia[]): readonly CoverSlide[] {
+  return items.flatMap((item, galleryIndex) => {
+    if (item.kind === "page") {
+      return [{ src: item.preview, alt: item.alt, galleryIndex }];
+    }
+    return item.frame === "phone" ? [] : [{ src: item.src, alt: item.alt, galleryIndex }];
+  });
+}
+
+export default function ProjectMediaSlot({
+  media,
+  discipline,
+  title,
+  note,
+  domain,
+}: ProjectMediaSlotProps) {
   const [cover] = media;
+  const galleryItems = media.filter((item): item is ProjectGalleryMedia => item.kind !== "video");
 
   return (
     <div className="relative aspect-[16/10] overflow-hidden bg-surface">
       {cover?.kind === "video" ? (
-        <ProjectVideo video={cover} className={coverClasses} />
+        galleryItems.length > 0 ? (
+          <ProjectGalleryTrigger title={title} items={galleryItems} domain={domain} note={note}>
+            <ProjectVideo video={cover} className={coverClasses} />
+          </ProjectGalleryTrigger>
+        ) : (
+          <ProjectVideo video={cover} className={coverClasses} />
+        )
       ) : cover?.kind === "image" ? (
-        <Image
-          src={cover.src}
-          alt={cover.alt}
-          fill
-          sizes="(min-width: 1280px) 33vw, (min-width: 768px) 50vw, 100vw"
-          className={coverClasses}
-        />
+        galleryItems.length > 1 ? (
+          <ProjectGalleryTrigger
+            title={title}
+            items={galleryItems}
+            domain={domain}
+            note={note}
+            slides={coverSlides(galleryItems)}
+            imageClassName={coverClasses}
+          />
+        ) : (
+          <ProjectCoverImage image={cover} className={coverClasses} />
+        )
       ) : (
         <div className="flex size-full items-center justify-center">
           <ShapeMarker

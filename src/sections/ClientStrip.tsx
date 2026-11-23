@@ -10,12 +10,11 @@ export default function ClientStrip() {
   const duplicateKeys = Array.from({ length: trackCopies - 1 }, (_, index) => `copy-${index}`);
 
   return (
-    <section aria-labelledby="clients-title" className="pb-24 md:pb-32">
-      <div className="mx-auto flex max-w-7xl flex-wrap items-baseline gap-x-3 gap-y-1 px-5 font-mono text-xs tracking-widest uppercase md:px-10">
-        <h2 id="clients-title" className="text-ink">
+    <section aria-labelledby="clients-title" className="pt-4 md:pt-8">
+      <div className="mx-auto max-w-7xl px-5 md:px-10">
+        <h2 id="clients-title" className="font-mono text-xs tracking-widest text-ink-muted uppercase">
           {clientsContent.title}
         </h2>
-        <p className="text-ink-muted">{clientsContent.context}</p>
       </div>
 
       <div className="mt-8 overflow-hidden border-y border-white/10 [mask-image:linear-gradient(to_right,transparent,black_8%,black_92%,transparent)] motion-reduce:[mask-image:none]">

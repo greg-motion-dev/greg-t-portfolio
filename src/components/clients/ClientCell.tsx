@@ -1,4 +1,3 @@
-import Image from "next/image";
 import type { Client } from "@/constants";
 
 export interface ClientCellProps {
@@ -6,18 +5,24 @@ export interface ClientCellProps {
 }
 
 export default function ClientCell({ client }: ClientCellProps) {
+  const { logo } = client;
+
   return (
-    <li className="flex h-28 w-48 shrink-0 items-center justify-center border-r border-white/10 px-6 md:h-32 md:w-56">
-      {client.logo ? (
-        <Image
-          src={client.logo.src}
-          alt={client.name}
-          width={client.logo.width}
-          height={client.logo.height}
-          className="h-8 w-auto max-w-full opacity-60 grayscale transition-opacity duration-300 hover:opacity-100 motion-reduce:transition-none md:h-10"
+    <li className="group/client flex h-24 w-48 shrink-0 items-center justify-center border-r border-white/10 px-6 md:h-28 md:w-56">
+      {logo ? (
+        <span
+          role="img"
+          aria-label={client.name}
+          style={{
+            height: `${logo.displayHeight}rem`,
+            aspectRatio: `${logo.width} / ${logo.height}`,
+            maskImage: `url(${logo.src})`,
+            WebkitMaskImage: `url(${logo.src})`,
+          }}
+          className="block max-w-full bg-ink-muted transition-colors duration-300 [mask-position:center] [mask-repeat:no-repeat] [mask-size:contain] group-hover/client:bg-ink motion-reduce:transition-none"
         />
       ) : (
-        <span className="text-center font-mono text-xs tracking-widest text-ink-muted uppercase">
+        <span className="text-center font-mono text-xs tracking-widest text-ink-muted uppercase transition-colors duration-300 group-hover/client:text-ink motion-reduce:transition-none">
           {client.name}
         </span>
       )}
