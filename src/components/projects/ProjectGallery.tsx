@@ -10,6 +10,7 @@ import ProjectGallerySlide from "@/components/projects/ProjectGallerySlide";
 export interface ProjectGalleryProps {
   readonly title: string;
   readonly items: readonly ProjectGalleryMedia[];
+  readonly initialIndex: number;
   readonly domain: string | undefined;
   readonly note: string | undefined;
   readonly open: boolean;
@@ -39,13 +40,14 @@ function formatCount(index: number, total: number): string {
 export default function ProjectGallery({
   title,
   items,
+  initialIndex,
   domain,
   note,
   open,
   onClose,
 }: ProjectGalleryProps) {
   const dialogRef = useRef<HTMLDialogElement>(null);
-  const [[index, direction], setSlide] = useState<[number, Direction]>([0, 1]);
+  const [[index, direction], setSlide] = useState<[number, Direction]>([initialIndex, 1]);
   const reducedMotion = useReducedMotion();
   const total = items.length;
   const current = items[index];
@@ -90,7 +92,6 @@ export default function ProjectGallery({
   };
 
   const handleClose = (): void => {
-    setSlide([0, 1]);
     onClose();
   };
 

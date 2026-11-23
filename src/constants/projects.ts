@@ -41,6 +41,7 @@ export interface ProjectImageMedia {
 export interface ProjectPageMedia {
   readonly kind: "page";
   readonly src: string;
+  readonly preview: string;
   readonly alt: string;
   readonly width: number;
   readonly height: number;
@@ -173,6 +174,8 @@ export const projects = [
       {
         kind: "page",
         src: "/images/projects/zero-carbon-analytics-original/page-01.jpg",
+        preview:
+          "/images/projects/zero-carbon-analytics-original/preview-page-01.jpg",
         alt: "Full Climate Science & Impact topic page with briefing cards",
         width: 1200,
         height: 1738,
@@ -180,6 +183,8 @@ export const projects = [
       {
         kind: "page",
         src: "/images/projects/zero-carbon-analytics-original/page-02.jpg",
+        preview:
+          "/images/projects/zero-carbon-analytics-original/preview-page-02.jpg",
         alt: "Full 2024 homepage with a forest hero on climate finance, latest content and topic tiles",
         width: 1200,
         height: 3216,
@@ -187,6 +192,8 @@ export const projects = [
       {
         kind: "page",
         src: "/images/projects/zero-carbon-analytics-original/page-03.jpg",
+        preview:
+          "/images/projects/zero-carbon-analytics-original/preview-page-03.jpg",
         alt: "Full Food, Nature & Land topic page with briefing cards",
         width: 1200,
         height: 1774,
@@ -202,6 +209,8 @@ export const projects = [
       {
         kind: "page",
         src: "/images/projects/zero-carbon-analytics-original/page-05.jpg",
+        preview:
+          "/images/projects/zero-carbon-analytics-original/preview-page-05.jpg",
         alt: "Full El Niño briefing with a wildfire photo, key points and long-form text",
         width: 1200,
         height: 8485,
@@ -209,6 +218,8 @@ export const projects = [
       {
         kind: "page",
         src: "/images/projects/zero-carbon-analytics-original/page-06.jpg",
+        preview:
+          "/images/projects/zero-carbon-analytics-original/preview-page-06.jpg",
         alt: "Full Economics & Finance topic page with briefing cards",
         width: 1200,
         height: 1823,
@@ -222,6 +233,7 @@ export const projects = [
         frame: "browser",
       },
     ],
+    note: "Designed in 2021. The site has since been redesigned; the archived link shows the original.",
     featured: true,
   },
   {
@@ -250,6 +262,7 @@ export const projects = [
       {
         kind: "page",
         src: "/images/projects/steelwatch/page-01.jpg",
+        preview: "/images/projects/steelwatch/preview-page-01.jpg",
         alt: "Full Nippon Steel company profile with report cover and company biography",
         width: 1200,
         height: 3719,
@@ -257,6 +270,7 @@ export const projects = [
       {
         kind: "page",
         src: "/images/projects/steelwatch/page-02.jpg",
+        preview: "/images/projects/steelwatch/preview-page-02.jpg",
         alt: "Full Japanese reports archive with report covers and tags",
         width: 1200,
         height: 2338,
@@ -264,6 +278,7 @@ export const projects = [
       {
         kind: "page",
         src: "/images/projects/steelwatch/page-03.jpg",
+        preview: "/images/projects/steelwatch/preview-page-03.jpg",
         alt: "Full press release on Nippon Steel’s Gary Works with notes and related publications",
         width: 1200,
         height: 3535,
@@ -279,6 +294,7 @@ export const projects = [
       {
         kind: "page",
         src: "/images/projects/steelwatch/page-05.jpg",
+        preview: "/images/projects/steelwatch/preview-page-05.jpg",
         alt: "Full Japanese homepage with a red steel sculpture hero",
         width: 1200,
         height: 4251,
@@ -286,6 +302,7 @@ export const projects = [
       {
         kind: "page",
         src: "/images/projects/steelwatch/page-06.jpg",
+        preview: "/images/projects/steelwatch/preview-page-06.jpg",
         alt: "Full team page with portrait photos of the SteelWatch team",
         width: 1200,
         height: 2308,
@@ -293,6 +310,7 @@ export const projects = [
       {
         kind: "page",
         src: "/images/projects/steelwatch/screen.jpg",
+        preview: "/images/projects/steelwatch/preview-screen.jpg",
         alt: "Contact page with a press contact card and a contact form",
         width: 1200,
         height: 1376,
@@ -413,6 +431,8 @@ export const projects = [
       {
         kind: "page",
         src: "/images/projects/hydrogen-science-coalition/page-01.jpg",
+        preview:
+          "/images/projects/hydrogen-science-coalition/preview-page-01.jpg",
         alt: "Full desktop design of the Hydrogen Science Coalition page, from hero to interactive tracker tables",
         width: 1200,
         height: 3780,
@@ -426,6 +446,7 @@ export const projects = [
         frame: "phone",
       },
     ],
+    note: "Designed in 2025. The live site may have changed since launch.",
     featured: true,
   },
   {
@@ -477,6 +498,7 @@ export const projects = [
         frame: "phone",
       },
     ],
+    note: "Built in 2026. The live site may have changed since these screenshots.",
     featured: true,
   },
   {
@@ -525,9 +547,9 @@ export const projects = [
       {
         kind: "image",
         src: "/images/projects/atmosphere-hellboy/still-03.jpg",
-        alt: "Cyan fire projected across the walls behind the audience on red sofas",
-        width: 1600,
-        height: 1041,
+        alt: "Portfolio panel of three projection scenes, labelled film sets, subtle effects and weather effects",
+        width: 1186,
+        height: 1660,
         frame: "none",
       },
       {
@@ -588,6 +610,8 @@ export const projects = [
       {
         kind: "page",
         src: "/images/projects/zero-carbon-analytics-rebrand/page-02.jpg",
+        preview:
+          "/images/projects/zero-carbon-analytics-rebrand/preview-page-02.jpg",
         alt: "Full homepage of the redesigned Zero Carbon Analytics with latest research, media logos and testimonials",
         width: 1200,
         height: 3364,
@@ -595,6 +619,8 @@ export const projects = [
       {
         kind: "page",
         src: "/images/projects/zero-carbon-analytics-rebrand/page-03.jpg",
+        preview:
+          "/images/projects/zero-carbon-analytics-rebrand/preview-page-03.jpg",
         alt: "Full About us page with the team in black-and-white portraits",
         width: 1200,
         height: 2714,
@@ -602,6 +628,8 @@ export const projects = [
       {
         kind: "page",
         src: "/images/projects/zero-carbon-analytics-rebrand/page-04.jpg",
+        preview:
+          "/images/projects/zero-carbon-analytics-rebrand/preview-page-04.jpg",
         alt: "Full Congo Basin briefing with key points, charts and data tables",
         width: 1200,
         height: 9000,
@@ -609,11 +637,14 @@ export const projects = [
       {
         kind: "page",
         src: "/images/projects/zero-carbon-analytics-rebrand/page-05.jpg",
+        preview:
+          "/images/projects/zero-carbon-analytics-rebrand/preview-page-05.jpg",
         alt: "Article footer with author card, share buttons, related reading and the contact form",
         width: 1200,
         height: 1315,
       },
     ],
+    note: "Launched in 2025. The live site may have changed since launch.",
     featured: true,
   },
   {
@@ -666,6 +697,7 @@ export const projects = [
       {
         kind: "page",
         src: "/images/projects/gasoutlook/page-04.jpg",
+        preview: "/images/projects/gasoutlook/preview-page-04.jpg",
         alt: "Full long read on organised crime and investor risk in Mexico’s LNG push, with maps and charts",
         width: 1200,
         height: 9000,
@@ -679,6 +711,7 @@ export const projects = [
         frame: "browser",
       },
     ],
+    note: "Designed in 2025. The live site may have changed since launch.",
     featured: true,
   },
   {
@@ -783,6 +816,7 @@ export const projects = [
       {
         kind: "page",
         src: "/images/projects/core/page-01.jpg",
+        preview: "/images/projects/core/preview-page-01.jpg",
         alt: "Full About CORE page with the research team and FAQs",
         width: 1200,
         height: 2244,
@@ -790,6 +824,7 @@ export const projects = [
       {
         kind: "page",
         src: "/images/projects/core/page-02.jpg",
+        preview: "/images/projects/core/preview-page-02.jpg",
         alt: "Full Data Explorer with country filters, a bar chart and a data table",
         width: 1200,
         height: 1788,
@@ -805,6 +840,7 @@ export const projects = [
       {
         kind: "page",
         src: "/images/projects/core/page-04.jpg",
+        preview: "/images/projects/core/preview-page-04.jpg",
         alt: "Full Our Research overview with publication cards",
         width: 1200,
         height: 1567,
@@ -812,6 +848,7 @@ export const projects = [
       {
         kind: "page",
         src: "/images/projects/core/page-05.jpg",
+        preview: "/images/projects/core/preview-page-05.jpg",
         alt: "Full research article on a pilot study in Belgium and France",
         width: 1200,
         height: 1511,
@@ -825,6 +862,7 @@ export const projects = [
         frame: "phone",
       },
     ],
+    note: "Built in 2025. The live site may have changed since launch.",
     featured: true,
   },
   {
@@ -922,7 +960,12 @@ export const projects = [
     ],
     tags: ["3d", "motion"],
     links: [
-      { kind: "film", label: "Watch film", href: "https://vimeo.com/55392607" },
+      {
+        kind: "film",
+        label: "Watch trailer",
+        href: "https://vimeo.com/55392607",
+      },
+      { kind: "film", label: "Venus film", href: "https://vimeo.com/56021020" },
     ],
     media: [
       {
@@ -934,7 +977,7 @@ export const projects = [
       {
         kind: "image",
         src: "/images/projects/project-lifehouse/still-01.jpg",
-        alt: "Project:Lifehouse poster: a journey within, with a Venus de Milo torso",
+        alt: "Project:Lifehouse poster I designed: a journey within, with a Venus de Milo torso",
         width: 600,
         height: 841,
         frame: "none",
@@ -942,7 +985,7 @@ export const projects = [
       {
         kind: "image",
         src: "/images/projects/project-lifehouse/still-02.jpg",
-        alt: "Venus de Milo bust lit in magenta light inside the Anatomical Museum",
+        alt: "My photo of the Venus de Milo bust lit in magenta light inside the Anatomical Museum",
         width: 1100,
         height: 1650,
         frame: "none",
@@ -1026,6 +1069,7 @@ export const projects = [
         frame: "browser",
       },
     ],
+    note: "Designed in 2024. The live site may have changed since launch.",
     featured: true,
   },
   {
@@ -1052,7 +1096,7 @@ export const projects = [
       {
         kind: "image",
         src: "/images/projects/inspiration-burns/still-01.jpg",
-        alt: "Inspiration:Burns poster with Robert Burns’ silhouette in flowing colour",
+        alt: "Inspiration:Burns poster I designed, with Robert Burns’ silhouette in flowing colour",
         width: 1100,
         height: 1555,
         frame: "none",
@@ -1130,6 +1174,7 @@ export const projects = [
       {
         kind: "page",
         src: "/images/projects/orryana/page-01.jpg",
+        preview: "/images/projects/orryana/preview-page-01.jpg",
         alt: "Full article page explaining a savings challenge, with tips and a chart",
         width: 1200,
         height: 6171,
@@ -1137,6 +1182,7 @@ export const projects = [
       {
         kind: "page",
         src: "/images/projects/orryana/page-02.jpg",
+        preview: "/images/projects/orryana/preview-page-02.jpg",
         alt: "Full finance guides overview with topic filters and article cards",
         width: 1200,
         height: 1792,
@@ -1185,6 +1231,7 @@ export const projects = [
       {
         kind: "page",
         src: "/images/projects/apple-3d-showcase/page-full.jpg",
+        preview: "/images/projects/apple-3d-showcase/preview-page-full.jpg",
         alt: "Full MacBook Pro showcase page with the 3D model, colour options and feature sections",
         width: 1200,
         height: 7488,
@@ -1206,6 +1253,7 @@ export const projects = [
         frame: "browser",
       },
     ],
+    note: "Built in 2026. The live site may have changed since these screenshots.",
     featured: true,
   },
   {
@@ -1257,6 +1305,7 @@ export const projects = [
         frame: "browser",
       },
     ],
+    note: "Built in 2026. The live site may have changed since these screenshots.",
     featured: true,
   },
   {

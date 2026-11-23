@@ -9,6 +9,7 @@ import ShapeMarker from "@/components/ui/ShapeMarker";
 import ProjectCoverImage from "@/components/projects/ProjectCoverImage";
 import ProjectGalleryTrigger from "@/components/projects/ProjectGalleryTrigger";
 import ProjectVideo from "@/components/projects/ProjectVideo";
+import type { CoverSlide } from "@/components/projects/ProjectCoverCarousel";
 import { accentTextClasses } from "@/components/ui/accentClasses";
 
 export interface ProjectMediaSlotProps {
@@ -21,6 +22,15 @@ export interface ProjectMediaSlotProps {
 
 const coverClasses =
   "object-cover object-top brightness-[0.85] transition-[filter] duration-500 group-focus-within/card:brightness-100 group-hover/card:brightness-100 motion-reduce:transition-none";
+
+function coverSlides(items: readonly ProjectGalleryMedia[]): readonly CoverSlide[] {
+  return items.flatMap((item, galleryIndex) => {
+    if (item.kind === "page") {
+      return [{ src: item.preview, alt: item.alt, galleryIndex }];
+    }
+    return item.frame === "phone" ? [] : [{ src: item.src, alt: item.alt, galleryIndex }];
+  });
+}
 
 export default function ProjectMediaSlot({
   media,
@@ -44,9 +54,14 @@ export default function ProjectMediaSlot({
         )
       ) : cover?.kind === "image" ? (
         galleryItems.length > 1 ? (
-          <ProjectGalleryTrigger title={title} items={galleryItems} domain={domain} note={note}>
-            <ProjectCoverImage image={cover} className={coverClasses} />
-          </ProjectGalleryTrigger>
+          <ProjectGalleryTrigger
+            title={title}
+            items={galleryItems}
+            domain={domain}
+            note={note}
+            slides={coverSlides(galleryItems)}
+            imageClassName={coverClasses}
+          />
         ) : (
           <ProjectCoverImage image={cover} className={coverClasses} />
         )
