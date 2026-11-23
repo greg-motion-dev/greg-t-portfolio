@@ -29,6 +29,11 @@ export interface ProjectLink {
 
 export type ProjectFrame = "browser" | "phone" | "none";
 
+export interface ProjectMediaLink {
+  readonly label: string;
+  readonly href: string;
+}
+
 export interface ProjectImageMedia {
   readonly kind: "image";
   readonly src: string;
@@ -36,6 +41,7 @@ export interface ProjectImageMedia {
   readonly width: number;
   readonly height: number;
   readonly frame: ProjectFrame;
+  readonly link?: ProjectMediaLink;
 }
 
 export interface ProjectPageMedia {
@@ -173,21 +179,21 @@ export const projects = [
       },
       {
         kind: "page",
-        src: "/images/projects/zero-carbon-analytics-original/page-01.jpg",
-        preview:
-          "/images/projects/zero-carbon-analytics-original/preview-page-01.jpg",
-        alt: "Full Climate Science & Impact topic page with briefing cards",
-        width: 1200,
-        height: 1738,
-      },
-      {
-        kind: "page",
         src: "/images/projects/zero-carbon-analytics-original/page-02.jpg",
         preview:
           "/images/projects/zero-carbon-analytics-original/preview-page-02.jpg",
         alt: "Full 2024 homepage with a forest hero on climate finance, latest content and topic tiles",
         width: 1200,
         height: 3216,
+      },
+      {
+        kind: "page",
+        src: "/images/projects/zero-carbon-analytics-original/page-01.jpg",
+        preview:
+          "/images/projects/zero-carbon-analytics-original/preview-page-01.jpg",
+        alt: "Full Climate Science & Impact topic page with briefing cards",
+        width: 1200,
+        height: 1738,
       },
       {
         kind: "page",
@@ -430,12 +436,12 @@ export const projects = [
       },
       {
         kind: "page",
-        src: "/images/projects/hydrogen-science-coalition/page-01.jpg",
+        src: "/images/projects/hydrogen-science-coalition/page-01-tracker.jpg",
         preview:
-          "/images/projects/hydrogen-science-coalition/preview-page-01.jpg",
-        alt: "Full desktop design of the Hydrogen Science Coalition page, from hero to interactive tracker tables",
+          "/images/projects/hydrogen-science-coalition/preview-page-01-tracker.jpg",
+        alt: "Full Trackers page of the Hydrogen Science Coalition, from the offshore wind hero and hydrogen production figures to the project database tabs and tracker table",
         width: 1200,
-        height: 3780,
+        height: 2623,
       },
       {
         kind: "image",
@@ -546,7 +552,7 @@ export const projects = [
       },
       {
         kind: "image",
-        src: "/images/projects/atmosphere-hellboy/still-03.jpg",
+        src: "/images/projects/atmosphere-hellboy/still-03-scenes.jpg",
         alt: "Portfolio panel of three projection scenes, labelled film sets, subtle effects and weather effects",
         width: 1186,
         height: 1660,
@@ -989,6 +995,10 @@ export const projects = [
         width: 1100,
         height: 1650,
         frame: "none",
+        link: {
+          label: "Watch the Venus film",
+          href: "https://vimeo.com/56021020",
+        },
       },
       {
         kind: "image",
@@ -997,6 +1007,10 @@ export const projects = [
         width: 1600,
         height: 897,
         frame: "none",
+        link: {
+          label: "Watch the Venus film",
+          href: "https://vimeo.com/56021020",
+        },
       },
       {
         kind: "image",
@@ -1005,6 +1019,34 @@ export const projects = [
         width: 734,
         height: 985,
         frame: "none",
+        link: {
+          label: "Watch the Venus film",
+          href: "https://vimeo.com/56021020",
+        },
+      },
+      {
+        kind: "image",
+        src: "/images/projects/project-lifehouse/still-07.jpg",
+        alt: "Main Hall Part 2: rainbow outlines mapped around the museum entrance",
+        width: 1600,
+        height: 870,
+        frame: "none",
+        link: {
+          label: "Watch Main Hall Part 2: The Welcoming",
+          href: "https://vimeo.com/56252540",
+        },
+      },
+      {
+        kind: "image",
+        src: "/images/projects/project-lifehouse/still-08.jpg",
+        alt: "Main Hall Part 3: a firefly lights up the emblem above the entrance",
+        width: 480,
+        height: 590,
+        frame: "none",
+        link: {
+          label: "Watch Main Hall Part 3: The Firefly",
+          href: "https://vimeo.com/56021018",
+        },
       },
       {
         kind: "image",
@@ -1013,6 +1055,10 @@ export const projects = [
         width: 1600,
         height: 816,
         frame: "none",
+        link: {
+          label: "Watch Main Hall Part 4: The Secret Temple",
+          href: "https://vimeo.com/56350196",
+        },
       },
       {
         kind: "image",
@@ -1021,6 +1067,22 @@ export const projects = [
         width: 750,
         height: 492,
         frame: "none",
+        link: {
+          label: "Watch Main Hall Part 4: The Secret Temple",
+          href: "https://vimeo.com/56350196",
+        },
+      },
+      {
+        kind: "image",
+        src: "/images/projects/project-lifehouse/still-09.jpg",
+        alt: "Main Hall Part 5: a projected figure reaching through the round window above the door",
+        width: 1600,
+        height: 663,
+        frame: "none",
+        link: {
+          label: "Watch Main Hall Part 5: The Senses",
+          href: "https://vimeo.com/56021019",
+        },
       },
     ],
     featured: true,
@@ -1108,6 +1170,22 @@ export const projects = [
         width: 1280,
         height: 760,
         frame: "none",
+        link: {
+          label: "Watch Handsome Nell Part 1",
+          href: "https://vimeo.com/56250303",
+        },
+      },
+      {
+        kind: "image",
+        src: "/images/projects/inspiration-burns/still-06.jpg",
+        alt: "3D render of the stone niche overgrown with vines above the marble pedestal",
+        width: 1280,
+        height: 800,
+        frame: "none",
+        link: {
+          label: "Watch Handsome Nell Part 2",
+          href: "https://vimeo.com/56281063",
+        },
       },
       {
         kind: "image",

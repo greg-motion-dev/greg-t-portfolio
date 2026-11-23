@@ -143,8 +143,19 @@ export default function ProjectGallery({
                 <div className="flex min-h-0 flex-1 items-center justify-center [container-type:size]">
                   <ProjectGallerySlide item={current} domain={domain} />
                 </div>
-                <figcaption className="mx-auto mt-4 max-w-3xl text-center text-sm text-ink-muted">
+                <figcaption className="mx-auto mt-4 flex max-w-3xl flex-col items-center text-center text-sm text-ink-muted">
                   {current.alt}
+                  {current.kind === "image" && current.link ? (
+                    <a
+                      href={current.link.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="focus-ring mt-2 inline-flex items-center gap-2 font-mono text-xs tracking-wider text-ink uppercase transition-colors hover:text-brand-yellow motion-reduce:transition-none"
+                    >
+                      {current.link.label}
+                      <ArrowDownIcon className="size-3.5 -rotate-135" />
+                    </a>
+                  ) : null}
                   {current.kind === "page" ? (
                     <span className="mt-1 block font-mono text-xs tracking-wider text-ink-muted/70 uppercase">
                       {lineupContent.galleryScrollHint}
