@@ -9,6 +9,7 @@ import DisciplinePill from "@/components/projects/DisciplinePill";
 import ProjectLinkArrow from "@/components/projects/ProjectLinkArrow";
 import ProjectMediaSlot from "@/components/projects/ProjectMediaSlot";
 import { accentBgClasses, accentTextClasses } from "@/components/ui/accentClasses";
+import { displayDomain } from "@/lib/displayDomain";
 
 export interface ProjectCardProps {
   readonly project: Project;
@@ -22,6 +23,8 @@ function formatIndex(position: number): string {
 export default function ProjectCard({ project, position }: ProjectCardProps) {
   const accent = disciplineAccent[project.discipline];
   const titleId = `project-${project.id}`;
+  const liveLink = project.links.find((link) => link.kind === "live");
+  const liveDomain = liveLink ? displayDomain(liveLink.href) : undefined;
 
   return (
     <li
@@ -43,7 +46,13 @@ export default function ProjectCard({ project, position }: ProjectCardProps) {
         </header>
 
         <div className="border-b border-white/10">
-          <ProjectMediaSlot media={project.media} discipline={project.discipline} />
+          <ProjectMediaSlot
+            media={project.media}
+            discipline={project.discipline}
+            title={project.title}
+            note={project.note}
+            domain={liveDomain}
+          />
         </div>
 
         <div className="flex flex-1 flex-col px-6 pt-6 pb-8">
