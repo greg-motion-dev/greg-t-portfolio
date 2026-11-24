@@ -16,7 +16,7 @@ const iconClasses = "size-[3mm] shrink-0 text-brand-yellow";
 
 export default function CvHeader() {
   return (
-    <header className="relative shrink-0 overflow-hidden bg-canvas px-[14mm] py-[7mm] text-ink">
+    <header className="relative shrink-0 overflow-hidden bg-canvas px-[14mm] pt-[10mm] pb-[5mm] text-ink">
       <div className="flex items-center gap-[4.8mm]">
         <div className="relative flex h-[31.8mm] w-[57mm] shrink-0 items-center justify-center">
           <CvOrbit />
