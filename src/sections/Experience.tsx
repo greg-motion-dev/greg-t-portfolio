@@ -14,6 +14,8 @@ import SectionHeading from "@/components/ui/SectionHeading";
 import { timelineAccentAt } from "@/components/experience/timelineRail";
 
 const columnTitleClasses = "font-mono text-xs tracking-widest text-ink uppercase";
+const columnClasses = "flex flex-col bg-canvas px-6 py-10 md:px-10";
+const columnBodyClasses = "mt-8 flex flex-1 flex-col *:flex-1";
 
 function isMilestone(item: TimelineItemData): item is TimelineMilestone {
   return item.kind === "certification" || item.kind === "project";
@@ -52,21 +54,21 @@ export default function Experience() {
       </div>
 
       <ul className="mt-24 grid gap-px border-y border-white/10 bg-white/10 md:mt-32 md:grid-cols-3">
-        <li className="bg-canvas px-6 py-10 md:px-10">
+        <li className={columnClasses}>
           <h3 className={columnTitleClasses}>{experienceContent.educationTitle}</h3>
-          <div className="mt-8">
+          <div className={columnBodyClasses}>
             <EducationList />
           </div>
         </li>
-        <li className="bg-canvas px-6 py-10 md:px-10">
+        <li className={columnClasses}>
           <h3 className={columnTitleClasses}>{experienceContent.languagesTitle}</h3>
-          <div className="mt-8">
+          <div className={columnBodyClasses}>
             <LanguageList />
           </div>
         </li>
-        <li className="bg-canvas px-6 py-10 md:px-10">
+        <li className={columnClasses}>
           <h3 className={columnTitleClasses}>{experienceContent.alsoTitle}</h3>
-          <div className="mt-8">
+          <div className={columnBodyClasses}>
             <AlsoList />
           </div>
         </li>

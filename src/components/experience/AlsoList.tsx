@@ -14,14 +14,15 @@ export default function AlsoList() {
   const earlyWorkYears = [...new Set(earlyWork.map((entry) => entry.year))].join(", ");
 
   return (
-    <div className="flex flex-col gap-8">
+    <div className="flex flex-col justify-between gap-6">
       <div>
         <h4 className={labelClasses}>{experienceContent.freelanceLabel}</h4>
         <ul className="mt-3 flex flex-col gap-3">
           {freelance.map((entry) => (
             <li key={entry.id}>
               <p className="text-ink">
-                {entry.client} · <span className="text-ink-muted">{entry.role}</span>
+                <span className="font-bold">{entry.client}</span> ·{" "}
+                <span className="text-ink-muted">{entry.role}</span>
               </p>
               <p className="mt-1 font-mono text-xs tracking-wider text-ink-muted">
                 {formatDateRange(entry.start, entry.end, experienceContent.presentLabel)}

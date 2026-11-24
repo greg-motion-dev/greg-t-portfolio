@@ -35,7 +35,7 @@ export default function HeroOrbit() {
     <div
       ref={containerRef}
       aria-hidden="true"
-      className={`absolute top-1/2 left-1/2 -z-10 size-[70rem] -translate-x-1/2 -translate-y-1/2 md:size-[91rem] ${pointerClasses[interactive ? "interactive" : "passive"]}`}
+      className={`absolute top-1/2 left-1/2 -z-10 size-[60.8rem] -translate-x-1/2 -translate-y-1/2 md:size-[91rem] ${pointerClasses[interactive ? "interactive" : "passive"]}`}
     >
       <OrbitFallback visible={!ready} />
       {webGLSupported ? (

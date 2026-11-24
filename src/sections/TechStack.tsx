@@ -4,7 +4,7 @@ import SectionHeading from "@/components/ui/SectionHeading";
 
 export default function TechStack() {
   return (
-    <section id="techstack" aria-labelledby="techstack-title" className="py-24 md:py-32">
+    <section id="techstack" aria-labelledby="techstack-title" className="pt-24 md:pt-32">
       <div className="mx-auto max-w-7xl px-5 md:px-10">
         <SectionHeading id="techstack-title" title={techStackContent.title} />
       </div>
