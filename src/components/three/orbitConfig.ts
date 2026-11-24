@@ -3,6 +3,7 @@ import type { ProjectDiscipline } from "@/constants";
 export interface OrbitRingConfig {
   readonly discipline: ProjectDiscipline;
   readonly radius: number;
+  readonly compactRadiusScale: number;
   readonly tiltDeg: number;
   readonly rollDeg: number;
   readonly speed: number;
@@ -75,6 +76,7 @@ export const orbitRings = [
   {
     discipline: "motion",
     radius: 1.05,
+    compactRadiusScale: 1,
     tiltDeg: 72,
     rollDeg: 14,
     speed: 0.14,
@@ -85,6 +87,7 @@ export const orbitRings = [
   {
     discipline: "design",
     radius: 1.5,
+    compactRadiusScale: 1,
     tiltDeg: 68,
     rollDeg: -18,
     speed: -0.1,
@@ -95,6 +98,7 @@ export const orbitRings = [
   {
     discipline: "frontend",
     radius: 2.0,
+    compactRadiusScale: 0.9,
     tiltDeg: 76,
     rollDeg: 16,
     speed: 0.07,

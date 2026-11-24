@@ -5,7 +5,6 @@ import { useRef } from "react";
 import { useInView } from "@/hooks/useInView";
 import { useFinePointer, useMediaQuery, useReducedMotion } from "@/hooks/useMediaQuery";
 import { useWebGLSupport } from "@/hooks/useWebGLSupport";
-import { orbitScene } from "@/components/three/orbitConfig";
 import OrbitFallback from "./OrbitFallback";
 import { useOrbitState } from "./OrbitStateProvider";
 
@@ -48,7 +47,7 @@ export default function HeroOrbit() {
             animate={!reducedMotion}
             interactive={interactive}
             active={inView}
-            ringScale={wideViewport ? 1 : orbitScene.compactRingScale}
+            compact={!wideViewport}
             onReady={markReady}
             onFirstInteraction={markInteracted}
           />
