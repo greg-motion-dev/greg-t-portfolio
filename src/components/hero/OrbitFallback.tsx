@@ -15,13 +15,18 @@ const visibilityClasses = {
   hidden: "opacity-0",
 } as const;
 
-function ringStyle(ring: OrbitRingConfig): CSSProperties {
+interface RingStyle extends CSSProperties {
+  readonly "--ring-compact-scale": string;
+}
+
+function ringStyle(ring: OrbitRingConfig): RingStyle {
   const diameterPercent = (ring.radius / viewHalfExtent()) * 100;
   const heightPercent = diameterPercent * Math.cos((ring.tiltDeg * Math.PI) / 180);
   return {
     width: `${diameterPercent}%`,
     height: `${heightPercent}%`,
     transform: `translate(-50%, -50%) rotate(${-ring.rollDeg}deg)`,
+    "--ring-compact-scale": String(ring.compactRadiusScale),
   };
 }
 
@@ -40,7 +45,7 @@ export default function OrbitFallback({ visible }: OrbitFallbackProps) {
         {orbitRings.map((ring) => (
           <div
             key={ring.discipline}
-            className="absolute top-1/2 left-1/2 rounded-[50%] border border-white/10"
+            className="absolute top-1/2 left-1/2 rounded-[50%] border border-white/10 max-md:scale-(--ring-compact-scale)"
             style={ringStyle(ring)}
           />
         ))}

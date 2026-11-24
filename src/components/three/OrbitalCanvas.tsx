@@ -15,7 +15,7 @@ export interface OrbitalCanvasProps {
   readonly animate: boolean;
   readonly interactive: boolean;
   readonly active: boolean;
-  readonly ringScale: number;
+  readonly compact: boolean;
   readonly onReady: () => void;
   readonly onFirstInteraction: () => void;
 }
@@ -57,7 +57,7 @@ export default function OrbitalCanvas({
   animate,
   interactive,
   active,
-  ringScale,
+  compact,
   onReady,
   onFirstInteraction,
 }: OrbitalCanvasProps) {
@@ -82,10 +82,12 @@ export default function OrbitalCanvas({
         <Starfield animate={animate} />
         <PortraitOccluder />
         <PortraitShadow colors={colors} animate={animate} />
-        <group scale={ringScale}>
+        <group scale={compact ? orbitScene.compactRingScale : 1}>
           <IntroGroup animate={animate}>
             {orbitRings.map((ring) => (
-              <OrbitRing key={ring.discipline} ring={ring} colors={colors} animate={animate} />
+              <group key={ring.discipline} scale={compact ? ring.compactRadiusScale : 1}>
+                <OrbitRing ring={ring} colors={colors} animate={animate} />
+              </group>
             ))}
           </IntroGroup>
         </group>

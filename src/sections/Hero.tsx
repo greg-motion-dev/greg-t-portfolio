@@ -37,7 +37,7 @@ export default function Hero() {
             ))}
           </h1>
 
-          <p className="pointer-events-auto mt-6 max-w-2xl text-sm text-ink-muted md:mt-8 md:text-base">
+          <p className="pointer-events-auto mt-4 max-w-2xl text-sm text-ink-muted max-md:text-balance md:mt-8 md:text-base">
             {heroIntro}
           </p>
 
