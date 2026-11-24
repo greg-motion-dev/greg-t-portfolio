@@ -1,52 +1,46 @@
-import { cvPageContent, earlyWork, freelance, publicationKindLabels, publications } from "@/constants";
+import { cvPageContent, earlyWork, freelance, publications } from "@/constants";
+import CvInlineList from "@/components/cv/CvInlineList";
+import { abbreviate } from "@/lib/abbreviate";
 import { formatDateRange } from "@/lib/formatDates";
 
-const groupTitleClasses = "font-mono text-cv-sm text-paper-muted";
+const groupTitleClasses = "font-mono text-cv-xs tracking-wide text-paper-muted uppercase";
 
 export default function CvAlso() {
+  const [thesis] = publications;
+  const earlyYear = earlyWork[0]?.year;
+
   return (
-    <div className="space-y-3 text-cv-sm">
+    <div className="space-y-2 text-cv-sm">
       <div className="break-inside-avoid">
         <h3 className={groupTitleClasses}>{cvPageContent.freelanceTitle}</h3>
-        <ul className="mt-1 space-y-1.5">
-          {freelance.map((entry) => (
-            <li key={entry.id}>
-              <p className="font-bold text-paper-ink">
-                {entry.client} · {entry.role}
-              </p>
-              <p className="font-mono text-paper-muted">
-                {formatDateRange(entry.start, entry.end, cvPageContent.presentLabel)}
-              </p>
-              <p className="text-paper-ink">{entry.summary}</p>
-            </li>
-          ))}
-        </ul>
+        {freelance.map((entry) => (
+          <p key={entry.id} className="mt-0.5 text-paper-ink">
+            <span className="font-bold">{entry.client}</span> · {entry.role}
+            <span className="block font-mono text-cv-xs tracking-wide text-paper-muted uppercase">
+              {formatDateRange(entry.start, entry.end, cvPageContent.presentLabel)}
+            </span>
+          </p>
+        ))}
       </div>
       <div className="break-inside-avoid">
-        <h3 className={groupTitleClasses}>{cvPageContent.earlyWorkTitle}</h3>
-        <ul className="mt-1 space-y-1">
-          {earlyWork.map((entry) => (
-            <li key={entry.id} className="text-paper-ink">
-              <span className="font-bold">{entry.client}</span> · {entry.year}
-            </li>
-          ))}
-        </ul>
-      </div>
-      <div className="break-inside-avoid">
-        <h3 className={groupTitleClasses}>{cvPageContent.publicationTitle}</h3>
-        <ul className="mt-1 space-y-1">
-          {publications.map((publication) => (
-            <li key={publication.id} className="text-paper-ink">
-              <a
-                href={publication.href}
-                className="font-bold underline decoration-paper-line underline-offset-2"
-              >
-                {publication.title}
-              </a>{" "}
-              · {publicationKindLabels[publication.kind]}, {publication.year}
-            </li>
-          ))}
-        </ul>
+        <h3 className={groupTitleClasses}>
+          {cvPageContent.earlyWorkTitle}
+          {earlyYear === undefined ? null : ` · ${earlyYear}`}
+        </h3>
+        <p className="mt-0.5 text-paper-ink">
+          <CvInlineList items={earlyWork.map((entry) => abbreviate(entry.client))} />
+        </p>
+        {thesis ? (
+          <p className="mt-0.5 text-paper-ink">
+            {cvPageContent.publicationTitle}:{" "}
+            <a
+              href={thesis.href}
+              className="font-bold underline decoration-paper-line underline-offset-2"
+            >
+              {thesis.title}
+            </a>
+          </p>
+        ) : null}
       </div>
     </div>
   );

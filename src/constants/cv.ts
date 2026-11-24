@@ -66,7 +66,6 @@ export interface TimelineMilestone {
 
 export type TimelineItem = TimelineEntry | TimelineMilestone;
 
-
 export interface EducationAward {
   readonly name: string;
   readonly year: number;
@@ -398,6 +397,7 @@ export const skillGroups = [
       "SQL",
       "Cloudflare",
       "Cloudways",
+      "GoDaddy",
       "Jira",
       "Monday.com",
       "Miro",
