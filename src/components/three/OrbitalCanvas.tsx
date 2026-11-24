@@ -15,6 +15,7 @@ export interface OrbitalCanvasProps {
   readonly animate: boolean;
   readonly interactive: boolean;
   readonly active: boolean;
+  readonly ringScale: number;
   readonly onReady: () => void;
   readonly onFirstInteraction: () => void;
 }
@@ -43,13 +44,9 @@ function IntroGroup({ animate, children }: IntroGroupProps) {
     if (group === null) {
       return;
     }
-    const progress = animate
-      ? Math.min(state.clock.elapsedTime / orbitScene.introDuration, 1)
-      : 1;
+    const progress = animate ? Math.min(state.clock.elapsedTime / orbitScene.introDuration, 1) : 1;
     const eased = 1 - (1 - progress) ** 3;
-    group.scale.setScalar(
-      orbitScene.introStartScale + (1 - orbitScene.introStartScale) * eased,
-    );
+    group.scale.setScalar(orbitScene.introStartScale + (1 - orbitScene.introStartScale) * eased);
     group.rotation.y = animate ? nudgeAngle(state.clock.elapsedTime) : 0;
   });
 
@@ -60,6 +57,7 @@ export default function OrbitalCanvas({
   animate,
   interactive,
   active,
+  ringScale,
   onReady,
   onFirstInteraction,
 }: OrbitalCanvasProps) {
@@ -84,12 +82,16 @@ export default function OrbitalCanvas({
         <Starfield animate={animate} />
         <PortraitOccluder />
         <PortraitShadow colors={colors} animate={animate} />
-        <IntroGroup animate={animate}>
-          {orbitRings.map((ring) => (
-            <OrbitRing key={ring.discipline} ring={ring} colors={colors} animate={animate} />
-          ))}
-        </IntroGroup>
-        {interactive ? <OrbitInteraction returnToRest={animate} onFirstInteraction={onFirstInteraction} /> : null}
+        <group scale={ringScale}>
+          <IntroGroup animate={animate}>
+            {orbitRings.map((ring) => (
+              <OrbitRing key={ring.discipline} ring={ring} colors={colors} animate={animate} />
+            ))}
+          </IntroGroup>
+        </group>
+        {interactive ? (
+          <OrbitInteraction returnToRest={animate} onFirstInteraction={onFirstInteraction} />
+        ) : null}
       </Suspense>
     </Canvas>
   );

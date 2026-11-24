@@ -3,8 +3,9 @@
 import dynamic from "next/dynamic";
 import { useRef } from "react";
 import { useInView } from "@/hooks/useInView";
-import { useFinePointer, useReducedMotion } from "@/hooks/useMediaQuery";
+import { useFinePointer, useMediaQuery, useReducedMotion } from "@/hooks/useMediaQuery";
 import { useWebGLSupport } from "@/hooks/useWebGLSupport";
+import { orbitScene } from "@/components/three/orbitConfig";
 import OrbitFallback from "./OrbitFallback";
 import { useOrbitState } from "./OrbitStateProvider";
 
@@ -27,6 +28,7 @@ export default function HeroOrbit() {
   const inView = useInView(containerRef);
   const reducedMotion = useReducedMotion();
   const finePointer = useFinePointer();
+  const wideViewport = useMediaQuery("(min-width: 48rem)");
   const webGLSupported = useWebGLSupport();
   const { ready, markReady, markInteracted } = useOrbitState();
   const interactive = webGLSupported && finePointer;
@@ -46,6 +48,7 @@ export default function HeroOrbit() {
             animate={!reducedMotion}
             interactive={interactive}
             active={inView}
+            ringScale={wideViewport ? 1 : orbitScene.compactRingScale}
             onReady={markReady}
             onFirstInteraction={markInteracted}
           />
