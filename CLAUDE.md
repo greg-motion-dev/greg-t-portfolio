@@ -82,7 +82,7 @@ We need to merge my extensive background as a Senior UI/UX Strategist (10+ years
   - `--color-ink-muted: #9ca3af` (secondary/metadata text → `text-ink-muted`)
   - `--color-brand-yellow: #f3b43f` (primary focus, portrait backdrop, highlight states → `text-brand-yellow`, `bg-brand-yellow`)
   - `--color-brand-pink: #e0368f` (3D/motion accents, secondary highlights → `text-brand-pink`, `bg-brand-pink`)
-  - `--color-brand-teal: #14a9c4` (UI/UX & architecture accents, orbital paths → `text-brand-teal`, `bg-brand-teal`)
+  - `--color-brand-teal: #00cab7` (UI/UX & architecture accents, orbital paths → `text-brand-teal`, `bg-brand-teal`)
 - **Typography:** `Plus Jakarta Sans` for headings and body copy paired with `JetBrains Mono` for the hero greeting, section indices (`01`, `02`), and technical tags. Both are loaded via `next/font/google`, which self-hosts them at build time (no requests to Google at runtime).
 - **Shape System (shared by website and PDF CV):** Four primitives; shape and colour always travel together.
   - ● circle / sphere → **Greg (identity)**: the portrait frame. Not a discipline, no discipline colour.

@@ -55,6 +55,8 @@ export const cvWorkedWith = [
   "European Climate Foundation",
   "Government of Alberta",
   "Zero Carbon Analytics",
+  "SteelWatch",
+  "Gas Outlook",
 ] as const satisfies readonly string[];
 
 export const cvSectionAccents = {

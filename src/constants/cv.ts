@@ -273,6 +273,15 @@ export const education = [
 
 export const freelance = [
   {
+    id: "adobe",
+    client: "Adobe",
+    role: "German Language UI Tester",
+    start: "2022-02",
+    end: "2025-02",
+    summary:
+      "Tested new UI and its functionality for German-speaking users, mostly in Adobe Express and its features.",
+  },
+  {
     id: "canva",
     client: "Canva",
     role: "Content Writer (Design)",
