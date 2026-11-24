@@ -3,7 +3,7 @@ import { formatYearSpan } from "@/lib/formatDates";
 
 export default function EducationList() {
   return (
-    <ul className="flex flex-col gap-6">
+    <ul className="flex flex-col justify-between gap-6">
       {education.map((entry) => (
         <li key={entry.id}>
           <p className="font-bold text-ink">{entry.degree}</p>

@@ -11,7 +11,7 @@ export default function Footer() {
       <div className="mx-auto flex max-w-7xl flex-col items-center gap-6 px-5 py-8 font-mono text-xs tracking-widest uppercase md:flex-row md:justify-between md:px-10">
         <p className="text-ink-muted">{footerContent.copyright}</p>
 
-        <div className="flex items-center gap-6">
+        <div className="flex items-center gap-8">
           <Link href={footerContent.privacyLink.link} className={linkClasses}>
             {footerContent.privacyLink.name}
           </Link>
