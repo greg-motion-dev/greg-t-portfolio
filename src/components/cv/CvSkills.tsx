@@ -1,10 +1,11 @@
 import { disciplineAccent, disciplineShape, skillGroups } from "@/constants";
+import CvInlineList from "@/components/cv/CvInlineList";
 import ShapeMarker from "@/components/ui/ShapeMarker";
 import { accentTextClasses } from "@/components/ui/accentClasses";
 
 export default function CvSkills() {
   return (
-    <div className="space-y-3">
+    <div className="space-y-2">
       {skillGroups.map((group) => (
         <div key={group.id} className="break-inside-avoid">
           <h3 className="flex items-center gap-1.5 text-cv-sm font-bold text-paper-ink">
@@ -18,7 +19,9 @@ export default function CvSkills() {
             )}
             {group.title}
           </h3>
-          <p className="mt-1 text-cv-sm text-paper-muted">{group.skills.join(" · ")}</p>
+          <p className="mt-0.5 text-cv-sm text-paper-muted">
+            <CvInlineList items={group.skills} />
+          </p>
         </div>
       ))}
     </div>
