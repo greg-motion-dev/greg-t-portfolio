@@ -12,7 +12,7 @@ export default function Hero() {
     <section
       id="about"
       aria-labelledby="hero-title"
-      className="relative flex min-h-dvh items-center justify-center overflow-hidden px-5 pt-nav pb-16 md:px-10 md:pt-40"
+      className="relative flex min-h-dvh items-center justify-center overflow-hidden px-5 pt-[calc(var(--spacing-nav)+2.5rem)] pb-16 md:px-10 md:pt-40"
     >
       <OrbitStateProvider>
         <div className="pointer-events-none relative z-10 flex max-w-4xl flex-col items-center text-center">
