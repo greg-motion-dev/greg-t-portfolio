@@ -31,7 +31,7 @@ export default function NavBar() {
         <div className="flex items-center gap-3 justify-self-end">
           <Link
             href={navContact.link}
-            className="focus-ring border border-ink px-3 py-2 font-mono text-sm text-ink transition-colors hover:bg-ink hover:text-canvas sm:px-4"
+            className="focus-ring hidden border border-ink px-4 py-2 font-mono text-sm text-ink transition-colors hover:bg-ink hover:text-canvas lg:block"
           >
             {navContact.name}
           </Link>

@@ -6,7 +6,7 @@ import ShapeMarker from "@/components/ui/ShapeMarker";
 
 export default function Contact() {
   return (
-    <section id="contact" aria-labelledby="contact-title" className="relative overflow-hidden pt-24 pb-16 md:pt-32 md:pb-20">
+    <section id="contact" aria-labelledby="contact-title" className="relative overflow-hidden pt-48 pb-16 md:pt-64 md:pb-20">
       <ContactFluid />
       <div className="relative mx-auto max-w-7xl px-5 md:px-10">
         <SectionHeading id="contact-title" title={contactContent.title} />

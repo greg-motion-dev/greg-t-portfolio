@@ -8,8 +8,8 @@ export interface CircleRevealLinkProps {
 const easing = "duration-500 ease-out motion-reduce:transition-none";
 
 const linkClasses = [
-  "group focus-ring relative inline-flex min-w-56 items-center overflow-hidden",
-  "border border-transparent bg-black py-4 pr-16 pl-8",
+  "group focus-ring relative inline-flex items-center overflow-hidden",
+  "border border-transparent bg-black py-4 pr-14 pl-8",
   "font-mono text-sm tracking-widest text-canvas uppercase",
   "transition-colors",
   easing,

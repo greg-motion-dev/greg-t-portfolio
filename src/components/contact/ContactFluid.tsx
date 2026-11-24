@@ -23,7 +23,7 @@ export default function ContactFluid() {
   const enabled = webGLSupported && finePointer && !reducedMotion;
 
   return (
-    <div ref={containerRef} aria-hidden="true" className="pointer-events-none absolute inset-0 [mask-image:linear-gradient(to_bottom,transparent,black_25%,black_80%,transparent)]">
+    <div ref={containerRef} aria-hidden="true" className="pointer-events-none absolute inset-0 [mask-image:linear-gradient(to_bottom,transparent,black_4rem,black_80%,transparent)]">
       {enabled && hasEntered ? <FluidCanvas active={inView} /> : null}
     </div>
   );

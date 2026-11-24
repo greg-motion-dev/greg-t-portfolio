@@ -11,6 +11,16 @@ export default function Footer() {
       <div className="mx-auto flex max-w-7xl flex-col items-center gap-6 px-5 py-8 font-mono text-xs tracking-widest uppercase md:flex-row md:justify-between md:px-10">
         <p className="text-ink-muted">{footerContent.copyright}</p>
 
+        <div className="flex items-center gap-6">
+          <Link href={footerContent.privacyLink.link} className={linkClasses}>
+            {footerContent.privacyLink.name}
+          </Link>
+          <a href="#top" className={`inline-flex items-center gap-2 ${linkClasses}`}>
+            {footerContent.backToTopLabel}
+            <ArrowDownIcon className="size-3.5 rotate-180" />
+          </a>
+        </div>
+
         <ul className="flex items-center gap-5">
           {profile.links.map(({ kind, href }) => (
             <li key={kind}>
@@ -26,16 +36,6 @@ export default function Footer() {
             </li>
           ))}
         </ul>
-
-        <div className="flex items-center gap-6">
-          <Link href={footerContent.privacyLink.link} className={linkClasses}>
-            {footerContent.privacyLink.name}
-          </Link>
-          <a href="#top" className={`inline-flex items-center gap-2 ${linkClasses}`}>
-            {footerContent.backToTopLabel}
-            <ArrowDownIcon className="size-3.5 rotate-180" />
-          </a>
-        </div>
       </div>
     </footer>
   );
