@@ -12,7 +12,7 @@ export default function Hero() {
     <section
       id="about"
       aria-labelledby="hero-title"
-      className="relative flex min-h-dvh items-center justify-center overflow-hidden px-5 pt-[calc(var(--spacing-nav)+2.5rem)] pb-16 md:px-10 md:pt-40"
+      className="relative flex min-h-dvh items-center justify-center overflow-hidden px-5 pt-[calc(var(--spacing-nav)+4rem)] pb-16 md:px-10 md:pt-40"
     >
       <OrbitStateProvider>
         <div className="pointer-events-none relative z-10 flex max-w-4xl flex-col items-center text-center">
@@ -21,7 +21,7 @@ export default function Hero() {
             <Portrait />
           </div>
 
-          <p className="pointer-events-auto mt-20 font-mono text-sm text-brand-yellow md:text-base">
+          <p className="pointer-events-auto mt-12 font-mono text-sm text-brand-yellow md:mt-20 md:text-base">
             {heroGreeting}
           </p>
 
@@ -37,11 +37,11 @@ export default function Hero() {
             ))}
           </h1>
 
-          <p className="pointer-events-auto mt-8 max-w-2xl text-sm text-ink-muted md:text-base">
+          <p className="pointer-events-auto mt-6 max-w-2xl text-sm text-ink-muted md:mt-8 md:text-base">
             {heroIntro}
           </p>
 
-          <div className="pointer-events-auto mt-10 flex flex-col gap-4 sm:flex-row">
+          <div className="pointer-events-auto mt-6 flex flex-col gap-4 sm:flex-row md:mt-10">
             {heroCtas.map((cta) => (
               <HeroCtaButton key={cta.id} cta={cta} />
             ))}

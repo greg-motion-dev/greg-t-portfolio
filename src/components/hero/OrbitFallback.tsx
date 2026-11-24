@@ -36,13 +36,15 @@ export default function OrbitFallback({ visible }: OrbitFallbackProps) {
       className={`absolute inset-0 transition-opacity duration-1000 motion-reduce:transition-none ${visibilityClasses[visible ? "visible" : "hidden"]}`}
       style={maskStyle}
     >
-      {orbitRings.map((ring) => (
-        <div
-          key={ring.discipline}
-          className="absolute top-1/2 left-1/2 rounded-[50%] border border-white/10"
-          style={ringStyle(ring)}
-        />
-      ))}
+      <div className="absolute inset-0 max-md:scale-70">
+        {orbitRings.map((ring) => (
+          <div
+            key={ring.discipline}
+            className="absolute top-1/2 left-1/2 rounded-[50%] border border-white/10"
+            style={ringStyle(ring)}
+          />
+        ))}
+      </div>
     </div>
   );
 }

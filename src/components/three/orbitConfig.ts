@@ -15,6 +15,7 @@ export interface OrbitSceneConfig {
   readonly cameraDistance: number;
   readonly fov: number;
   readonly canvasToPortraitRatio: number;
+  readonly compactRingScale: number;
   readonly portraitEdgeInset: number;
   readonly shadowSpread: number;
   readonly shadowStrength: number;
@@ -44,6 +45,7 @@ export const orbitScene = {
   cameraDistance: 10,
   fov: 35,
   canvasToPortraitRatio: 7 / 0.95,
+  compactRingScale: 0.7,
   portraitEdgeInset: 0.985,
   shadowSpread: 1.7,
   shadowStrength: 0.9,
