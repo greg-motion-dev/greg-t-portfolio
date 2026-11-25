@@ -17,6 +17,11 @@
     scroll-margin-top: var(--spacing-nav);
   }
 
+  button:not(:disabled),
+  [role="button"]:not(:disabled) {
+    cursor: pointer;
+  }
+
   @media (prefers-reduced-motion: reduce) {
     html,
     body {
