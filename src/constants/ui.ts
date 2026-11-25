@@ -56,10 +56,21 @@ export interface HeroContent {
   readonly portraitAlt: string;
 }
 
+export interface PreviewImage {
+  readonly url: string;
+  readonly alt: string;
+  readonly width: number;
+  readonly height: number;
+}
+
 export interface MetaContent {
   readonly title: string;
   readonly description: string;
+  readonly openGraphLocale: string;
+  readonly previewImage: PreviewImage;
 }
+
+export const previewImageSize = { width: 1200, height: 630 } as const;
 
 export interface UiContent {
   readonly meta: MetaContent;
@@ -86,6 +97,12 @@ export const uiContentEn = {
   meta: {
     title: "Greg | Creative Engineer",
     description: heroIntro,
+    openGraphLocale: "en_GB",
+    previewImage: {
+      url: "/og/greg-telakis-en.png",
+      alt: "Greg Telakis, Creative UI Engineer and Motion & 3D Web Specialist, with his portrait inside three orbits",
+      ...previewImageSize,
+    },
   },
   nav: {
     links: navLinks,

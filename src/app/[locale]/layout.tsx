@@ -4,7 +4,8 @@ import { notFound } from "next/navigation";
 import { locale as localeParam } from "next/root-params";
 import { profile } from "@/constants";
 import { isLocale, locales } from "@/i18n/config";
-import { getUi } from "@/i18n/getUi";
+import { getLocale } from "@/i18n/getLocale";
+import { uiFor } from "@/i18n/getUi";
 import "../globals.css";
 
 const plusJakartaSans = Plus_Jakarta_Sans({
@@ -31,12 +32,31 @@ const robots = {
 } as const satisfies Metadata["robots"];
 
 export async function generateMetadata(): Promise<Metadata> {
-  const ui = await getUi();
+  const locale = await getLocale();
+  const { meta } = uiFor(locale);
+  const alternateLocales = locales
+    .filter((alternate) => alternate !== locale)
+    .map((alternate) => uiFor(alternate).meta.openGraphLocale);
   return {
     metadataBase: new URL(profile.website.href),
-    title: ui.meta.title,
-    description: ui.meta.description,
+    title: meta.title,
+    description: meta.description,
     robots,
+    openGraph: {
+      type: "website",
+      siteName: profile.name,
+      title: meta.title,
+      description: meta.description,
+      locale: meta.openGraphLocale,
+      alternateLocale: alternateLocales,
+      images: [meta.previewImage],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: meta.title,
+      description: meta.description,
+      images: [meta.previewImage],
+    },
   };
 }
 
