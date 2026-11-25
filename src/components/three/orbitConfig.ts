@@ -4,6 +4,7 @@ export interface OrbitRingConfig {
   readonly discipline: ProjectDiscipline;
   readonly radius: number;
   readonly compactRadiusScale: number;
+  readonly narrowRadiusScale: number;
   readonly tiltDeg: number;
   readonly rollDeg: number;
   readonly speed: number;
@@ -77,6 +78,7 @@ export const orbitRings = [
     discipline: "motion",
     radius: 1.05,
     compactRadiusScale: 1,
+    narrowRadiusScale: 1,
     tiltDeg: 72,
     rollDeg: 14,
     speed: 0.14,
@@ -88,6 +90,7 @@ export const orbitRings = [
     discipline: "design",
     radius: 1.5,
     compactRadiusScale: 1,
+    narrowRadiusScale: 1,
     tiltDeg: 68,
     rollDeg: -18,
     speed: -0.1,
@@ -99,6 +102,7 @@ export const orbitRings = [
     discipline: "frontend",
     radius: 2.0,
     compactRadiusScale: 0.9,
+    narrowRadiusScale: 0.86,
     tiltDeg: 76,
     rollDeg: 16,
     speed: 0.07,
@@ -107,6 +111,21 @@ export const orbitRings = [
     bodySize: 0.13,
   },
 ] as const satisfies readonly OrbitRingConfig[];
+
+export type OrbitLayout = "wide" | "compact" | "narrow";
+
+export function layoutRingScale(layout: OrbitLayout): number {
+  return layout === "wide" ? 1 : orbitScene.compactRingScale;
+}
+
+export function ringRadiusScale(ring: OrbitRingConfig, layout: OrbitLayout): number {
+  const scales = {
+    wide: 1,
+    compact: ring.compactRadiusScale,
+    narrow: ring.narrowRadiusScale,
+  } as const satisfies Record<OrbitLayout, number>;
+  return scales[layout];
+}
 
 export function viewHalfExtent(): number {
   return orbitScene.cameraDistance * Math.tan((orbitScene.fov * Math.PI) / 360);

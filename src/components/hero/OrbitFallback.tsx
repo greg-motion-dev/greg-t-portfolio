@@ -17,6 +17,7 @@ const visibilityClasses = {
 
 interface RingStyle extends CSSProperties {
   readonly "--ring-compact-scale": string;
+  readonly "--ring-narrow-scale": string;
 }
 
 function ringStyle(ring: OrbitRingConfig): RingStyle {
@@ -27,6 +28,7 @@ function ringStyle(ring: OrbitRingConfig): RingStyle {
     height: `${heightPercent}%`,
     transform: `translate(-50%, -50%) rotate(${-ring.rollDeg}deg)`,
     "--ring-compact-scale": String(ring.compactRadiusScale),
+    "--ring-narrow-scale": String(ring.narrowRadiusScale),
   };
 }
 
@@ -45,7 +47,7 @@ export default function OrbitFallback({ visible }: OrbitFallbackProps) {
         {orbitRings.map((ring) => (
           <div
             key={ring.discipline}
-            className="absolute top-1/2 left-1/2 rounded-[50%] border border-white/10 max-md:scale-(--ring-compact-scale)"
+            className="absolute top-1/2 left-1/2 rounded-[50%] border border-white/10 max-md:scale-(--ring-compact-scale) max-[24rem]:scale-(--ring-narrow-scale)"
             style={ringStyle(ring)}
           />
         ))}

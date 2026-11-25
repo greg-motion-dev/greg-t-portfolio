@@ -5,6 +5,7 @@ import { useRef } from "react";
 import { useInView } from "@/hooks/useInView";
 import { useFinePointer, useMediaQuery, useReducedMotion } from "@/hooks/useMediaQuery";
 import { useWebGLSupport } from "@/hooks/useWebGLSupport";
+import type { OrbitLayout } from "@/components/three/orbitConfig";
 import OrbitFallback from "./OrbitFallback";
 import { useOrbitState } from "./OrbitStateProvider";
 
@@ -28,6 +29,8 @@ export default function HeroOrbit() {
   const reducedMotion = useReducedMotion();
   const finePointer = useFinePointer();
   const wideViewport = useMediaQuery("(min-width: 48rem)");
+  const narrowViewport = !useMediaQuery("(min-width: 24rem)");
+  const layout: OrbitLayout = wideViewport ? "wide" : narrowViewport ? "narrow" : "compact";
   const webGLSupported = useWebGLSupport();
   const { ready, markReady, markInteracted } = useOrbitState();
   const interactive = webGLSupported && finePointer;
@@ -47,7 +50,7 @@ export default function HeroOrbit() {
             animate={!reducedMotion}
             interactive={interactive}
             active={inView}
-            compact={!wideViewport}
+            layout={layout}
             onReady={markReady}
             onFirstInteraction={markInteracted}
           />
