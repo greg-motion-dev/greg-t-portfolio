@@ -412,6 +412,7 @@ export const skillGroups = [
       "Netlify",
       "VS Code",
       "Cursor",
+      "Claude Code",
       "Chrome DevTools",
       "SQL",
       "Cloudflare",

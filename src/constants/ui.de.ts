@@ -1,6 +1,6 @@
 import { contactContent } from "./contact";
 import { heroCtas } from "./hero";
-import { privacyContent } from "./legal";
+import { privacyContentDe } from "./legal.de";
 import { footerContent, navContact, navLinks } from "./navigation";
 import { notFoundContent } from "./notFound";
 import type { UiContent } from "./ui";
@@ -133,8 +133,5 @@ export const uiContentDe = {
     presentLabel: "heute",
     certificationTitle: "Zertifikat",
   },
-  privacy: {
-    title: "Datenschutzerklärung",
-    body: privacyContent.body,
-  },
+  privacy: privacyContentDe,
 } as const satisfies UiContent;

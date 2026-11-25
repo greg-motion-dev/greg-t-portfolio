@@ -220,7 +220,7 @@ export const projectsDe = {
   },
   core: {
     summary:
-      "Meinungsforschung zu Klima und Energie, erkundbar gemacht. Ich habe einen schnellen ersten Prototyp gestaltet und programmiert und danach das aktuelle WordPress-Theme auf Basis eines bestehenden UX/UI-Designs gebaut.",
+      "Meinungsforschung zu Klima und Energie, erkundbar gemacht. Ich habe einen schnellen ersten Prototyp gestaltet und programmiert und danach das aktuelle WordPress-Theme nach dem Entwurf eines UX/UI-Designers gebaut.",
     links: [liveSite],
     media: [
       { alt: "CORE-Startseite mit Einleitungstext und den neuesten Publikationen" },
@@ -313,17 +313,17 @@ export const projectsDe = {
   },
   "inspiration-burns": {
     summary:
-      "Projection Mapping am Burns Monument in Edinburgh: Ich habe den Innenraum in Blender als „virtuelles Mobiliar“ nachgebaut und einen 3D-Folianten auf dem Marmorpult animiert, den Ausgangspunkt jeder Sequenz. Entstanden mit Ami Bogin und Ana Roman.",
+      "Projection Mapping am Burns Monument in Edinburgh: Ich habe den Innenraum in Blender als „virtuelles Mobiliar“ nachgebaut und ein 3D-Buch auf dem Marmorpult animiert, den Ausgangspunkt jeder Sequenz. Entstanden mit Ami Bogin und Ana Roman.",
     links: [watchFilm],
     media: [
       {
-        alt: "3D-Animation eines Folianten, der sich auf dem Marmorpult unter einem Steinbogen aufschlägt",
+        alt: "3D-Animation eines Buchs, das sich auf dem Marmorpult unter einem Steinbogen aufschlägt",
       },
       {
         alt: "Von mir gestaltetes Plakat für Inspiration:Burns mit der Silhouette von Robert Burns in fließenden Farben",
       },
       {
-        alt: "3D-Foliant, aufgeschlagen auf dem Marmorpult in der Steinnische",
+        alt: "3D-Buch, aufgeschlagen auf dem Marmorpult in der Steinnische",
         linkLabel: "Handsome Nell Teil 1 ansehen",
       },
       {
@@ -340,7 +340,7 @@ export const projectsDe = {
   },
   orryana: {
     summary:
-      "Orryana, Finanz-Content mit über 30.000 Followern, zieht von WordPress auf eine Headless-React-Plattform um. Ich gestalte und entwickle sie, von Finanzratgebern bis zu Rechnern; der Launch läuft.",
+      "Orryana, ein Finanz-Creator mit über 30.000 Followern, zieht von WordPress auf eine Headless-React-Plattform um. Ich gestalte und entwickle sie, von Finanzratgebern bis zu Rechnern; der Launch läuft.",
     links: [github],
     media: [
       { alt: "Hero der Orryana-Startseite mit Porträt und Rechner-Shortcuts" },

@@ -21,7 +21,21 @@ export default async function PrivacyPage() {
       <main className="flex-1 pt-nav">
         <section aria-labelledby="privacy-title" className="mx-auto max-w-3xl px-5 py-24 md:px-10">
           <SectionHeading id="privacy-title" title={ui.privacy.title} />
-          <p className="mt-8 text-base text-ink-muted">{ui.privacy.body}</p>
+          <p className="mt-8 font-mono text-xs tracking-wider text-ink-muted uppercase">
+            {ui.privacy.updated}
+          </p>
+          <div className="mt-12 flex flex-col gap-12">
+            {ui.privacy.sections.map((section) => (
+              <div key={section.heading}>
+                <h3 className="text-xl font-bold text-ink">{section.heading}</h3>
+                <div className="mt-4 flex flex-col gap-4 text-base leading-relaxed text-ink-muted">
+                  {section.paragraphs.map((paragraph) => (
+                    <p key={paragraph}>{paragraph}</p>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
         </section>
       </main>
       <Footer />

@@ -98,11 +98,11 @@ We need to merge my extensive background as a Senior UI/UX Strategist (10+ years
 - **No tracking:** no analytics, no third-party embeds, no cookies, no `localStorage`/`sessionStorage`.
 - **No external requests at runtime:** no CDNs, no externally hosted fonts, scripts, images, or 3D assets. Everything ships from our own domain.
 - **3D assets:** never use drei `Environment` presets or any loader that fetches from a CDN. Lighting is done with custom shaders or local assets.
-- **Indexing:** the site stays unindexed until launch: `robots` noindex metadata on every page (root layout) plus `Disallow: /` in `src/app/robots.ts`.
+- **Indexing:** the site stays unindexed permanently (it is only shared with employers when applying): `robots` noindex metadata on every page (root layout) plus `Disallow: /` in `src/app/robots.ts`.
 - **Personal data:** no phone number anywhere, including the CV and its PDFs (there is no private/phone variant). The only published contact is `gtelakis@duck.com`.
 - **CV PDFs:** generated from `/cv` and `/de/cv` with `npm run cv:pdf` (English) and `npm run cv:pdf -- --locale de` (German) into `public/`. The CV header contact row stays on one line, ordered by importance: website · email · LinkedIn · GitHub · location.
-- **Legal pages:** English terminology on the English site ("Privacy Policy", `/privacy`). The German localization (`/de`) uses German terms ("Datenschutz", "Datenschutzerklärung", `/de/privacy`). No Impressum yet; revisit before launch.
-- **Hosting:** EU region preferred. Provider still to be decided; the Privacy Policy text depends on it.
+- **Legal pages:** English terminology on the English site ("Privacy Policy", `/privacy`). The German localization (`/de`) uses German terms ("Datenschutz", "Datenschutzerklärung", `/de/privacy`). No Impressum: the site is a private job-application portfolio, not a commercial service, and Greg's postal address must never be published or committed. Privacy Policy content lives in `src/constants/legal.ts` / `legal.de.ts`.
+- **Hosting:** Vercel. The Privacy Policy names Vercel and the email chain (DuckDuckGo Email Protection → Gmail); update it if either changes.
 
 ---
 

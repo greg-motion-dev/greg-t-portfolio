@@ -5,6 +5,7 @@ export * from "./projects";
 export * from "./cv";
 export * from "./contact";
 export * from "./legal";
+export * from "./legal.de";
 export * from "./notFound";
 export * from "./cvPage";
 export * from "./ui";
