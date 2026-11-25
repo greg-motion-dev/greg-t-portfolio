@@ -1,12 +1,16 @@
 import type { Metadata } from "next";
 import { getUi } from "@/i18n/getUi";
+import { getAlternates } from "@/i18n/metadata";
 import Footer from "@/components/layout/Footer";
 import NavBar from "@/components/layout/NavBar";
 import SectionHeading from "@/components/ui/SectionHeading";
 
 export async function generateMetadata(): Promise<Metadata> {
   const ui = await getUi();
-  return { title: `${ui.privacy.title} | Greg Telakis` };
+  return {
+    title: `${ui.privacy.title} | Greg Telakis`,
+    alternates: await getAlternates("/privacy"),
+  };
 }
 
 export default async function PrivacyPage() {

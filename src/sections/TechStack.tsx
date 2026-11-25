@@ -1,10 +1,11 @@
-import { skillGroups } from "@/constants";
+import { getSkillGroups } from "@/i18n/content";
 import { getUi } from "@/i18n/getUi";
 import SkillColumn from "@/components/techstack/SkillColumn";
 import SectionHeading from "@/components/ui/SectionHeading";
 
 export default async function TechStack() {
   const ui = await getUi();
+  const skillGroups = await getSkillGroups();
   return (
     <section id="techstack" aria-labelledby="techstack-title" className="pt-24 md:pt-32">
       <div className="mx-auto max-w-7xl px-5 md:px-10">

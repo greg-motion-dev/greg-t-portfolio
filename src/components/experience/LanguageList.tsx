@@ -3,13 +3,13 @@ import { getLanguages } from "@/i18n/content";
 import { accentTextClasses } from "@/components/ui/accentClasses";
 
 const rowClasses =
-  "grid grid-cols-[1fr_auto_3rem] items-baseline gap-x-3 md:max-lg:grid-cols-[1fr_3rem] md:max-lg:gap-y-1";
+  "grid grid-cols-[1fr_auto_3rem] items-baseline gap-x-3 max-[384px]:grid-cols-[1fr_3rem] max-[384px]:gap-y-1 md:max-lg:grid-cols-[1fr_3rem] md:max-lg:gap-y-1";
 
 const proficiencyClasses =
-  "text-right text-sm text-ink-muted md:max-lg:col-start-1 md:max-lg:row-start-2 md:max-lg:text-left";
+  "text-right text-sm text-ink-muted max-[384px]:col-start-1 max-[384px]:row-start-2 max-[384px]:text-left md:max-lg:col-start-1 md:max-lg:row-start-2 md:max-lg:text-left";
 
 const cefrClasses =
-  "font-mono text-xs tracking-wider md:max-lg:col-start-2 md:max-lg:row-start-1 md:max-lg:text-right";
+  "font-mono text-xs tracking-wider max-[384px]:col-start-2 max-[384px]:row-start-1 max-[384px]:text-right md:max-lg:col-start-2 md:max-lg:row-start-1 md:max-lg:text-right";
 
 export default async function LanguageList() {
   const languages = await getLanguages();

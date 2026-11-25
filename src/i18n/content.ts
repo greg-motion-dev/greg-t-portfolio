@@ -4,6 +4,8 @@ import {
   proficiencyLabelsDe,
   projects,
   projectsDe,
+  skillGroups,
+  skillNamesDe,
   timeline,
   timelineDe,
   type CefrRange,
@@ -11,6 +13,7 @@ import {
   type Project,
   type ProjectMedia,
   type ProjectText,
+  type SkillGroup,
   type TimelineItem,
 } from "@/constants";
 import type { Locale } from "./config";
@@ -39,6 +42,18 @@ export function languagesFor(locale: Locale): readonly LocalizedLanguage[] {
     proficiencyLabel:
       locale === "en" ? language.proficiency : proficiencyLabelsDe[language.proficiency],
     cefr: language.cefr,
+  }));
+}
+
+const germanSkillNames: Readonly<Partial<Record<string, string>>> = skillNamesDe;
+
+export function skillGroupsFor(locale: Locale): readonly SkillGroup[] {
+  if (locale === "en") {
+    return skillGroups;
+  }
+  return skillGroups.map((group) => ({
+    ...group,
+    skills: group.skills.map((skill) => germanSkillNames[skill] ?? skill),
   }));
 }
 
@@ -85,4 +100,8 @@ export async function getTimeline(): Promise<readonly TimelineItem[]> {
 
 export async function getLanguages(): Promise<readonly LocalizedLanguage[]> {
   return languagesFor(await getLocale());
+}
+
+export async function getSkillGroups(): Promise<readonly SkillGroup[]> {
+  return skillGroupsFor(await getLocale());
 }

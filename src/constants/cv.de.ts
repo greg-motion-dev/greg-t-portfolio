@@ -1,4 +1,4 @@
-import type { LanguageProficiency, languages, timeline } from "./cv";
+import type { LanguageProficiency, languages, skillGroups, timeline } from "./cv";
 
 type TimelineData = (typeof timeline)[number];
 
@@ -11,6 +11,8 @@ export type TimelineTranslation = {
 };
 
 export type LanguageName = (typeof languages)[number]["name"];
+
+export type SkillName = (typeof skillGroups)[number]["skills"][number];
 
 export const timelineDe = {
   "spiced-academy": {
@@ -74,3 +76,7 @@ export const proficiencyLabelsDe = {
   "business fluent": "verhandlungssicher",
   intermediate: "gute Kenntnisse",
 } as const satisfies Record<LanguageProficiency, string>;
+
+export const skillNamesDe = {
+  "Motion (formerly Framer Motion)": "Motion (Framer Motion)",
+} as const satisfies Partial<Record<SkillName, string>>;

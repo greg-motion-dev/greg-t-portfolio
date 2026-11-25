@@ -34,6 +34,7 @@ export default function MobileNav({ locale, nav, labels }: MobileNavProps) {
   const dialogRef = useRef<HTMLDialogElement>(null);
   const [open, setOpen] = useState(false);
   const isDesktop = useMediaQuery("(min-width: 64rem)");
+  const navItems = [...nav.links, nav.contact];
 
   useEffect(() => {
     if (isDesktop) {
@@ -101,7 +102,7 @@ export default function MobileNav({ locale, nav, labels }: MobileNavProps) {
 
           <nav aria-label={nav.ariaLabel} className="flex-1 overflow-y-auto">
             <ul className="mx-auto max-w-7xl px-5 py-8 md:px-10">
-              {nav.links.map(({ name, link }, index) => (
+              {navItems.map(({ name, link }, index) => (
                 <li key={name} className="border-b border-white/10">
                   <Link
                     href={localizeHref(locale, link)}
@@ -119,14 +120,7 @@ export default function MobileNav({ locale, nav, labels }: MobileNavProps) {
           </nav>
 
           <div className="border-t border-white/10">
-            <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-5 py-6 md:px-10">
-              <Link
-                href={localizeHref(locale, nav.contact.link)}
-                onClick={closeMenu}
-                className="focus-ring border border-ink px-4 py-2 font-mono text-sm text-ink transition-colors hover:bg-ink hover:text-canvas"
-              >
-                {nav.contact.name}
-              </Link>
+            <div className="mx-auto flex max-w-7xl items-center gap-4 px-5 py-6 md:px-10">
               <ul className="flex items-center gap-5">
                 {profile.links.map(({ kind, href }) => (
                   <li key={kind}>

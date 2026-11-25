@@ -1,9 +1,11 @@
-import { disciplineAccent, disciplineShape, skillGroups } from "@/constants";
+import { disciplineAccent, disciplineShape } from "@/constants";
+import { getSkillGroups } from "@/i18n/content";
 import CvInlineList from "@/components/cv/CvInlineList";
 import ShapeMarker from "@/components/ui/ShapeMarker";
 import { accentTextClasses } from "@/components/ui/accentClasses";
 
-export default function CvSkills() {
+export default async function CvSkills() {
+  const skillGroups = await getSkillGroups();
   return (
     <div className="space-y-2">
       {skillGroups.map((group) => (

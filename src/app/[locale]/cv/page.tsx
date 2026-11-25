@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { cvSectionAccents } from "@/constants";
 import { getUi } from "@/i18n/getUi";
+import { getAlternates } from "@/i18n/metadata";
 import CvAlso from "@/components/cv/CvAlso";
 import CvEducation from "@/components/cv/CvEducation";
 import CvFooter from "@/components/cv/CvFooter";
@@ -12,7 +13,7 @@ import CvTimeline from "@/components/cv/CvTimeline";
 
 export async function generateMetadata(): Promise<Metadata> {
   const ui = await getUi();
-  return { title: ui.cvPage.documentTitle };
+  return { title: ui.cvPage.documentTitle, alternates: await getAlternates("/cv") };
 }
 
 export default async function CvPage() {

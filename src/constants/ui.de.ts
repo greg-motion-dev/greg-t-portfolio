@@ -7,7 +7,14 @@ import type { UiContent } from "./ui";
 
 const [workCta, resumeCta] = heroCtas;
 
+const heroIntroDe =
+  "Vom Senior Visual Creator zum Creative UI Engineer: über 10 Jahre Erfahrung an der Schnittstelle von hochwertigem UI/UX-Design, interaktiver Motion und moderner Frontend-Architektur.";
+
 export const uiContentDe = {
+  meta: {
+    title: "Greg | Creative Engineer",
+    description: heroIntroDe,
+  },
   nav: {
     links: [
       { name: "über mich", link: navLinks[0].link },
@@ -39,8 +46,7 @@ export const uiContentDe = {
   },
   hero: {
     greeting: "Moin! Ich bin Greg.",
-    intro:
-      "Vom Senior Visual Creator zum Creative UI Engineer: über 10 Jahre Erfahrung an der Schnittstelle von hochwertigem UI/UX-Design, interaktiver Motion und moderner Frontend-Architektur.",
+    intro: heroIntroDe,
     ctas: [
       { ...workCta, label: "Projekte ansehen" },
       { ...resumeCta, label: "Lebenslauf", href: "/greg-telakis-cv-de.pdf" },

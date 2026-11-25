@@ -9,6 +9,7 @@ import { getLocale } from "@/i18n/getLocale";
 export default async function NavBar() {
   const ui = await getUi();
   const locale = await getLocale();
+  const navItems = [...ui.nav.links, ui.nav.contact];
 
   return (
     <header className="glass fixed inset-x-0 top-0 z-50 border-b border-white/10">
@@ -22,7 +23,7 @@ export default async function NavBar() {
 
         <nav aria-label={ui.nav.ariaLabel} className="hidden lg:block">
           <ul className="flex items-center gap-8">
-            {ui.nav.links.map(({ name, link }) => (
+            {navItems.map(({ name, link }) => (
               <li key={name}>
                 <Link
                   href={localizeHref(locale, link)}
@@ -37,12 +38,6 @@ export default async function NavBar() {
 
         <div className="flex items-center gap-4 justify-self-end">
           <LanguageSwitch locale={locale} label={ui.nav.languageSwitchLabel} />
-          <Link
-            href={localizeHref(locale, ui.nav.contact.link)}
-            className="focus-ring hidden border border-ink px-4 py-2 font-mono text-sm text-ink transition-colors hover:bg-ink hover:text-canvas lg:block"
-          >
-            {ui.nav.contact.name}
-          </Link>
           <div className="-mr-2 lg:hidden">
             <MobileNav locale={locale} nav={ui.nav} labels={ui.mobileNav} />
           </div>

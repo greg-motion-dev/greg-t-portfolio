@@ -56,7 +56,13 @@ export interface HeroContent {
   readonly portraitAlt: string;
 }
 
+export interface MetaContent {
+  readonly title: string;
+  readonly description: string;
+}
+
 export interface UiContent {
+  readonly meta: MetaContent;
   readonly nav: NavContent;
   readonly mobileNav: MobileNavLabels;
   readonly footer: FooterContent;
@@ -77,6 +83,10 @@ export interface UiContent {
 }
 
 export const uiContentEn = {
+  meta: {
+    title: "Greg | Creative Engineer",
+    description: heroIntro,
+  },
   nav: {
     links: navLinks,
     contact: navContact,
