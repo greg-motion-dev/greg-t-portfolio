@@ -8,19 +8,25 @@ import { accentBgClasses } from "@/components/ui/accentClasses";
 import ProjectLinkArrow from "@/components/projects/ProjectLinkArrow";
 import { timelineRailClasses } from "@/components/experience/timelineRail";
 import { formatDateRange, formatYearMonth } from "@/lib/formatDates";
+import { getLocale } from "@/i18n/getLocale";
+import type { Locale } from "@/i18n/config";
 
 export interface TimelineMilestoneItemProps {
   readonly milestone: TimelineMilestone;
   readonly accent: AccentColor;
 }
 
-function formatMilestoneDate(milestone: TimelineMilestone): string {
+function formatMilestoneDate(milestone: TimelineMilestone, locale: Locale): string {
   return milestone.end
-    ? formatDateRange(milestone.start, milestone.end, experienceContent.presentLabel)
-    : formatYearMonth(milestone.start);
+    ? formatDateRange(milestone.start, milestone.end, experienceContent.presentLabel, locale)
+    : formatYearMonth(milestone.start, locale);
 }
 
-export default function TimelineMilestoneItem({ milestone, accent }: TimelineMilestoneItemProps) {
+export default async function TimelineMilestoneItem({
+  milestone,
+  accent,
+}: TimelineMilestoneItemProps) {
+  const locale = await getLocale();
   const titleId = `timeline-${milestone.id}`;
   const { link } = milestone;
 
@@ -34,7 +40,7 @@ export default function TimelineMilestoneItem({ milestone, accent }: TimelineMil
       </span>
 
       <p data-timeline-entry className={timelineRailClasses.date}>
-        <span className="text-ink">{formatMilestoneDate(milestone)}</span>
+        <span className="text-ink">{formatMilestoneDate(milestone, locale)}</span>
       </p>
 
       <article

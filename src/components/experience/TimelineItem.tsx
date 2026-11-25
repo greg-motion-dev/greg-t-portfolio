@@ -7,15 +7,20 @@ import {
 import { accentBgClasses } from "@/components/ui/accentClasses";
 import { timelineRailClasses } from "@/components/experience/timelineRail";
 import { formatDateRange, formatDuration } from "@/lib/formatDates";
+import { getLocale } from "@/i18n/getLocale";
 
 export interface TimelineItemProps {
   readonly entry: TimelineEntry;
   readonly accent: AccentColor;
 }
 
-export default function TimelineItem({ entry, accent }: TimelineItemProps) {
+export default async function TimelineItem({
+  entry,
+  accent,
+}: TimelineItemProps) {
+  const locale = await getLocale();
   const titleId = `timeline-${entry.id}`;
-  const duration = formatDuration(entry.start, entry.end);
+  const duration = formatDuration(entry.start, entry.end, locale);
 
   return (
     <li className={timelineRailClasses.item}>
@@ -26,15 +31,13 @@ export default function TimelineItem({ entry, accent }: TimelineItemProps) {
         />
       </span>
 
-      <p
-        data-timeline-entry
-        className={timelineRailClasses.date}
-      >
+      <p data-timeline-entry className={timelineRailClasses.date}>
         <span className="text-ink">
           {formatDateRange(
             entry.start,
             entry.end,
             experienceContent.presentLabel,
+            locale,
           )}
         </span>
         {duration ? <span>{duration}</span> : null}

@@ -1,6 +1,7 @@
 import { cvPageContent, education, timeline, type TimelineMilestone } from "@/constants";
 import { abbreviate } from "@/lib/abbreviate";
 import { formatYearMonth, formatYearSpan } from "@/lib/formatDates";
+import { getLocale } from "@/i18n/getLocale";
 
 const metaClasses = "text-paper-muted";
 const dateClasses = "font-mono text-cv-xs tracking-wide whitespace-nowrap uppercase";
@@ -10,7 +11,8 @@ const certifications = timeline.filter(
     item.kind === "certification",
 );
 
-export default function CvEducation() {
+export default async function CvEducation() {
+  const locale = await getLocale();
   return (
     <ul className="space-y-1.5 text-cv-sm">
       {education.map((entry) => (
@@ -28,7 +30,7 @@ export default function CvEducation() {
           <p className="font-bold text-paper-ink">{entry.title}</p>
           <p className={metaClasses}>
             {cvPageContent.certificationTitle} ·{" "}
-            <span className={dateClasses}>{formatYearMonth(entry.start)}</span>
+            <span className={dateClasses}>{formatYearMonth(entry.start, locale)}</span>
           </p>
         </li>
       ))}

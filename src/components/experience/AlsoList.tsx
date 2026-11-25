@@ -7,10 +7,12 @@ import {
 } from "@/constants";
 import ProjectLinkArrow from "@/components/projects/ProjectLinkArrow";
 import { formatDateRange } from "@/lib/formatDates";
+import { getLocale } from "@/i18n/getLocale";
 
 const labelClasses = "font-mono text-xs tracking-widest text-ink-muted uppercase";
 
-export default function AlsoList() {
+export default async function AlsoList() {
+  const locale = await getLocale();
   const earlyWorkYears = [...new Set(earlyWork.map((entry) => entry.year))].join(", ");
 
   return (
@@ -25,7 +27,7 @@ export default function AlsoList() {
                 <span className="text-ink-muted">{entry.role}</span>
               </p>
               <p className="mt-1 font-mono text-xs tracking-wider text-ink-muted">
-                {formatDateRange(entry.start, entry.end, experienceContent.presentLabel)}
+                {formatDateRange(entry.start, entry.end, experienceContent.presentLabel, locale)}
               </p>
             </li>
           ))}

@@ -2,10 +2,12 @@ import { cvPageContent, earlyWork, freelance, publications } from "@/constants";
 import CvInlineList from "@/components/cv/CvInlineList";
 import { abbreviate } from "@/lib/abbreviate";
 import { formatDateRange } from "@/lib/formatDates";
+import { getLocale } from "@/i18n/getLocale";
 
 const groupTitleClasses = "font-mono text-cv-xs tracking-wide text-paper-muted uppercase";
 
-export default function CvAlso() {
+export default async function CvAlso() {
+  const locale = await getLocale();
   const [thesis] = publications;
   const earlyYear = earlyWork[0]?.year;
 
@@ -17,7 +19,7 @@ export default function CvAlso() {
           <p key={entry.id} className="mt-0.5 text-paper-ink">
             <span className="font-bold">{entry.client}</span> · {entry.role}
             <span className="block font-mono text-cv-xs tracking-wide text-paper-muted uppercase">
-              {formatDateRange(entry.start, entry.end, cvPageContent.presentLabel)}
+              {formatDateRange(entry.start, entry.end, cvPageContent.presentLabel, locale)}
             </span>
           </p>
         ))}

@@ -6,7 +6,9 @@ import { mobileNavLabels, navContact, navLinks, profile, profileLinkLabels } fro
 import CloseIcon from "@/components/icons/CloseIcon";
 import MenuIcon from "@/components/icons/MenuIcon";
 import SocialIcon from "@/components/icons/SocialIcon";
+import LanguageSwitch from "@/components/layout/LanguageSwitch";
 import { useMediaQuery } from "@/hooks/useMediaQuery";
+import { localizeHref, type Locale } from "@/i18n/config";
 
 const iconButtonClasses =
   "focus-ring flex size-10 items-center justify-center text-ink transition-colors hover:text-brand-yellow";
@@ -16,7 +18,11 @@ const dialogClasses =
 
 const formatIndex = (index: number): string => String(index + 1).padStart(2, "0");
 
-export default function MobileNav() {
+export interface MobileNavProps {
+  readonly locale: Locale;
+}
+
+export default function MobileNav({ locale }: MobileNavProps) {
   const dialogRef = useRef<HTMLDialogElement>(null);
   const [open, setOpen] = useState(false);
   const isDesktop = useMediaQuery("(min-width: 64rem)");
@@ -63,21 +69,24 @@ export default function MobileNav() {
           <div className="border-b border-white/10">
             <div className="mx-auto flex h-nav max-w-7xl items-center justify-between gap-3 px-5 md:px-10">
               <Link
-                href="/#about"
+                href={localizeHref(locale, "/#about")}
                 onClick={closeMenu}
                 className="focus-ring font-mono text-sm font-extrabold tracking-widest text-ink uppercase sm:text-base md:text-lg"
               >
                 {profile.name}
               </Link>
-              <div className="-mr-2">
-                <button
-                  type="button"
-                  aria-label={mobileNavLabels.closeMenu}
-                  onClick={closeMenu}
-                  className={iconButtonClasses}
-                >
-                  <CloseIcon className="size-6" />
-                </button>
+              <div className="flex items-center gap-4">
+                <LanguageSwitch locale={locale} />
+                <div className="-mr-2">
+                  <button
+                    type="button"
+                    aria-label={mobileNavLabels.closeMenu}
+                    onClick={closeMenu}
+                    className={iconButtonClasses}
+                  >
+                    <CloseIcon className="size-6" />
+                  </button>
+                </div>
               </div>
             </div>
           </div>
@@ -87,7 +96,7 @@ export default function MobileNav() {
               {navLinks.map(({ name, link }, index) => (
                 <li key={name} className="border-b border-white/10">
                   <Link
-                    href={link}
+                    href={localizeHref(locale, link)}
                     onClick={closeMenu}
                     className="focus-ring group flex items-baseline gap-4 py-5"
                   >
@@ -104,7 +113,7 @@ export default function MobileNav() {
           <div className="border-t border-white/10">
             <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-5 py-6 md:px-10">
               <Link
-                href={navContact.link}
+                href={localizeHref(locale, navContact.link)}
                 onClick={closeMenu}
                 className="focus-ring border border-ink px-4 py-2 font-mono text-sm text-ink transition-colors hover:bg-ink hover:text-canvas"
               >

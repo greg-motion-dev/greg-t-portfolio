@@ -3,12 +3,16 @@ import Link from "next/link";
 import { notFoundContent } from "@/constants";
 import Footer from "@/components/layout/Footer";
 import NavBar from "@/components/layout/NavBar";
+import { localizeHref } from "@/i18n/config";
+import { getLocale } from "@/i18n/getLocale";
 
 export const metadata: Metadata = {
   title: "Page not found | Greg Telakis",
 };
 
-export default function NotFound() {
+export default async function NotFound() {
+  const locale = await getLocale();
+
   return (
     <>
       <NavBar />
@@ -26,7 +30,7 @@ export default function NotFound() {
           </h1>
           <p className="mt-6 text-sm text-ink-muted md:text-base">{notFoundContent.body}</p>
           <Link
-            href={notFoundContent.homeHref}
+            href={localizeHref(locale, notFoundContent.homeHref)}
             className="focus-ring mt-10 border border-ink px-6 py-3 font-mono text-sm tracking-widest text-ink uppercase transition-colors hover:bg-ink hover:text-canvas"
           >
             {notFoundContent.homeLabel}

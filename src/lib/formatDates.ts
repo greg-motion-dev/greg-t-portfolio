@@ -1,19 +1,35 @@
 import type { YearMonth } from "@/constants";
+import type { Locale } from "@/i18n/config";
 
-const monthLabels = [
-  "Jan",
-  "Feb",
-  "Mar",
-  "Apr",
-  "May",
-  "Jun",
-  "Jul",
-  "Aug",
-  "Sep",
-  "Oct",
-  "Nov",
-  "Dec",
-] as const;
+type MonthLabels = readonly [
+  string,
+  string,
+  string,
+  string,
+  string,
+  string,
+  string,
+  string,
+  string,
+  string,
+  string,
+  string,
+];
+
+interface DurationUnits {
+  readonly year: readonly [singular: string, plural: string];
+  readonly month: readonly [singular: string, plural: string];
+}
+
+const monthLabels = {
+  en: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+  de: ["Jan", "Feb", "Mär", "Apr", "Mai", "Jun", "Jul", "Aug", "Sep", "Okt", "Nov", "Dez"],
+} as const satisfies Record<Locale, MonthLabels>;
+
+const durationUnits = {
+  en: { year: ["yr", "yrs"], month: ["mo", "mos"] },
+  de: { year: ["J.", "J."], month: ["Mon.", "Mon."] },
+} as const satisfies Record<Locale, DurationUnits>;
 
 interface ParsedYearMonth {
   readonly year: number;
@@ -28,25 +44,30 @@ function parseYearMonth(value: YearMonth): ParsedYearMonth {
   };
 }
 
-function pluralise(count: number, singular: string, plural: string): string {
+function pluralise(count: number, [singular, plural]: readonly [string, string]): string {
   return `${count} ${count === 1 ? singular : plural}`;
 }
 
-export function formatYearMonth(value: YearMonth): string {
+export function formatYearMonth(value: YearMonth, locale: Locale): string {
   const { year, month } = parseYearMonth(value);
-  return `${monthLabels[month - 1] ?? ""} ${year}`;
+  return `${monthLabels[locale][month - 1] ?? ""} ${year}`;
 }
 
 export function formatDateRange(
   start: YearMonth,
   end: YearMonth | "present",
   presentLabel: string,
+  locale: Locale,
 ): string {
-  const endLabel = end === "present" ? presentLabel : formatYearMonth(end);
-  return `${formatYearMonth(start)} — ${endLabel}`;
+  const endLabel = end === "present" ? presentLabel : formatYearMonth(end, locale);
+  return `${formatYearMonth(start, locale)} — ${endLabel}`;
 }
 
-export function formatDuration(start: YearMonth, end: YearMonth | "present"): string | null {
+export function formatDuration(
+  start: YearMonth,
+  end: YearMonth | "present",
+  locale: Locale,
+): string | null {
   if (end === "present") {
     return null;
   }
@@ -58,8 +79,8 @@ export function formatDuration(start: YearMonth, end: YearMonth | "present"): st
   const months = totalMonths % 12;
 
   const parts = [
-    years > 0 ? pluralise(years, "yr", "yrs") : null,
-    months > 0 ? pluralise(months, "mo", "mos") : null,
+    years > 0 ? pluralise(years, durationUnits[locale].year) : null,
+    months > 0 ? pluralise(months, durationUnits[locale].month) : null,
   ].filter((part): part is string => part !== null);
 
   return parts.join(" ");

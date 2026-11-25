@@ -1,13 +1,18 @@
 import { navContact, navLinks, profile } from "@/constants";
 import Link from "next/link";
+import LanguageSwitch from "@/components/layout/LanguageSwitch";
 import MobileNav from "@/components/layout/MobileNav";
+import { localizeHref } from "@/i18n/config";
+import { getLocale } from "@/i18n/getLocale";
 
-export default function NavBar() {
+export default async function NavBar() {
+  const locale = await getLocale();
+
   return (
     <header className="glass fixed inset-x-0 top-0 z-50 border-b border-white/10">
       <div className="mx-auto flex h-nav max-w-7xl items-center justify-between gap-3 px-5 md:px-10 lg:grid lg:grid-cols-[1fr_auto_1fr] lg:gap-6">
         <Link
-          href="/#about"
+          href={localizeHref(locale, "/#about")}
           className="focus-ring justify-self-start font-mono text-sm font-extrabold tracking-widest text-ink uppercase sm:text-base md:text-lg"
         >
           {profile.name}
@@ -18,7 +23,7 @@ export default function NavBar() {
             {navLinks.map(({ name, link }) => (
               <li key={name}>
                 <Link
-                  href={link}
+                  href={localizeHref(locale, link)}
                   className="focus-ring font-mono text-sm text-ink-muted transition-colors hover:text-ink"
                 >
                   {name}
@@ -28,15 +33,16 @@ export default function NavBar() {
           </ul>
         </nav>
 
-        <div className="flex items-center gap-3 justify-self-end">
+        <div className="flex items-center gap-4 justify-self-end">
+          <LanguageSwitch locale={locale} />
           <Link
-            href={navContact.link}
+            href={localizeHref(locale, navContact.link)}
             className="focus-ring hidden border border-ink px-4 py-2 font-mono text-sm text-ink transition-colors hover:bg-ink hover:text-canvas lg:block"
           >
             {navContact.name}
           </Link>
           <div className="-mr-2 lg:hidden">
-            <MobileNav />
+            <MobileNav locale={locale} />
           </div>
         </div>
       </div>
