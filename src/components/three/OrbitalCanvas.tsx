@@ -85,7 +85,7 @@ export default function OrbitalCanvas({
       onCreated={onReady}
     >
       <Suspense fallback={null}>
-        <Starfield animate={animate} />
+        <Starfield animate={animate} glintTint={colors.yellow} />
         <PortraitOccluder />
         <PortraitShadow colors={colors} animate={animate} />
         <group scale={layoutRingScale(layout)}>

@@ -118,7 +118,10 @@ export function layoutRingScale(layout: OrbitLayout): number {
   return layout === "wide" ? 1 : orbitScene.compactRingScale;
 }
 
-export function ringRadiusScale(ring: OrbitRingConfig, layout: OrbitLayout): number {
+export function ringRadiusScale(
+  ring: OrbitRingConfig,
+  layout: OrbitLayout,
+): number {
   const scales = {
     wide: 1,
     compact: ring.compactRadiusScale,
@@ -142,7 +145,8 @@ export function portraitEdgeRadius(): number {
 export function portraitOccluderRadius(): number {
   const radius = portraitEdgeRadius();
   const distance = orbitScene.cameraDistance;
-  const silhouetteRadius = (radius * distance) / Math.sqrt(distance ** 2 + radius ** 2);
+  const silhouetteRadius =
+    (radius * distance) / Math.sqrt(distance ** 2 + radius ** 2);
   return silhouetteRadius;
 }
 
@@ -174,3 +178,34 @@ export const starfield = {
   twinklePeak: 1,
   edgeFadeStart: 0.55,
 } as const satisfies StarfieldConfig;
+
+export interface GlintClearance {
+  readonly halfWidth: number;
+  readonly top: number;
+}
+
+export interface StarGlintConfig {
+  readonly seed: number;
+  readonly interval: Range;
+  readonly duration: number;
+  readonly size: number;
+  readonly turn: number;
+  readonly rayWidth: number;
+  readonly tint: number;
+  readonly screenBand: Range;
+  readonly textClearance: GlintClearance;
+  readonly pickAttempts: number;
+}
+
+export const starGlint = {
+  seed: 1987,
+  interval: { min: 4, max: 8 },
+  duration: 1.2,
+  size: 26,
+  turn: 0.5,
+  rayWidth: 0.07,
+  tint: 0,
+  screenBand: { min: 0.35, max: 0.85 },
+  textClearance: { halfWidth: 0.5, top: -0.18 },
+  pickAttempts: 12,
+} as const satisfies StarGlintConfig;
