@@ -31,7 +31,7 @@ export default async function ProjectLineup() {
         <DisciplineLegend />
       </div>
 
-      <HairlineGrid className="mt-12 md:mt-16" gridClassName="md:grid-cols-2 xl:grid-cols-3">
+      <HairlineGrid className="mt-7.5 md:mt-16" gridClassName="md:grid-cols-2 xl:grid-cols-3">
         {featured.map((project, index) => (
           <ProjectCard key={project.id} project={project} position={index + 1} />
         ))}

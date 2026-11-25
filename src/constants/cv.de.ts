@@ -71,7 +71,7 @@ export const languageNamesDe = {
 
 export const proficiencyLabelsDe = {
   native: "Muttersprache",
-  "business fluent": "verhandlungssicher",
+  "near-native": "muttersprachennah",
   intermediate: "gute Kenntnisse",
 } as const satisfies Record<LanguageProficiency, string>;
 

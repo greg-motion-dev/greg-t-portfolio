@@ -9,7 +9,7 @@ export default function SectionHeading({ id, title, count }: SectionHeadingProps
     <div className="flex items-baseline gap-4">
       <h2
         id={id}
-        className="text-hero font-black tracking-tight text-ink uppercase md:text-hero-lg"
+        className="text-hero font-black tracking-tight [word-spacing:0.15em] text-ink uppercase md:text-hero-lg"
       >
         {title}
       </h2>
