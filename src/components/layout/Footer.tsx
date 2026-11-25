@@ -9,7 +9,7 @@ export default function Footer() {
   return (
     <footer className="border-t border-white/10">
       <div className="mx-auto flex max-w-7xl flex-col items-center gap-6 px-5 py-8 font-mono text-xs tracking-widest uppercase md:flex-row md:justify-between md:px-10">
-        <p className="text-ink-muted">{footerContent.copyright}</p>
+        <p className="text-ink-muted max-md:order-last">{footerContent.copyright}</p>
 
         <div className="flex items-center gap-8">
           <Link href={footerContent.privacyLink.link} className={linkClasses}>
@@ -21,7 +21,7 @@ export default function Footer() {
           </a>
         </div>
 
-        <ul className="flex items-center gap-5">
+        <ul className="flex items-center gap-5 max-md:order-first">
           {profile.links.map(({ kind, href }) => (
             <li key={kind}>
               <a
