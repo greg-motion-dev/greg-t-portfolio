@@ -107,7 +107,7 @@ export default function ProjectGallery({
     >
       <div className="flex h-full flex-col">
         <header className="border-b border-white/10">
-          <div className="mx-auto flex h-nav max-w-7xl items-center justify-between gap-4 px-5 md:px-10">
+          <div className="mx-auto flex h-nav max-w-frame items-center justify-between gap-4 px-5 md:px-10">
             <p className="truncate text-lg font-bold tracking-tight text-ink md:text-xl">{title}</p>
             <div className="flex items-center gap-4">
               <p aria-live="polite" className="font-mono text-sm text-ink-muted tabular-nums">
@@ -170,7 +170,7 @@ export default function ProjectGallery({
         </div>
 
         <footer className="border-t border-white/10">
-          <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-5 py-4 md:px-10">
+          <div className="mx-auto flex max-w-frame items-center justify-between gap-4 px-5 py-4 md:px-10">
             <p className="max-w-xl font-mono text-xs tracking-wider text-ink-muted">{note ?? ""}</p>
             <div className="flex shrink-0 items-center gap-2">
               <button

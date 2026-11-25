@@ -7,6 +7,7 @@ import LanguageList from "@/components/experience/LanguageList";
 import TimelineItem from "@/components/experience/TimelineItem";
 import TimelineMilestoneItem from "@/components/experience/TimelineMilestoneItem";
 import TimelineScroll from "@/components/experience/TimelineScroll";
+import HairlineGrid from "@/components/ui/HairlineGrid";
 import SectionHeading from "@/components/ui/SectionHeading";
 import { timelineAccentAt } from "@/components/experience/timelineRail";
 
@@ -25,11 +26,11 @@ export default async function Experience() {
 
   return (
     <section id="experience" aria-labelledby="experience-title" className="py-24 md:py-32">
-      <div className="mx-auto max-w-7xl px-5 md:px-10">
+      <div className="mx-auto max-w-frame px-5 md:px-10">
         <SectionHeading id="experience-title" title={ui.experience.title} count={roleCount} />
       </div>
 
-      <div className="mx-auto mt-16 max-w-7xl px-5 md:mt-24 md:px-10">
+      <div className="mx-auto mt-16 max-w-frame px-5 md:mt-24 md:px-10">
         <TimelineScroll>
           <ol className="flex flex-col gap-16 md:gap-20">
             {items.map((item, index) =>
@@ -51,7 +52,7 @@ export default async function Experience() {
         </TimelineScroll>
       </div>
 
-      <ul className="mt-24 grid gap-px border-y border-white/10 bg-white/10 md:mt-32 md:grid-cols-3">
+      <HairlineGrid className="mt-24 md:mt-32" gridClassName="md:grid-cols-3">
         <li className={columnClasses}>
           <h3 className={columnTitleClasses}>{ui.experience.educationTitle}</h3>
           <div className={columnBodyClasses}>
@@ -70,7 +71,7 @@ export default async function Experience() {
             <AlsoList />
           </div>
         </li>
-      </ul>
+      </HairlineGrid>
     </section>
   );
 }

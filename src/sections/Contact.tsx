@@ -13,7 +13,7 @@ export default async function Contact() {
       className="relative overflow-hidden pt-48 pb-16 md:pt-64 md:pb-20"
     >
       <ContactFluid />
-      <div className="relative mx-auto max-w-7xl px-5 md:px-10">
+      <div className="relative mx-auto max-w-frame px-5 md:px-10">
         <SectionHeading id="contact-title" title={ui.contact.title} />
 
         <p className="mt-12 text-lg text-ink md:mt-16 md:text-2xl">

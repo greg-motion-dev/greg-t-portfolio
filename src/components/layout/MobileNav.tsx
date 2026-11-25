@@ -76,7 +76,7 @@ export default function MobileNav({ locale, nav, labels }: MobileNavProps) {
       >
         <div className="flex h-full flex-col">
           <div className="border-b border-white/10">
-            <div className="mx-auto flex h-nav max-w-7xl items-center justify-between gap-3 px-5 md:px-10">
+            <div className="mx-auto flex h-nav max-w-frame items-center justify-between gap-3 px-5 md:px-10">
               <Link
                 href={localizeHref(locale, "/#about")}
                 onClick={closeMenu}
@@ -101,7 +101,7 @@ export default function MobileNav({ locale, nav, labels }: MobileNavProps) {
           </div>
 
           <nav aria-label={nav.ariaLabel} className="flex-1 overflow-y-auto">
-            <ul className="mx-auto max-w-7xl px-5 py-8 md:px-10">
+            <ul className="mx-auto max-w-frame px-5 py-8 md:px-10">
               {navItems.map(({ name, link }, index) => (
                 <li key={name} className="border-b border-white/10">
                   <Link
@@ -120,7 +120,7 @@ export default function MobileNav({ locale, nav, labels }: MobileNavProps) {
           </nav>
 
           <div className="border-t border-white/10">
-            <div className="mx-auto flex max-w-7xl items-center gap-4 px-5 py-6 md:px-10">
+            <div className="mx-auto flex max-w-frame items-center gap-4 px-5 py-6 md:px-10">
               <ul className="flex items-center gap-5">
                 {profile.links.map(({ kind, href }) => (
                   <li key={kind}>

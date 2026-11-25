@@ -23,13 +23,13 @@ export default async function Hero() {
             <Portrait />
           </div>
 
-          <p className="pointer-events-auto mt-12 font-mono text-sm text-brand-yellow md:mt-20 md:text-base">
+          <p className="pointer-events-auto mt-12 font-mono text-sm text-brand-yellow md:mt-20 md:text-base hero-xl:mt-26 hero-xl:text-xl">
             {ui.hero.greeting}
           </p>
 
           <h1
             id="hero-title"
-            className="pointer-events-auto mt-4 text-hero font-extrabold text-ink md:text-hero-lg"
+            className="pointer-events-auto mt-4 text-hero font-extrabold text-ink md:text-hero-lg hero-xl:mt-5 hero-xl:text-[3.25rem]"
           >
             <span className="sr-only">{profile.name}, </span>
             {titleLines.map((line) => (
@@ -39,11 +39,11 @@ export default async function Hero() {
             ))}
           </h1>
 
-          <p className="pointer-events-auto mt-4 max-w-2xl text-sm text-ink-muted max-md:text-balance md:mt-8 md:text-base">
+          <p className="pointer-events-auto mt-4 max-w-2xl text-sm text-ink-muted max-md:text-balance md:mt-8 md:text-base hero-xl:mt-10 hero-xl:max-w-[52.5rem] hero-xl:text-xl">
             {ui.hero.intro}
           </p>
 
-          <div className="pointer-events-auto mt-6 flex flex-col gap-4 sm:flex-row md:mt-10">
+          <div className="pointer-events-auto mt-6 flex flex-col gap-4 sm:flex-row md:mt-10 hero-xl:mt-13">
             {ui.hero.ctas.map((cta) => (
               <HeroCtaButton key={cta.id} cta={cta} />
             ))}
