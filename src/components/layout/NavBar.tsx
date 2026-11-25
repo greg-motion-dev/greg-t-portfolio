@@ -1,4 +1,5 @@
-import { navContact, navLinks, profile } from "@/constants";
+import { profile } from "@/constants";
+import { getUi } from "@/i18n/getUi";
 import Link from "next/link";
 import LanguageSwitch from "@/components/layout/LanguageSwitch";
 import MobileNav from "@/components/layout/MobileNav";
@@ -6,6 +7,7 @@ import { localizeHref } from "@/i18n/config";
 import { getLocale } from "@/i18n/getLocale";
 
 export default async function NavBar() {
+  const ui = await getUi();
   const locale = await getLocale();
 
   return (
@@ -18,9 +20,9 @@ export default async function NavBar() {
           {profile.name}
         </Link>
 
-        <nav aria-label="Primary" className="hidden lg:block">
+        <nav aria-label={ui.nav.ariaLabel} className="hidden lg:block">
           <ul className="flex items-center gap-8">
-            {navLinks.map(({ name, link }) => (
+            {ui.nav.links.map(({ name, link }) => (
               <li key={name}>
                 <Link
                   href={localizeHref(locale, link)}
@@ -34,15 +36,15 @@ export default async function NavBar() {
         </nav>
 
         <div className="flex items-center gap-4 justify-self-end">
-          <LanguageSwitch locale={locale} />
+          <LanguageSwitch locale={locale} label={ui.nav.languageSwitchLabel} />
           <Link
-            href={localizeHref(locale, navContact.link)}
+            href={localizeHref(locale, ui.nav.contact.link)}
             className="focus-ring hidden border border-ink px-4 py-2 font-mono text-sm text-ink transition-colors hover:bg-ink hover:text-canvas lg:block"
           >
-            {navContact.name}
+            {ui.nav.contact.name}
           </Link>
           <div className="-mr-2 lg:hidden">
-            <MobileNav locale={locale} />
+            <MobileNav locale={locale} nav={ui.nav} labels={ui.mobileNav} />
           </div>
         </div>
       </div>

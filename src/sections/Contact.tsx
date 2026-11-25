@@ -1,10 +1,11 @@
-import { contactContent } from "@/constants";
+import { getUi } from "@/i18n/getUi";
 import ContactFluid from "@/components/contact/ContactFluid";
 import CopyEmailButton from "@/components/contact/CopyEmailButton";
 import SectionHeading from "@/components/ui/SectionHeading";
 import ShapeMarker from "@/components/ui/ShapeMarker";
 
-export default function Contact() {
+export default async function Contact() {
+  const ui = await getUi();
   return (
     <section
       id="contact"
@@ -13,10 +14,10 @@ export default function Contact() {
     >
       <ContactFluid />
       <div className="relative mx-auto max-w-7xl px-5 md:px-10">
-        <SectionHeading id="contact-title" title={contactContent.title} />
+        <SectionHeading id="contact-title" title={ui.contact.title} />
 
         <p className="mt-12 text-lg text-ink md:mt-16 md:text-2xl">
-          {contactContent.introLines.map((line) => (
+          {ui.contact.introLines.map((line) => (
             <span key={line} className="block">
               {line}
             </span>
@@ -24,7 +25,7 @@ export default function Contact() {
         </p>
 
         <ul className="mt-6 flex flex-col gap-2 font-mono text-xs tracking-wider text-ink-muted uppercase">
-          {contactContent.availability.map((line) => (
+          {ui.contact.availability.map((line) => (
             <li key={line} className="flex items-center gap-3">
               <ShapeMarker shape="circle" className="size-2 text-brand-yellow" />
               {line}
@@ -33,18 +34,18 @@ export default function Contact() {
         </ul>
 
         <a
-          href={`mailto:${contactContent.email}`}
+          href={`mailto:${ui.contact.email}`}
           className="focus-ring mt-12 inline-block font-mono text-2xl break-all text-brand-yellow underline decoration-brand-yellow/30 decoration-2 underline-offset-8 transition-colors hover:decoration-brand-yellow md:text-4xl"
         >
-          {contactContent.email}
+          {ui.contact.email}
         </a>
 
         <div className="mt-8">
           <CopyEmailButton
-            email={contactContent.email}
-            label={contactContent.copyLabel}
-            copiedLabel={contactContent.copiedLabel}
-            failedLabel={contactContent.copyFailedLabel}
+            email={ui.contact.email}
+            label={ui.contact.copyLabel}
+            copiedLabel={ui.contact.copiedLabel}
+            failedLabel={ui.contact.copyFailedLabel}
           />
         </div>
       </div>

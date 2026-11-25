@@ -1,9 +1,5 @@
-import {
-  experienceContent,
-  timelineKindLabels,
-  type AccentColor,
-  type TimelineEntry,
-} from "@/constants";
+import { type AccentColor, type TimelineEntry } from "@/constants";
+import { getUi } from "@/i18n/getUi";
 import { accentBgClasses } from "@/components/ui/accentClasses";
 import { timelineRailClasses } from "@/components/experience/timelineRail";
 import { formatDateRange, formatDuration } from "@/lib/formatDates";
@@ -18,6 +14,7 @@ export default async function TimelineItem({
   entry,
   accent,
 }: TimelineItemProps) {
+  const ui = await getUi();
   const locale = await getLocale();
   const titleId = `timeline-${entry.id}`;
   const duration = formatDuration(entry.start, entry.end, locale);
@@ -36,7 +33,7 @@ export default async function TimelineItem({
           {formatDateRange(
             entry.start,
             entry.end,
-            experienceContent.presentLabel,
+            ui.experience.presentLabel,
             locale,
           )}
         </span>
@@ -57,7 +54,7 @@ export default async function TimelineItem({
           </h3>
           {entry.kind === "training" ? (
             <span className="border border-brand-yellow px-2.5 py-1 font-mono text-xs tracking-wider text-brand-yellow uppercase">
-              {timelineKindLabels[entry.kind]}
+              {ui.timelineKindLabels[entry.kind]}
             </span>
           ) : null}
         </div>

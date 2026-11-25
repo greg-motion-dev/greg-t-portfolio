@@ -1,11 +1,6 @@
 import Image from "next/image";
-import {
-  contactContent,
-  cvPageContent,
-  heroPortrait,
-  profile,
-  profileLinkLabels,
-} from "@/constants";
+import { heroPortrait, profile, profileLinkLabels } from "@/constants";
+import { getUi } from "@/i18n/getUi";
 import CvOrbit from "@/components/cv/CvOrbit";
 import GlobeIcon from "@/components/icons/GlobeIcon";
 import LocationIcon from "@/components/icons/LocationIcon";
@@ -19,7 +14,8 @@ const linkClasses =
   "flex w-fit items-center gap-1.5 underline decoration-white/25 underline-offset-2";
 const iconClasses = "size-[3mm] shrink-0 text-brand-yellow";
 
-export default function CvHeader() {
+export default async function CvHeader() {
+  const ui = await getUi();
   return (
     <header className="relative shrink-0 overflow-hidden bg-canvas px-[14mm] pt-[10mm] pb-[5mm] text-ink">
       <div className="flex items-center gap-[4.8mm]">
@@ -27,7 +23,7 @@ export default function CvHeader() {
           <CvOrbit />
           <Image
             src={heroPortrait.src}
-            alt={heroPortrait.alt}
+            alt={ui.hero.portraitAlt}
             width={heroPortrait.width}
             height={heroPortrait.height}
             sizes="120px"
@@ -42,7 +38,7 @@ export default function CvHeader() {
             {profile.title}
           </p>
           <p className="text-[0.6875rem]/[1.45] text-ink-muted [text-box:trim-both_cap_alphabetic]">
-            {cvPageContent.profileSummary}
+            {ui.cvPage.profileSummary}
           </p>
           <div className="flex flex-col gap-y-[2mm] font-mono text-cv-xs text-ink-muted">
             <ul className={contactRowClasses}>
@@ -57,9 +53,9 @@ export default function CvHeader() {
                 </a>
               </li>
               <li>
-                <a href={`mailto:${contactContent.email}`} className={linkClasses}>
+                <a href={`mailto:${ui.contact.email}`} className={linkClasses}>
                   <MailIcon className={iconClasses} />
-                  {contactContent.email}
+                  {ui.contact.email}
                 </a>
               </li>
             </ul>

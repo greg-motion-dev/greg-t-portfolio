@@ -1,4 +1,5 @@
-import { cvHighlightIndexes, cvPageContent, timeline, type TimelineEntry } from "@/constants";
+import { cvHighlightIndexes, timeline, type TimelineEntry } from "@/constants";
+import { getUi } from "@/i18n/getUi";
 import { formatDateRange } from "@/lib/formatDates";
 import { getLocale } from "@/i18n/getLocale";
 
@@ -19,6 +20,7 @@ function selectedHighlights(id: string, highlights: readonly string[]): readonly
 }
 
 export default async function CvTimeline() {
+  const ui = await getUi();
   const locale = await getLocale();
   return (
     <ol className="flex flex-1 flex-col justify-between gap-3">
@@ -27,7 +29,7 @@ export default async function CvTimeline() {
           <div className="flex items-baseline justify-between gap-4">
             <h3 className="text-cv-lg font-bold text-paper-ink">{item.title}</h3>
             <p className="shrink-0 font-mono text-cv-xs tracking-wide text-paper-muted uppercase">
-              {formatDateRange(item.start, item.end, cvPageContent.presentLabel, locale)}
+              {formatDateRange(item.start, item.end, ui.cvPage.presentLabel, locale)}
             </p>
           </div>
           <p className="font-mono text-cv-xs text-paper-muted">

@@ -7,3 +7,5 @@ export * from "./contact";
 export * from "./legal";
 export * from "./notFound";
 export * from "./cvPage";
+export * from "./ui";
+export * from "./ui.de";

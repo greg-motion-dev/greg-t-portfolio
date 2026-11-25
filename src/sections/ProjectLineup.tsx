@@ -1,4 +1,5 @@
-import { lineupContent, profile, projects, type Project } from "@/constants";
+import { profile, projects, type Project } from "@/constants";
+import { getUi } from "@/i18n/getUi";
 import DisciplineLegend from "@/components/projects/DisciplineLegend";
 import GitHubCtaCard from "@/components/projects/GitHubCtaCard";
 import ProjectCard from "@/components/projects/ProjectCard";
@@ -11,7 +12,8 @@ function fillSpanClasses(itemCount: number): string {
   return `${twoColumnFillSpan[itemCount % 2]} ${threeColumnFillSpan[itemCount % 3]}`;
 }
 
-export default function ProjectLineup() {
+export default async function ProjectLineup() {
+  const ui = await getUi();
   const featured: readonly Project[] = projects.filter((project) => project.featured);
   const githubLink = profile.links.find((link) => link.kind === "github");
   const githubExtras = projects.flatMap((project) => {
@@ -22,7 +24,7 @@ export default function ProjectLineup() {
   return (
     <section id="work" aria-labelledby="work-title" className="py-24 md:py-32">
       <div className="mx-auto flex max-w-7xl flex-wrap items-end justify-between gap-6 px-5 md:px-10">
-        <SectionHeading id="work-title" title={lineupContent.title} count={featured.length} />
+        <SectionHeading id="work-title" title={ui.lineup.title} count={featured.length} />
         <DisciplineLegend />
       </div>
 

@@ -1,4 +1,4 @@
-import { lineupContent } from "@/constants";
+import { getUi } from "@/i18n/getUi";
 import ShapeMarker from "@/components/ui/ShapeMarker";
 import ProjectLinkArrow from "@/components/projects/ProjectLinkArrow";
 
@@ -13,7 +13,8 @@ export interface GitHubCtaCardProps {
   readonly extras: readonly GitHubExtraProject[];
 }
 
-export default function GitHubCtaCard({ href, spanClassName, extras }: GitHubCtaCardProps) {
+export default async function GitHubCtaCard({ href, spanClassName, extras }: GitHubCtaCardProps) {
+  const ui = await getUi();
   return (
     <li className={`flex flex-col bg-canvas ${spanClassName}`}>
       <a
@@ -24,7 +25,7 @@ export default function GitHubCtaCard({ href, spanClassName, extras }: GitHubCta
       >
         <span className="inline-flex items-center gap-4 text-2xl font-bold tracking-tight text-ink md:text-3xl">
           <ShapeMarker shape="circle" className="size-4 text-brand-yellow" />
-          {lineupContent.githubCtaLabel}
+          {ui.lineup.githubCtaLabel}
         </span>
         <span className="text-ink">
           <ProjectLinkArrow trigger="self" />
@@ -32,7 +33,7 @@ export default function GitHubCtaCard({ href, spanClassName, extras }: GitHubCta
       </a>
       {extras.length > 0 ? (
         <div className="flex flex-wrap items-center gap-x-4 gap-y-2 border-t border-white/10 px-6 py-5 font-mono text-xs tracking-wider uppercase">
-          <span className="text-ink-muted">{lineupContent.githubAlsoLabel}</span>
+          <span className="text-ink-muted">{ui.lineup.githubAlsoLabel}</span>
           <ul className="flex flex-wrap gap-x-4 gap-y-2">
             {extras.map((extra) => (
               <li key={extra.href}>

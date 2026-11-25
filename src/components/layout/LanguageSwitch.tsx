@@ -5,6 +5,7 @@ import { localeLabels, locales, localizeHref, stripLocale, type Locale } from "@
 
 export interface LanguageSwitchProps {
   readonly locale: Locale;
+  readonly label: string;
 }
 
 const linkClasses = {
@@ -12,11 +13,11 @@ const linkClasses = {
   other: "text-ink-muted transition-colors hover:text-ink",
 } as const;
 
-export default function LanguageSwitch({ locale }: LanguageSwitchProps) {
+export default function LanguageSwitch({ locale, label }: LanguageSwitchProps) {
   const basePath = stripLocale(usePathname());
 
   return (
-    <ul className="flex items-center gap-1.5 font-mono text-sm">
+    <ul aria-label={label} className="flex items-center gap-1.5 font-mono text-sm">
       {locales.map((target, index) => (
         <li key={target} className="flex items-center gap-1.5">
           {index > 0 ? (

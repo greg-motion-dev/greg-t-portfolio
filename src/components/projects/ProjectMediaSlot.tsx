@@ -11,6 +11,7 @@ import ProjectGalleryTrigger from "@/components/projects/ProjectGalleryTrigger";
 import ProjectVideo from "@/components/projects/ProjectVideo";
 import type { CoverSlide } from "@/components/projects/ProjectCoverCarousel";
 import { accentTextClasses } from "@/components/ui/accentClasses";
+import { getUi } from "@/i18n/getUi";
 
 export interface ProjectMediaSlotProps {
   readonly media: readonly ProjectMedia[];
@@ -32,13 +33,14 @@ function coverSlides(items: readonly ProjectGalleryMedia[]): readonly CoverSlide
   });
 }
 
-export default function ProjectMediaSlot({
+export default async function ProjectMediaSlot({
   media,
   discipline,
   title,
   note,
   domain,
 }: ProjectMediaSlotProps) {
+  const { lineup } = await getUi();
   const [cover] = media;
   const galleryItems = media.filter((item): item is ProjectGalleryMedia => item.kind !== "video");
 
@@ -46,7 +48,13 @@ export default function ProjectMediaSlot({
     <div className="relative aspect-[16/10] overflow-hidden bg-surface">
       {cover?.kind === "video" ? (
         galleryItems.length > 0 ? (
-          <ProjectGalleryTrigger title={title} items={galleryItems} domain={domain} note={note}>
+          <ProjectGalleryTrigger
+            title={title}
+            items={galleryItems}
+            domain={domain}
+            note={note}
+            labels={lineup}
+          >
             <ProjectVideo video={cover} className={coverClasses} />
           </ProjectGalleryTrigger>
         ) : (
@@ -61,6 +69,7 @@ export default function ProjectMediaSlot({
             note={note}
             slides={coverSlides(galleryItems)}
             imageClassName={coverClasses}
+            labels={lineup}
           />
         ) : (
           <ProjectCoverImage image={cover} className={coverClasses} />

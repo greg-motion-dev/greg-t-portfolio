@@ -1,10 +1,5 @@
-import {
-  earlyWork,
-  experienceContent,
-  freelance,
-  publicationKindLabels,
-  publications,
-} from "@/constants";
+import { earlyWork, freelance, publications } from "@/constants";
+import { getUi } from "@/i18n/getUi";
 import ProjectLinkArrow from "@/components/projects/ProjectLinkArrow";
 import { formatDateRange } from "@/lib/formatDates";
 import { getLocale } from "@/i18n/getLocale";
@@ -12,13 +7,14 @@ import { getLocale } from "@/i18n/getLocale";
 const labelClasses = "font-mono text-xs tracking-widest text-ink-muted uppercase";
 
 export default async function AlsoList() {
+  const ui = await getUi();
   const locale = await getLocale();
   const earlyWorkYears = [...new Set(earlyWork.map((entry) => entry.year))].join(", ");
 
   return (
     <div className="flex flex-col justify-between gap-6">
       <div>
-        <h4 className={labelClasses}>{experienceContent.freelanceLabel}</h4>
+        <h4 className={labelClasses}>{ui.experience.freelanceLabel}</h4>
         <ul className="mt-3 flex flex-col gap-3">
           {freelance.map((entry) => (
             <li key={entry.id}>
@@ -27,7 +23,7 @@ export default async function AlsoList() {
                 <span className="text-ink-muted">{entry.role}</span>
               </p>
               <p className="mt-1 font-mono text-xs tracking-wider text-ink-muted">
-                {formatDateRange(entry.start, entry.end, experienceContent.presentLabel, locale)}
+                {formatDateRange(entry.start, entry.end, ui.experience.presentLabel, locale)}
               </p>
             </li>
           ))}
@@ -36,7 +32,7 @@ export default async function AlsoList() {
 
       <div>
         <h4 className={labelClasses}>
-          {experienceContent.earlyWorkLabel} · {earlyWorkYears}
+          {ui.experience.earlyWorkLabel} · {earlyWorkYears}
         </h4>
         <ul className="mt-3 flex flex-col gap-1 text-sm text-ink">
           {earlyWork.map((entry) => (
@@ -49,7 +45,7 @@ export default async function AlsoList() {
         {publications.map((publication) => (
           <li key={publication.id}>
             <h4 className={labelClasses}>
-              {publicationKindLabels[publication.kind]} · {publication.year}
+              {ui.publicationKindLabels[publication.kind]} · {publication.year}
             </h4>
             <a
               href={publication.href}

@@ -1,4 +1,5 @@
-import { clients, clientsContent } from "@/constants";
+import { clients } from "@/constants";
+import { getUi } from "@/i18n/getUi";
 import ClientCell from "@/components/clients/ClientCell";
 
 const trackCopies = 4;
@@ -6,14 +7,15 @@ const trackCopies = 4;
 const listClasses =
   "flex shrink-0 motion-reduce:w-full motion-reduce:flex-wrap motion-reduce:justify-center";
 
-export default function ClientStrip() {
+export default async function ClientStrip() {
+  const ui = await getUi();
   const duplicateKeys = Array.from({ length: trackCopies - 1 }, (_, index) => `copy-${index}`);
 
   return (
     <section aria-labelledby="clients-title" className="pt-4 md:pt-8">
       <div className="mx-auto max-w-7xl px-5 md:px-10">
         <h2 id="clients-title" className="font-mono text-xs tracking-widest text-ink-muted uppercase">
-          {clientsContent.title}
+          {ui.clients.title}
         </h2>
       </div>
 

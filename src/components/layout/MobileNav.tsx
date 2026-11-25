@@ -2,7 +2,13 @@
 
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
-import { mobileNavLabels, navContact, navLinks, profile, profileLinkLabels } from "@/constants";
+import {
+  fillTemplate,
+  profile,
+  profileLinkLabels,
+  type MobileNavLabels,
+  type NavContent,
+} from "@/constants";
 import CloseIcon from "@/components/icons/CloseIcon";
 import MenuIcon from "@/components/icons/MenuIcon";
 import SocialIcon from "@/components/icons/SocialIcon";
@@ -20,9 +26,11 @@ const formatIndex = (index: number): string => String(index + 1).padStart(2, "0"
 
 export interface MobileNavProps {
   readonly locale: Locale;
+  readonly nav: NavContent;
+  readonly labels: MobileNavLabels;
 }
 
-export default function MobileNav({ locale }: MobileNavProps) {
+export default function MobileNav({ locale, nav, labels }: MobileNavProps) {
   const dialogRef = useRef<HTMLDialogElement>(null);
   const [open, setOpen] = useState(false);
   const isDesktop = useMediaQuery("(min-width: 64rem)");
@@ -50,7 +58,7 @@ export default function MobileNav({ locale }: MobileNavProps) {
     <>
       <button
         type="button"
-        aria-label={mobileNavLabels.openMenu}
+        aria-label={labels.openMenu}
         aria-haspopup="dialog"
         aria-expanded={open}
         onClick={openMenu}
@@ -61,7 +69,7 @@ export default function MobileNav({ locale }: MobileNavProps) {
 
       <dialog
         ref={dialogRef}
-        aria-label={mobileNavLabels.menu}
+        aria-label={labels.menu}
         onClose={handleDialogClose}
         className={dialogClasses}
       >
@@ -76,11 +84,11 @@ export default function MobileNav({ locale }: MobileNavProps) {
                 {profile.name}
               </Link>
               <div className="flex items-center gap-4">
-                <LanguageSwitch locale={locale} />
+                <LanguageSwitch locale={locale} label={nav.languageSwitchLabel} />
                 <div className="-mr-2">
                   <button
                     type="button"
-                    aria-label={mobileNavLabels.closeMenu}
+                    aria-label={labels.closeMenu}
                     onClick={closeMenu}
                     className={iconButtonClasses}
                   >
@@ -91,9 +99,9 @@ export default function MobileNav({ locale }: MobileNavProps) {
             </div>
           </div>
 
-          <nav aria-label="Primary" className="flex-1 overflow-y-auto">
+          <nav aria-label={nav.ariaLabel} className="flex-1 overflow-y-auto">
             <ul className="mx-auto max-w-7xl px-5 py-8 md:px-10">
-              {navLinks.map(({ name, link }, index) => (
+              {nav.links.map(({ name, link }, index) => (
                 <li key={name} className="border-b border-white/10">
                   <Link
                     href={localizeHref(locale, link)}
@@ -113,11 +121,11 @@ export default function MobileNav({ locale }: MobileNavProps) {
           <div className="border-t border-white/10">
             <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-5 py-6 md:px-10">
               <Link
-                href={localizeHref(locale, navContact.link)}
+                href={localizeHref(locale, nav.contact.link)}
                 onClick={closeMenu}
                 className="focus-ring border border-ink px-4 py-2 font-mono text-sm text-ink transition-colors hover:bg-ink hover:text-canvas"
               >
-                {navContact.name}
+                {nav.contact.name}
               </Link>
               <ul className="flex items-center gap-5">
                 {profile.links.map(({ kind, href }) => (
@@ -126,7 +134,9 @@ export default function MobileNav({ locale }: MobileNavProps) {
                       href={href}
                       target="_blank"
                       rel="noopener noreferrer"
-                      aria-label={`${profileLinkLabels[kind]} profile`}
+                      aria-label={fillTemplate(nav.profileLinkAriaTemplate, {
+                        name: profileLinkLabels[kind],
+                      })}
                       className="focus-ring block text-ink-muted transition-colors hover:text-ink"
                     >
                       <SocialIcon kind={kind} className="size-6" />

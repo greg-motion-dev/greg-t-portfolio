@@ -2,7 +2,7 @@
 
 import { AnimatePresence, motion, useReducedMotion, type PanInfo } from "motion/react";
 import { useEffect, useRef, useState, type KeyboardEvent } from "react";
-import { lineupContent, type ProjectGalleryMedia } from "@/constants";
+import type { LineupContent, ProjectGalleryMedia } from "@/constants";
 import ArrowDownIcon from "@/components/icons/ArrowDownIcon";
 import CloseIcon from "@/components/icons/CloseIcon";
 import ProjectGallerySlide from "@/components/projects/ProjectGallerySlide";
@@ -15,6 +15,7 @@ export interface ProjectGalleryProps {
   readonly note: string | undefined;
   readonly open: boolean;
   readonly onClose: () => void;
+  readonly labels: LineupContent;
 }
 
 type Direction = 1 | -1;
@@ -45,6 +46,7 @@ export default function ProjectGallery({
   note,
   open,
   onClose,
+  labels,
 }: ProjectGalleryProps) {
   const dialogRef = useRef<HTMLDialogElement>(null);
   const [[index, direction], setSlide] = useState<[number, Direction]>([initialIndex, 1]);
@@ -98,7 +100,7 @@ export default function ProjectGallery({
   return (
     <dialog
       ref={dialogRef}
-      aria-label={`${title}, ${total} ${lineupContent.galleryImagesLabel}`}
+      aria-label={`${title}, ${total} ${labels.galleryImagesLabel}`}
       onClose={handleClose}
       onKeyDown={handleKeyDown}
       className={dialogClasses}
@@ -113,7 +115,7 @@ export default function ProjectGallery({
               </p>
               <button
                 type="button"
-                aria-label={lineupContent.galleryCloseLabel}
+                aria-label={labels.galleryCloseLabel}
                 onClick={() => dialogRef.current?.close()}
                 className={iconButtonClasses}
               >
@@ -141,7 +143,7 @@ export default function ProjectGallery({
                 className="absolute inset-0 m-0 flex cursor-grab flex-col px-5 py-6 active:cursor-grabbing md:px-10 md:py-8"
               >
                 <div className="flex min-h-0 flex-1 items-center justify-center [container-type:size]">
-                  <ProjectGallerySlide item={current} domain={domain} />
+                  <ProjectGallerySlide item={current} domain={domain} labels={labels} />
                 </div>
                 <figcaption className="mx-auto mt-4 flex max-w-3xl flex-col items-center text-center text-sm text-ink-muted">
                   {current.alt}
@@ -158,7 +160,7 @@ export default function ProjectGallery({
                   ) : null}
                   {current.kind === "page" ? (
                     <span className="mt-1 block font-mono text-xs tracking-wider text-ink-muted/70 uppercase">
-                      {lineupContent.galleryScrollHint}
+                      {labels.galleryScrollHint}
                     </span>
                   ) : null}
                 </figcaption>
@@ -173,7 +175,7 @@ export default function ProjectGallery({
             <div className="flex shrink-0 items-center gap-2">
               <button
                 type="button"
-                aria-label={lineupContent.galleryPreviousLabel}
+                aria-label={labels.galleryPreviousLabel}
                 onClick={() => goTo(index - 1)}
                 disabled={!hasPrevious}
                 className={iconButtonClasses}
@@ -182,7 +184,7 @@ export default function ProjectGallery({
               </button>
               <button
                 type="button"
-                aria-label={lineupContent.galleryNextLabel}
+                aria-label={labels.galleryNextLabel}
                 onClick={() => goTo(index + 1)}
                 disabled={!hasNext}
                 className={iconButtonClasses}

@@ -1,4 +1,5 @@
-import { heroCtas, heroGreeting, heroIntro, profile } from "@/constants";
+import { heroIntro, profile } from "@/constants";
+import { getUi } from "@/i18n/getUi";
 import HeroCtaButton from "@/components/hero/HeroCtaButton";
 import HeroOrbit from "@/components/hero/HeroOrbit";
 import OrbitHint from "@/components/hero/OrbitHint";
@@ -7,7 +8,8 @@ import Portrait from "@/components/hero/Portrait";
 
 const titleLines = profile.title.split(" | ");
 
-export default function Hero() {
+export default async function Hero() {
+  const ui = await getUi();
   return (
     <section
       id="about"
@@ -22,7 +24,7 @@ export default function Hero() {
           </div>
 
           <p className="pointer-events-auto mt-12 font-mono text-sm text-brand-yellow md:mt-20 md:text-base">
-            {heroGreeting}
+            {ui.hero.greeting}
           </p>
 
           <h1
@@ -42,12 +44,12 @@ export default function Hero() {
           </p>
 
           <div className="pointer-events-auto mt-6 flex flex-col gap-4 sm:flex-row md:mt-10">
-            {heroCtas.map((cta) => (
+            {ui.hero.ctas.map((cta) => (
               <HeroCtaButton key={cta.id} cta={cta} />
             ))}
           </div>
         </div>
-        <OrbitHint />
+        <OrbitHint label={ui.hero.orbitHint} />
       </OrbitStateProvider>
     </section>
   );

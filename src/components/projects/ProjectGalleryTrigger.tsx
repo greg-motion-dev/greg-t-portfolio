@@ -2,7 +2,7 @@
 
 import dynamic from "next/dynamic";
 import { useState, type ReactNode } from "react";
-import { lineupContent, type ProjectGalleryMedia } from "@/constants";
+import type { LineupContent, ProjectGalleryMedia } from "@/constants";
 import ProjectCoverCarousel, { type CoverSlide } from "@/components/projects/ProjectCoverCarousel";
 
 const ProjectGallery = dynamic(() => import("@/components/projects/ProjectGallery"), {
@@ -17,6 +17,7 @@ export interface ProjectGalleryTriggerProps {
   readonly slides?: readonly CoverSlide[];
   readonly imageClassName?: string;
   readonly children?: ReactNode;
+  readonly labels: LineupContent;
 }
 
 export default function ProjectGalleryTrigger({
@@ -27,6 +28,7 @@ export default function ProjectGalleryTrigger({
   slides,
   imageClassName,
   children,
+  labels,
 }: ProjectGalleryTriggerProps) {
   const [open, setOpen] = useState(false);
   const [session, setSession] = useState(0);
@@ -38,7 +40,7 @@ export default function ProjectGalleryTrigger({
     setOpen(true);
   };
 
-  const countLabel = `${items.length} ${lineupContent.galleryImagesLabel}`;
+  const countLabel = `${items.length} ${labels.galleryImagesLabel}`;
 
   return (
     <>
@@ -49,12 +51,13 @@ export default function ProjectGalleryTrigger({
           total={items.length}
           imageClassName={imageClassName ?? ""}
           onOpen={openAt}
+          labels={labels}
         />
       ) : (
         <button
           type="button"
           aria-haspopup="dialog"
-          aria-label={`${lineupContent.galleryOpenLabel}: ${title}, ${countLabel}`}
+          aria-label={`${labels.galleryOpenLabel}: ${title}, ${countLabel}`}
           onClick={() => openAt(0)}
           className="focus-ring absolute inset-0 block size-full cursor-zoom-in"
         >
@@ -74,6 +77,7 @@ export default function ProjectGalleryTrigger({
           note={note}
           open={open}
           onClose={() => setOpen(false)}
+          labels={labels}
         />
       ) : null}
     </>
