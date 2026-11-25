@@ -1,4 +1,5 @@
-import { profile, projects, type Project } from "@/constants";
+import { profile, type Project } from "@/constants";
+import { getProjects } from "@/i18n/content";
 import { getUi } from "@/i18n/getUi";
 import DisciplineLegend from "@/components/projects/DisciplineLegend";
 import GitHubCtaCard from "@/components/projects/GitHubCtaCard";
@@ -14,6 +15,7 @@ function fillSpanClasses(itemCount: number): string {
 
 export default async function ProjectLineup() {
   const ui = await getUi();
+  const projects = await getProjects();
   const featured: readonly Project[] = projects.filter((project) => project.featured);
   const githubLink = profile.links.find((link) => link.kind === "github");
   const githubExtras = projects.flatMap((project) => {
