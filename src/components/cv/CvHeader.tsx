@@ -1,5 +1,7 @@
 import Image from "next/image";
 import { heroPortrait, profile, profileLinkLabels } from "@/constants";
+import { localizeHref } from "@/i18n/config";
+import { getLocale } from "@/i18n/getLocale";
 import { getUi } from "@/i18n/getUi";
 import CvOrbit from "@/components/cv/CvOrbit";
 import GlobeIcon from "@/components/icons/GlobeIcon";
@@ -16,6 +18,7 @@ const iconClasses = "size-[3mm] shrink-0 text-brand-yellow";
 
 export default async function CvHeader() {
   const ui = await getUi();
+  const websiteHref = new URL(localizeHref(await getLocale(), "/"), profile.website.href).href;
   return (
     <header className="relative shrink-0 overflow-hidden bg-canvas px-[14mm] pt-[10mm] pb-[5mm] text-ink">
       <div className="flex items-center gap-[4.8mm]">
@@ -61,7 +64,7 @@ export default async function CvHeader() {
             </ul>
             <ul className={contactRowClasses}>
               <li>
-                <a href={profile.website.href} className={linkClasses}>
+                <a href={websiteHref} className={linkClasses}>
                   <GlobeIcon className={iconClasses} />
                   {profile.website.label}
                 </a>

@@ -43,7 +43,7 @@ export const uiContentDe = {
       "Vom Senior Visual Creator zum Creative UI Engineer: über 10 Jahre Erfahrung an der Schnittstelle von hochwertigem UI/UX-Design, interaktiver Motion und moderner Frontend-Architektur.",
     ctas: [
       { ...workCta, label: "Projekte ansehen" },
-      { ...resumeCta, label: "Lebenslauf" },
+      { ...resumeCta, label: "Lebenslauf", href: "/greg-telakis-cv-de.pdf" },
     ],
     orbitHint: "zum Drehen ziehen",
     portraitAlt: "Porträt von Greg Telakis",
