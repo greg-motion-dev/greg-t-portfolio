@@ -30,11 +30,17 @@ export interface ProfileLink {
   readonly href: string;
 }
 
+export interface ProfileWebsite {
+  readonly label: string;
+  readonly href: string;
+}
+
 export interface Profile {
   readonly name: string;
   readonly title: string;
   readonly about: string;
   readonly location: string;
+  readonly website: ProfileWebsite;
   readonly links: readonly ProfileLink[];
 }
 
@@ -129,6 +135,10 @@ export const profile = {
   about:
     "Senior Visual Creator turned Creative UI Engineer with 10+ years of experience bridging high-end UI/UX design, interactive motion, and modern frontend architecture. Specialized in building performant 3D web experiences, dynamic design systems, and motion-rich web applications using React, Next.js, TypeScript, Three.js, and GSAP.",
   location: "Berlin, DE",
+  website: {
+    label: "gtelakis.com",
+    href: "https://gtelakis.com",
+  },
   links: [
     {
       kind: "linkedin",
