@@ -1,6 +1,7 @@
 import { clients } from "@/constants";
 import { getUi } from "@/i18n/getUi";
 import ClientCell from "@/components/clients/ClientCell";
+import ClientMarquee from "@/components/clients/ClientMarquee";
 
 const trackCopies = 4;
 
@@ -19,22 +20,20 @@ export default async function ClientStrip() {
         </h2>
       </div>
 
-      <div className="mt-8 overflow-hidden border-y border-white/10 [mask-image:linear-gradient(to_right,transparent,black_8%,black_92%,transparent)] motion-reduce:[mask-image:none]">
-        <div className="flex w-max animate-marquee hover:[animation-play-state:paused] motion-reduce:w-full motion-reduce:animate-none">
-          <ul className={listClasses}>
+      <ClientMarquee copies={trackCopies}>
+        <ul className={listClasses}>
+          {clients.map((client) => (
+            <ClientCell key={client.id} client={client} />
+          ))}
+        </ul>
+        {duplicateKeys.map((copyKey) => (
+          <ul key={copyKey} aria-hidden="true" className={`${listClasses} motion-reduce:hidden`}>
             {clients.map((client) => (
-              <ClientCell key={client.id} client={client} />
+              <ClientCell key={`${copyKey}-${client.id}`} client={client} />
             ))}
           </ul>
-          {duplicateKeys.map((copyKey) => (
-            <ul key={copyKey} aria-hidden="true" className={`${listClasses} motion-reduce:hidden`}>
-              {clients.map((client) => (
-                <ClientCell key={`${copyKey}-${client.id}`} client={client} />
-              ))}
-            </ul>
-          ))}
-        </div>
-      </div>
+        ))}
+      </ClientMarquee>
     </section>
   );
 }

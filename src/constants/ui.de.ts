@@ -25,8 +25,8 @@ export const uiContentDe = {
     links: [
       { name: "über mich", link: navLinks[0].link },
       { name: "projekte", link: navLinks[1].link },
-      { name: "techstack", link: navLinks[2].link },
-      { name: "erfahrung", link: navLinks[3].link },
+      { name: "erfahrung", link: navLinks[2].link },
+      { name: "techstack", link: navLinks[3].link },
     ],
     contact: { name: "kontakt", link: navContact.link },
     ariaLabel: "Hauptnavigation",

@@ -17,7 +17,7 @@ type CalendarMonth =
 export type YearMonth = `${number}-${CalendarMonth}`;
 export type CefrLevel = "A1" | "A2" | "B1" | "B2" | "C1" | "C2";
 export type CefrRange = CefrLevel | `${CefrLevel}/${CefrLevel}`;
-export type LanguageProficiency = "native" | "business fluent" | "intermediate";
+export type LanguageProficiency = "native" | "near-native" | "intermediate";
 export type TimelineEntryKind = "work" | "training";
 export type TimelineMilestoneKind = "certification" | "project";
 export type TimelineKind = TimelineEntryKind | TimelineMilestoneKind;
@@ -341,15 +341,15 @@ export const publications = [
 
 export const languageProficiencyAccent = {
   native: "yellow",
-  "business fluent": "teal",
+  "near-native": "teal",
   intermediate: "pink",
 } as const satisfies Record<LanguageProficiency, AccentColor>;
 
 export const languages = [
   { name: "German", proficiency: "native", cefr: "C2" },
   { name: "Greek", proficiency: "native", cefr: "C2" },
-  { name: "English", proficiency: "business fluent", cefr: "C1/C2" },
-  { name: "Dutch", proficiency: "business fluent", cefr: "C1/C2" },
+  { name: "English", proficiency: "near-native", cefr: "C2" },
+  { name: "Dutch", proficiency: "near-native", cefr: "C2" },
   { name: "Spanish", proficiency: "intermediate", cefr: "B1" },
   { name: "Portuguese", proficiency: "intermediate", cefr: "B1" },
 ] as const satisfies readonly Language[];
