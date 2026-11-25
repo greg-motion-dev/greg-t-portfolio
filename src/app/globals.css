@@ -1,6 +1,9 @@
 @import "tailwindcss";
 @source not "../../_archive";
 
+@custom-variant wide (@media (width >= 120rem));
+@custom-variant hero-xl (@media (width >= 120rem) and (height >= 75rem));
+
 @layer base {
   html,
   body {
@@ -17,6 +20,11 @@
     scroll-margin-top: var(--spacing-nav);
   }
 
+  button:not(:disabled),
+  [role="button"]:not(:disabled) {
+    cursor: pointer;
+  }
+
   @media (prefers-reduced-motion: reduce) {
     html,
     body {
@@ -26,6 +34,7 @@
 }
 
 @theme {
+  --container-wide: 120rem;
   --color-canvas: #070709;
   --color-surface: #0e0e12;
   --color-ink: #f4f4f6;
@@ -102,5 +111,13 @@ html:has(dialog[open]) {
   html,
   body {
     background-color: var(--color-paper);
+  }
+}
+
+@utility max-w-frame {
+  max-width: var(--container-7xl);
+
+  @variant wide {
+    max-width: var(--container-wide);
   }
 }

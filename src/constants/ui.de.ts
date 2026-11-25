@@ -3,7 +3,7 @@ import { heroCtas } from "./hero";
 import { privacyContentDe } from "./legal.de";
 import { footerContent, navContact, navLinks } from "./navigation";
 import { notFoundContent } from "./notFound";
-import type { UiContent } from "./ui";
+import { previewImageSize, type UiContent } from "./ui";
 
 const [workCta, resumeCta] = heroCtas;
 
@@ -14,6 +14,12 @@ export const uiContentDe = {
   meta: {
     title: "Greg | Creative Engineer",
     description: heroIntroDe,
+    openGraphLocale: "de_DE",
+    previewImage: {
+      url: "/og/greg-telakis-de.png",
+      alt: "Greg Telakis, Creative UI Engineer und Motion & 3D Web Specialist, mit seinem Porträt in drei Umlaufbahnen",
+      ...previewImageSize,
+    },
   },
   nav: {
     links: [

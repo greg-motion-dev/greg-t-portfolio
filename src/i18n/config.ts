@@ -13,8 +13,6 @@ export function isLocale(value: string): value is Locale {
   return (locales as readonly string[]).includes(value);
 }
 
-const prefixedLocales = locales.filter((locale) => locale !== defaultLocale);
-
 function isPagePath(href: string): boolean {
   if (!href.startsWith("/") || href.startsWith("//")) {
     return false;
@@ -37,7 +35,7 @@ export function localizeHref(locale: Locale, href: string): string {
 }
 
 export function stripLocale(pathname: string): string {
-  for (const locale of prefixedLocales) {
+  for (const locale of locales) {
     if (pathname === `/${locale}`) {
       return "/";
     }

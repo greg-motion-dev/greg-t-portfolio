@@ -5,7 +5,7 @@ import ClientCell from "@/components/clients/ClientCell";
 const trackCopies = 4;
 
 const listClasses =
-  "flex shrink-0 motion-reduce:w-full motion-reduce:flex-wrap motion-reduce:justify-center";
+  "flex shrink-0 motion-reduce:mx-auto motion-reduce:w-full motion-reduce:max-w-[70rem] motion-reduce:flex-wrap motion-reduce:justify-center min-[98rem]:motion-reduce:max-w-[98rem]";
 
 export default async function ClientStrip() {
   const ui = await getUi();
@@ -13,7 +13,7 @@ export default async function ClientStrip() {
 
   return (
     <section aria-labelledby="clients-title" className="pt-4 md:pt-8">
-      <div className="mx-auto max-w-7xl px-5 md:px-10">
+      <div className="mx-auto max-w-frame px-5 md:px-10">
         <h2 id="clients-title" className="font-mono text-xs tracking-widest text-ink-muted uppercase">
           {ui.clients.title}
         </h2>

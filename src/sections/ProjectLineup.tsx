@@ -4,6 +4,7 @@ import { getUi } from "@/i18n/getUi";
 import DisciplineLegend from "@/components/projects/DisciplineLegend";
 import GitHubCtaCard from "@/components/projects/GitHubCtaCard";
 import ProjectCard from "@/components/projects/ProjectCard";
+import HairlineGrid from "@/components/ui/HairlineGrid";
 import SectionHeading from "@/components/ui/SectionHeading";
 
 const twoColumnFillSpan = ["md:col-span-2", "md:col-span-1"] as const;
@@ -25,12 +26,12 @@ export default async function ProjectLineup() {
 
   return (
     <section id="work" aria-labelledby="work-title" className="py-24 md:py-32">
-      <div className="mx-auto flex max-w-7xl flex-wrap items-end justify-between gap-6 px-5 md:px-10">
+      <div className="mx-auto flex max-w-frame flex-wrap items-end justify-between gap-6 px-5 md:px-10">
         <SectionHeading id="work-title" title={ui.lineup.title} count={featured.length} />
         <DisciplineLegend />
       </div>
 
-      <ul className="mt-12 grid gap-px border-y border-white/10 bg-white/10 md:mt-16 md:grid-cols-2 xl:grid-cols-3">
+      <HairlineGrid className="mt-12 md:mt-16" gridClassName="md:grid-cols-2 xl:grid-cols-3">
         {featured.map((project, index) => (
           <ProjectCard key={project.id} project={project} position={index + 1} />
         ))}
@@ -41,7 +42,7 @@ export default async function ProjectLineup() {
             extras={githubExtras}
           />
         ) : null}
-      </ul>
+      </HairlineGrid>
     </section>
   );
 }

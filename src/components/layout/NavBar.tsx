@@ -13,7 +13,7 @@ export default async function NavBar() {
 
   return (
     <header className="glass fixed inset-x-0 top-0 z-50 border-b border-white/10">
-      <div className="mx-auto flex h-nav max-w-7xl items-center justify-between gap-3 px-5 md:px-10 lg:grid lg:grid-cols-[1fr_auto_1fr] lg:gap-6">
+      <div className="mx-auto flex h-nav max-w-frame items-center justify-between gap-3 px-5 md:px-10 lg:grid lg:grid-cols-[1fr_auto_1fr] lg:gap-6">
         <Link
           href={localizeHref(locale, "/#about")}
           className="focus-ring justify-self-start font-mono text-sm font-extrabold tracking-widest text-ink uppercase sm:text-base md:text-lg"

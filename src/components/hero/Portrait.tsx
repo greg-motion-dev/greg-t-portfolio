@@ -10,9 +10,9 @@ export default async function Portrait() {
       alt={ui.hero.portraitAlt}
       width={heroPortrait.width}
       height={heroPortrait.height}
-      sizes="(min-width: 768px) 198px, 132px"
+      sizes="(min-width: 1920px) and (min-height: 1200px) 258px, (min-width: 768px) 198px, 132px"
       preload
-      className="relative -z-20 size-33 shrink-0 rounded-full bg-brand-yellow object-cover md:size-49.5"
+      className="relative -z-20 size-33 shrink-0 rounded-full bg-brand-yellow object-cover md:size-49.5 hero-xl:size-[16.0875rem]"
     />
   );
 }

@@ -14,7 +14,7 @@ export default async function Footer() {
 
   return (
     <footer className="border-t border-white/10">
-      <div className="mx-auto flex max-w-7xl flex-col items-center gap-6 px-5 py-8 font-mono text-xs tracking-widest uppercase md:flex-row md:justify-between md:px-10">
+      <div className="mx-auto flex max-w-frame flex-col items-center gap-6 px-5 py-8 font-mono text-xs tracking-widest uppercase md:flex-row md:justify-between md:px-10">
         <p className="text-ink-muted max-md:order-last">{ui.footer.copyright}</p>
 
         <div className="flex items-center gap-8">
