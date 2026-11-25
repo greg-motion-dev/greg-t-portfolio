@@ -12,7 +12,14 @@ import {
   type TimelineKind,
 } from "./cv";
 import { cvPageContent, type CvPageContent } from "./cvPage";
-import { heroCtas, heroGreeting, heroOrbitHint, heroPortrait, type HeroCta } from "./hero";
+import {
+  heroCtas,
+  heroGreeting,
+  heroIntro,
+  heroOrbitHint,
+  heroPortrait,
+  type HeroCta,
+} from "./hero";
 import { privacyContent, type PrivacyContent } from "./legal";
 import {
   footerContent,
@@ -43,6 +50,7 @@ export interface NavContent {
 
 export interface HeroContent {
   readonly greeting: string;
+  readonly intro: string;
   readonly ctas: readonly HeroCta[];
   readonly orbitHint: string;
   readonly portraitAlt: string;
@@ -81,6 +89,7 @@ export const uiContentEn = {
   notFound: notFoundContent,
   hero: {
     greeting: heroGreeting,
+    intro: heroIntro,
     ctas: heroCtas,
     orbitHint: heroOrbitHint,
     portraitAlt: heroPortrait.alt,

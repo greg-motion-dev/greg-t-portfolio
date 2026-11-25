@@ -9,3 +9,4 @@ export * from "./notFound";
 export * from "./cvPage";
 export * from "./ui";
 export * from "./ui.de";
+export * from "./cv.de";

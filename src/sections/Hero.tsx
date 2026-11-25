@@ -1,4 +1,4 @@
-import { heroIntro, profile } from "@/constants";
+import { profile } from "@/constants";
 import { getUi } from "@/i18n/getUi";
 import HeroCtaButton from "@/components/hero/HeroCtaButton";
 import HeroOrbit from "@/components/hero/HeroOrbit";
@@ -40,7 +40,7 @@ export default async function Hero() {
           </h1>
 
           <p className="pointer-events-auto mt-4 max-w-2xl text-sm text-ink-muted max-md:text-balance md:mt-8 md:text-base">
-            {heroIntro}
+            {ui.hero.intro}
           </p>
 
           <div className="pointer-events-auto mt-6 flex flex-col gap-4 sm:flex-row md:mt-10">

@@ -1,4 +1,5 @@
-import { languageProficiencyAccent, languages } from "@/constants";
+import { languageProficiencyAccent } from "@/constants";
+import { getLanguages } from "@/i18n/content";
 import { accentTextClasses } from "@/components/ui/accentClasses";
 
 const rowClasses =
@@ -10,17 +11,18 @@ const proficiencyClasses =
 const cefrClasses =
   "font-mono text-xs tracking-wider md:max-lg:col-start-2 md:max-lg:row-start-1 md:max-lg:text-right";
 
-export default function LanguageList() {
+export default async function LanguageList() {
+  const languages = await getLanguages();
   return (
     <ul className="flex flex-col divide-y divide-white/10">
       {languages.map((language) => (
         <li
-          key={language.name}
+          key={language.key}
           className="flex flex-1 flex-col justify-center py-3 first:pt-0 last:pb-0"
         >
           <div className={rowClasses}>
             <span className="text-ink">{language.name}</span>
-            <span className={proficiencyClasses}>{language.proficiency}</span>
+            <span className={proficiencyClasses}>{language.proficiencyLabel}</span>
             <span
               className={`${cefrClasses} ${accentTextClasses[languageProficiencyAccent[language.proficiency]]}`}
             >

@@ -1,5 +1,4 @@
 import { contactContent } from "./contact";
-import { cvPageContent } from "./cvPage";
 import { heroCtas } from "./hero";
 import { privacyContent } from "./legal";
 import { footerContent, navContact, navLinks } from "./navigation";
@@ -40,6 +39,8 @@ export const uiContentDe = {
   },
   hero: {
     greeting: "Moin! Ich bin Greg.",
+    intro:
+      "Vom Senior Visual Creator zum Creative UI Engineer: über 10 Jahre Erfahrung an der Schnittstelle von hochwertigem UI/UX-Design, interaktiver Motion und moderner Frontend-Architektur.",
     ctas: [
       { ...workCta, label: "Projekte ansehen" },
       { ...resumeCta, label: "Lebenslauf" },
@@ -112,7 +113,8 @@ export const uiContentDe = {
   },
   cvPage: {
     documentTitle: "Lebenslauf | Greg Telakis",
-    profileSummary: cvPageContent.profileSummary,
+    profileSummary:
+      "Vom Senior Visual Creator zum Creative UI Engineer: über 10 Jahre Erfahrung an der Schnittstelle von hochwertigem UI/UX-Design, interaktiver Motion und moderner Frontend-Architektur.",
     experienceTitle: "Berufserfahrung",
     skillsTitle: "Kenntnisse",
     languagesTitle: "Sprachen",

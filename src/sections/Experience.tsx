@@ -1,8 +1,5 @@
-import {
-  timeline,
-  type TimelineItem as TimelineItemData,
-  type TimelineMilestone,
-} from "@/constants";
+import { type TimelineItem as TimelineItemData, type TimelineMilestone } from "@/constants";
+import { getTimeline } from "@/i18n/content";
 import { getUi } from "@/i18n/getUi";
 import AlsoList from "@/components/experience/AlsoList";
 import EducationList from "@/components/experience/EducationList";
@@ -23,7 +20,7 @@ function isMilestone(item: TimelineItemData): item is TimelineMilestone {
 
 export default async function Experience() {
   const ui = await getUi();
-  const items: readonly TimelineItemData[] = timeline;
+  const items: readonly TimelineItemData[] = await getTimeline();
   const roleCount = items.filter((item) => !isMilestone(item)).length;
 
   return (
