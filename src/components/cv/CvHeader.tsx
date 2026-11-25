@@ -7,11 +7,9 @@ import CvOrbit from "@/components/cv/CvOrbit";
 import GlobeIcon from "@/components/icons/GlobeIcon";
 import LocationIcon from "@/components/icons/LocationIcon";
 import MailIcon from "@/components/icons/MailIcon";
-import PhoneIcon from "@/components/icons/PhoneIcon";
 import SocialIcon from "@/components/icons/SocialIcon";
 
-const contactRowClasses = "grid grid-cols-3 gap-x-4";
-const itemClasses = "flex items-center gap-1.5";
+const itemClasses = "flex items-center gap-1";
 const linkClasses =
   "flex w-fit items-center gap-1.5 underline decoration-white/25 underline-offset-2";
 const iconClasses = "size-[3mm] shrink-0 text-brand-yellow";
@@ -43,42 +41,32 @@ export default async function CvHeader() {
           <p className="text-[0.6875rem]/[1.45] text-ink-muted [text-box:trim-both_cap_alphabetic]">
             {ui.cvPage.profileSummary}
           </p>
-          <div className="flex flex-col gap-y-[2mm] font-mono text-cv-xs text-ink-muted">
-            <ul className={contactRowClasses}>
-              <li className={itemClasses}>
-                <LocationIcon className={iconClasses} />
-                {profile.location}
-              </li>
-              <li data-cv-phone hidden>
-                <a data-cv-phone-link className={linkClasses}>
-                  <PhoneIcon className={iconClasses} />
-                  <span data-cv-phone-number />
+          <ul className="flex justify-between gap-x-1.5 font-mono text-cv-xs whitespace-nowrap text-ink-muted">
+            <li>
+              <a href={websiteHref} className={linkClasses}>
+                <GlobeIcon className={iconClasses} />
+                {profile.website.label}
+              </a>
+            </li>
+            <li>
+              <a href={`mailto:${ui.contact.email}`} className={linkClasses}>
+                <MailIcon className={iconClasses} />
+                {ui.contact.email}
+              </a>
+            </li>
+            {profile.links.map(({ kind, handle, href }) => (
+              <li key={kind}>
+                <a href={href} aria-label={profileLinkLabels[kind]} className={linkClasses}>
+                  <SocialIcon kind={kind} className={iconClasses} />
+                  {handle}
                 </a>
               </li>
-              <li>
-                <a href={`mailto:${ui.contact.email}`} className={linkClasses}>
-                  <MailIcon className={iconClasses} />
-                  {ui.contact.email}
-                </a>
-              </li>
-            </ul>
-            <ul className={contactRowClasses}>
-              <li>
-                <a href={websiteHref} className={linkClasses}>
-                  <GlobeIcon className={iconClasses} />
-                  {profile.website.label}
-                </a>
-              </li>
-              {profile.links.map(({ kind, handle, href }) => (
-                <li key={kind}>
-                  <a href={href} aria-label={profileLinkLabels[kind]} className={linkClasses}>
-                    <SocialIcon kind={kind} className={iconClasses} />
-                    {handle}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
+            ))}
+            <li className={itemClasses}>
+              <LocationIcon className={iconClasses} />
+              {profile.location}
+            </li>
+          </ul>
         </div>
       </div>
     </header>

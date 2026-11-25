@@ -1,8 +1,10 @@
-import { disciplineAccent, disciplineShape } from "@/constants";
+import { cvOmittedSkills, disciplineAccent, disciplineShape } from "@/constants";
 import { getSkillGroups } from "@/i18n/content";
 import CvInlineList from "@/components/cv/CvInlineList";
 import ShapeMarker from "@/components/ui/ShapeMarker";
 import { accentTextClasses } from "@/components/ui/accentClasses";
+
+const omittedSkills: ReadonlySet<string> = new Set(cvOmittedSkills);
 
 export default async function CvSkills() {
   const skillGroups = await getSkillGroups();
@@ -22,7 +24,7 @@ export default async function CvSkills() {
             {group.title}
           </h3>
           <p className="mt-0.5 text-cv-sm text-paper-muted">
-            <CvInlineList items={group.skills} />
+            <CvInlineList items={group.skills.filter((skill) => !omittedSkills.has(skill))} />
           </p>
         </div>
       ))}

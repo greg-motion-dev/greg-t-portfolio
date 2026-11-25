@@ -134,7 +134,7 @@ export const profile = {
   title: "Creative UI Engineer | Motion & 3D Web Specialist",
   about:
     "Senior Visual Creator turned Creative UI Engineer with 10+ years of experience bridging high-end UI/UX design, interactive motion, and modern frontend architecture. Specialized in building performant 3D web experiences, dynamic design systems, and motion-rich web applications using React, Next.js, TypeScript, Three.js, and GSAP.",
-  location: "Berlin, DE",
+  location: "Berlin",
   website: {
     label: "gtelakis.com",
     href: "https://gtelakis.com",
@@ -424,6 +424,8 @@ export const skillGroups = [
     ],
   },
 ] as const satisfies readonly SkillGroup[];
+
+export type SkillName = (typeof skillGroups)[number]["skills"][number];
 
 export interface TechStackContent {
   readonly title: string;

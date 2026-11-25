@@ -129,7 +129,7 @@ export const uiContentDe = {
     earlyWorkTitle: "Projection Mapping",
     publicationTitle: "Masterarbeit",
     alsoTitle: "Weiteres",
-    workedWithTitle: "Zusammenarbeit mit",
+    workedWithTitle: "Tätig für",
     presentLabel: "heute",
     certificationTitle: "Zertifikat",
   },

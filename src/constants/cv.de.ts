@@ -1,4 +1,4 @@
-import type { LanguageProficiency, languages, skillGroups, timeline } from "./cv";
+import type { LanguageProficiency, SkillName, languages, timeline } from "./cv";
 
 type TimelineData = (typeof timeline)[number];
 
@@ -11,8 +11,6 @@ export type TimelineTranslation = {
 };
 
 export type LanguageName = (typeof languages)[number]["name"];
-
-export type SkillName = (typeof skillGroups)[number]["skills"][number];
 
 export const timelineDe = {
   "spiced-academy": {
