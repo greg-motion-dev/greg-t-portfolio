@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { useEffect, useState, type UIEvent } from "react";
-import { lineupContent } from "@/constants";
+import type { LineupContent } from "@/constants";
 import { useFinePointer, useReducedMotion } from "@/hooks/useMediaQuery";
 
 export interface CoverSlide {
@@ -17,6 +17,7 @@ export interface ProjectCoverCarouselProps {
   readonly total: number;
   readonly imageClassName: string;
   readonly onOpen: (galleryIndex: number) => void;
+  readonly labels: LineupContent;
 }
 
 const SLIDE_INTERVAL = 1400;
@@ -28,6 +29,7 @@ export default function ProjectCoverCarousel({
   total,
   imageClassName,
   onOpen,
+  labels,
 }: ProjectCoverCarouselProps) {
   const finePointer = useFinePointer();
   const reducedMotion = useReducedMotion();
@@ -48,7 +50,7 @@ export default function ProjectCoverCarousel({
   }, [autoplay, count]);
 
   const openLabel = (index: number): string =>
-    `${lineupContent.galleryOpenLabel}: ${title}, ${total} ${lineupContent.galleryImagesLabel}, ${index + 1} / ${count}`;
+    `${labels.galleryOpenLabel}: ${title}, ${total} ${labels.galleryImagesLabel}, ${index + 1} / ${count}`;
 
   const dots =
     count > 1 ? (

@@ -1,3 +1,4 @@
+import type { SkillName } from "./cv";
 import type { AccentColor } from "./projects";
 
 export interface CvPageContent {
@@ -58,6 +59,8 @@ export const cvWorkedWith = [
   "SteelWatch",
   "Gas Outlook",
 ] as const satisfies readonly string[];
+
+export const cvOmittedSkills: readonly SkillName[] = ["GoDaddy", "Slack"];
 
 export const cvSectionAccents = {
   experience: "yellow",

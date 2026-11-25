@@ -1,10 +1,12 @@
-import { cvHighlightIndexes, cvPageContent, timeline, type TimelineEntry } from "@/constants";
+import { cvHighlightIndexes, type TimelineEntry, type TimelineItem } from "@/constants";
+import { getTimeline } from "@/i18n/content";
+import { getUi } from "@/i18n/getUi";
 import { formatDateRange } from "@/lib/formatDates";
+import { getLocale } from "@/i18n/getLocale";
 
-const entries = timeline.filter(
-  (item): item is Extract<(typeof timeline)[number], TimelineEntry> =>
-    item.kind === "work" || item.kind === "training",
-);
+function isEntry(item: TimelineItem): item is TimelineEntry {
+  return item.kind === "work" || item.kind === "training";
+}
 
 function selectedHighlights(id: string, highlights: readonly string[]): readonly string[] {
   const indexes = cvHighlightIndexes[id];
@@ -17,7 +19,10 @@ function selectedHighlights(id: string, highlights: readonly string[]): readonly
   });
 }
 
-export default function CvTimeline() {
+export default async function CvTimeline() {
+  const ui = await getUi();
+  const locale = await getLocale();
+  const entries = (await getTimeline()).filter(isEntry);
   return (
     <ol className="flex flex-1 flex-col justify-between gap-3">
       {entries.map((item) => (
@@ -25,7 +30,7 @@ export default function CvTimeline() {
           <div className="flex items-baseline justify-between gap-4">
             <h3 className="text-cv-lg font-bold text-paper-ink">{item.title}</h3>
             <p className="shrink-0 font-mono text-cv-xs tracking-wide text-paper-muted uppercase">
-              {formatDateRange(item.start, item.end, cvPageContent.presentLabel)}
+              {formatDateRange(item.start, item.end, ui.cvPage.presentLabel, locale)}
             </p>
           </div>
           <p className="font-mono text-cv-xs text-paper-muted">

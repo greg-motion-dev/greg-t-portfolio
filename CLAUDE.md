@@ -98,10 +98,11 @@ We need to merge my extensive background as a Senior UI/UX Strategist (10+ years
 - **No tracking:** no analytics, no third-party embeds, no cookies, no `localStorage`/`sessionStorage`.
 - **No external requests at runtime:** no CDNs, no externally hosted fonts, scripts, images, or 3D assets. Everything ships from our own domain.
 - **3D assets:** never use drei `Environment` presets or any loader that fetches from a CDN. Lighting is done with custom shaders or local assets.
-- **Indexing:** the site stays unindexed until launch: `robots` noindex metadata on every page (root layout) plus `Disallow: /` in `src/app/robots.ts`.
-- **Personal data:** no phone number anywhere. The only published contact is `gtelakis@duck.com`.
-- **Legal pages:** English terminology only ("Privacy Policy", `/privacy`). No Impressum yet; revisit before launch.
-- **Hosting:** EU region preferred. Provider still to be decided; the Privacy Policy text depends on it.
+- **Indexing:** the site stays unindexed permanently (it is only shared with employers when applying): `robots` noindex metadata on every page (root layout) plus `Disallow: /` in `src/app/robots.ts`.
+- **Personal data:** no phone number anywhere, including the CV and its PDFs (there is no private/phone variant). The only published contact is `gtelakis@duck.com`.
+- **CV PDFs:** generated from `/cv` and `/de/cv` with `npm run cv:pdf` (English) and `npm run cv:pdf -- --locale de` (German) into `public/`. The CV header contact row stays on one line, ordered by importance: website · email · LinkedIn · GitHub · location.
+- **Legal pages:** English terminology on the English site ("Privacy Policy", `/privacy`). The German localization (`/de`) uses German terms ("Datenschutz", "Datenschutzerklärung", `/de/privacy`). No Impressum: the site is a private job-application portfolio, not a commercial service, and Greg's postal address must never be published or committed. Privacy Policy content lives in `src/constants/legal.ts` / `legal.de.ts`.
+- **Hosting:** Vercel. The Privacy Policy names Vercel and the email chain (DuckDuckGo Email Protection → Gmail); update it if either changes.
 
 ---
 
@@ -118,13 +119,14 @@ We are merging three eras of work into `src/constants/index.ts` (converting from
 - **Never invent** project details, metrics, dates, client names, or outcomes. If data is missing, stop and ask me, or use `"TO BE PROVIDED"` in the data and list which fields need real content.
 - All content lives in typed domain files under src/constants/, re-exported from src/constants/index.ts; components import only from @/constants.
 - Every project entry must have a strict interface covering at least: `id`, `era`, `discipline`, `title`, `role`, `year`, `summary`, `stack`, `links`, and `media`. `accentColor` is derived from `discipline` via a single typed lookup map rather than stored per project.
+- **Localization:** English lives at `/`, German at `/de`. German is allowed (and expected) for the German localization: German overlay files (`*.de.ts`, keyed by id), German UI strings, the German CV (`/de/cv`, `public/greg-telakis-cv-de.pdf`) and German legal terms. Visitors are addressed with "du". Job titles, discipline names, project titles and tech/stack names stay English.
 
 ---
 
 ## 4. Section-by-Section Redesign Plan
 
 - **Kill the Tutorial Template:** Remove the tutorial 3D room, desk, computer, and floating 3D `TechIcon` `.glb` components.
-- **Navbar:** Minimal sticky top bar — `GREG TELAKIS` on the left, clean anchor links (`about`, `work`, `techstack`, `experience`), GitHub/LinkedIn icons, and a sharp `contact` button on the right (no theme toggle). Below `lg`, the links and icons move into a full-screen menu built on a native `<dialog>`; the `contact` button stays visible in the bar.
+- **Navbar:** Minimal sticky top bar — `GREG TELAKIS` on the left, clean anchor links (`about`, `work`, `techstack`, `experience`), with `contact` as the last link in the same style (no border), and the `EN / DE` language switch on the right (no theme toggle). Below `lg`, the links (including `contact`) and the GitHub/LinkedIn icons move into a full-screen menu built on a native `<dialog>`; the language switch stays visible in the bar.
 - **Hero (`Hero.tsx` + `OrbitalCanvas.tsx`):**
   - **Centerpiece:** Centered circular portrait (`/images/profile.jpg` on `brand-yellow`), a yellow monospace greeting (`Ahoi! My name is Greg.`), the role as a two-line display `h1` (`Creative UI Engineer` / `Motion & 3D Web Specialist`), muted intro copy, and two sharp rectangular CTAs (`see my work` solid white, `resume` hairline border).
 - **3D Layer:** An SSR-safe R3F `<Canvas>` (lazy-loaded, CSS ring fallback) rendering three tilted orbits around the portrait, which is the identity circle and acts as a sun: tetrahedrons in `brand-pink` (inner), octahedrons in `brand-teal` (middle), cubes in `brand-yellow` (outer). Shapes use a custom Fresnel shader and may pass in front of or behind the portrait (depth-masked by an invisible sphere). Orbit paths are `white/10` hairlines that fade with depth and light up with a 3s colour trail behind each shape. The portrait casts a soft black shadow with a fine, slowly pulsing yellow glow. A sparse, seeded, twinkling starfield sits behind. Users can drag to rotate (three's `OrbitControls`, mouse/trackpad only, rotate only, eases back to rest); a one-time intro nudge and a corner `drag to orbit` hint aid discovery. All tuning lives in `src/components/three/orbitConfig.ts`. Reduced motion renders a single static frame.

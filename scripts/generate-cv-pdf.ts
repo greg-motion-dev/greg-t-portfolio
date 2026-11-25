@@ -2,8 +2,7 @@ import { spawn, type ChildProcess } from "node:child_process";
 import { once } from "node:events";
 import { mkdtemp, readFile, rm, writeFile } from "node:fs/promises";
 import { tmpdir } from "node:os";
-import { join, relative, resolve, isAbsolute } from "node:path";
-import { createInterface } from "node:readline/promises";
+import { join, resolve } from "node:path";
 import { setTimeout as wait } from "node:timers/promises";
 import { parseArgs } from "node:util";
 
@@ -28,36 +27,24 @@ interface PrintResult {
 }
 
 const projectRoot = resolve(import.meta.dirname, "..");
-const publicPdfPath = join(projectRoot, "public", "greg-telakis-cv.pdf");
+const cvLocales = {
+  en: { path: "/cv", fileName: "greg-telakis-cv.pdf" },
+  de: { path: "/de/cv", fileName: "greg-telakis-cv-de.pdf" },
+} as const;
+const devServerOrigin = "http://localhost:3000";
 const defaultChromePath = "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome";
-const phonePattern = /^\+?[0-9][0-9 ()/-]{5,24}$/;
 const edgeTrimPoints = 0.5;
 
 const { values: options } = parseArgs({
   options: {
-    url: { type: "string", default: "http://localhost:3000/cv" },
+    locale: { type: "string", default: "en" },
+    url: { type: "string" },
     out: { type: "string" },
-    private: { type: "boolean", default: false },
   },
 });
 
 function fail(message: string): never {
   throw new Error(message);
-}
-
-function isInsideProject(path: string): boolean {
-  const pathFromRoot = relative(projectRoot, path);
-  return pathFromRoot === "" || (!pathFromRoot.startsWith("..") && !isAbsolute(pathFromRoot));
-}
-
-async function askForPhone(): Promise<string> {
-  const prompt = createInterface({ input: process.stdin, output: process.stdout });
-  const answer = (await prompt.question("Phone number (international, e.g. +49 …): ")).trim();
-  prompt.close();
-  if (!phonePattern.test(answer)) {
-    fail("That doesn't look like a phone number. Use digits, spaces, +, -, ( ) or /.");
-  }
-  return answer;
 }
 
 async function readDevToolsPort(profileDir: string): Promise<number> {
@@ -135,31 +122,22 @@ function trimRightEdge(pdf: Buffer): Buffer {
   return Buffer.from(text.replaceAll(box, trimmedBox), "latin1");
 }
 
-const fillPhoneScript = (phone: string): string => `(() => {
-  const item = document.querySelector("[data-cv-phone]");
-  const link = document.querySelector("[data-cv-phone-link]");
-  const number = document.querySelector("[data-cv-phone-number]");
-  if (!item || !link || !number) return false;
-  number.textContent = ${JSON.stringify(phone)};
-  link.setAttribute("href", "tel:" + ${JSON.stringify(phone.replace(/[^0-9+]/g, ""))});
-  item.hidden = false;
-  return true;
-})()`;
-
 const overflowScript = `(() => {
   const article = document.querySelector("article");
   return article ? article.scrollHeight - article.clientHeight : -1;
 })()`;
 
+function isCvLocale(value: string): value is keyof typeof cvLocales {
+  return Object.hasOwn(cvLocales, value);
+}
+
 async function main(): Promise<void> {
-  const outPath = resolve(options.out ?? publicPdfPath);
-  if (options.private && options.out === undefined) {
-    fail("A private CV needs --out with a path outside the project, e.g. --out ~/Documents/cv.pdf");
+  if (!isCvLocale(options.locale)) {
+    fail(`Unknown locale "${options.locale}". Use ${Object.keys(cvLocales).join(" or ")}.`);
   }
-  if (options.private && isInsideProject(outPath)) {
-    fail("A private CV must be saved outside the project so it can never be committed.");
-  }
-  const phone = options.private ? await askForPhone() : null;
+  const cvLocale = cvLocales[options.locale];
+  const url = options.url ?? `${devServerOrigin}${cvLocale.path}`;
+  const outPath = resolve(options.out ?? join(projectRoot, "public", cvLocale.fileName));
 
   const profileDir = await mkdtemp(join(tmpdir(), "cv-pdf-"));
   const chrome: ChildProcess = spawn(
@@ -174,31 +152,19 @@ async function main(): Promise<void> {
     await devTools.opened;
 
     await devTools.send("Page.enable");
-    await devTools.send("Page.navigate", { url: options.url });
+    await devTools.send("Page.navigate", { url });
     await wait(3000);
     await devTools.send("Runtime.evaluate", {
       expression: "document.fonts.ready.then(() => true)",
       awaitPromise: true,
     });
 
-    if (phone !== null) {
-      const filled = await devTools.send<EvaluateResult>("Runtime.evaluate", {
-        expression: fillPhoneScript(phone),
-        returnByValue: true,
-      });
-      if (filled.result.value !== true) {
-        fail(
-          "Could not find the phone slot on the CV page. Is the dev server running the latest code?",
-        );
-      }
-    }
-
     const overflow = await devTools.send<EvaluateResult>("Runtime.evaluate", {
       expression: overflowScript,
       returnByValue: true,
     });
     if (overflow.result.value === -1) {
-      fail(`No CV found at ${options.url}. Start the site with npm run dev or npm run start.`);
+      fail(`No CV found at ${url}. Start the site with npm run dev or npm run start.`);
     }
     if (typeof overflow.result.value === "number" && overflow.result.value > 0) {
       fail(`The CV overflows its page by ${overflow.result.value}px. Shorten the content first.`);
@@ -212,7 +178,7 @@ async function main(): Promise<void> {
     devTools.close();
 
     await writeFile(outPath, trimRightEdge(Buffer.from(data, "base64")));
-    console.log(`✓ ${phone === null ? "Public" : "Private"} CV saved to ${outPath}`);
+    console.log(`✓ CV saved to ${outPath}`);
   } finally {
     const exited = once(chrome, "exit");
     chrome.kill();

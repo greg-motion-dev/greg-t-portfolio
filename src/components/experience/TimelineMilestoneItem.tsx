@@ -1,26 +1,33 @@
-import {
-  experienceContent,
-  timelineKindLabels,
-  type AccentColor,
-  type TimelineMilestone,
-} from "@/constants";
+import { type AccentColor, type TimelineMilestone } from "@/constants";
 import { accentBgClasses } from "@/components/ui/accentClasses";
 import ProjectLinkArrow from "@/components/projects/ProjectLinkArrow";
 import { timelineRailClasses } from "@/components/experience/timelineRail";
 import { formatDateRange, formatYearMonth } from "@/lib/formatDates";
+import { getLocale } from "@/i18n/getLocale";
+import { getUi } from "@/i18n/getUi";
+import type { Locale } from "@/i18n/config";
 
 export interface TimelineMilestoneItemProps {
   readonly milestone: TimelineMilestone;
   readonly accent: AccentColor;
 }
 
-function formatMilestoneDate(milestone: TimelineMilestone): string {
+function formatMilestoneDate(
+  milestone: TimelineMilestone,
+  locale: Locale,
+  presentLabel: string,
+): string {
   return milestone.end
-    ? formatDateRange(milestone.start, milestone.end, experienceContent.presentLabel)
-    : formatYearMonth(milestone.start);
+    ? formatDateRange(milestone.start, milestone.end, presentLabel, locale)
+    : formatYearMonth(milestone.start, locale);
 }
 
-export default function TimelineMilestoneItem({ milestone, accent }: TimelineMilestoneItemProps) {
+export default async function TimelineMilestoneItem({
+  milestone,
+  accent,
+}: TimelineMilestoneItemProps) {
+  const locale = await getLocale();
+  const ui = await getUi();
   const titleId = `timeline-${milestone.id}`;
   const { link } = milestone;
 
@@ -34,7 +41,9 @@ export default function TimelineMilestoneItem({ milestone, accent }: TimelineMil
       </span>
 
       <p data-timeline-entry className={timelineRailClasses.date}>
-        <span className="text-ink">{formatMilestoneDate(milestone)}</span>
+        <span className="text-ink">
+          {formatMilestoneDate(milestone, locale, ui.experience.presentLabel)}
+        </span>
       </p>
 
       <article
@@ -59,7 +68,7 @@ export default function TimelineMilestoneItem({ milestone, accent }: TimelineMil
         </h3>
         <span className="text-base text-ink-muted">{milestone.subtitle}</span>
         <span className="border border-white/10 px-2.5 py-1 font-mono text-xs tracking-wider text-ink-muted uppercase">
-          {timelineKindLabels[milestone.kind]}
+          {ui.timelineKindLabels[milestone.kind]}
         </span>
       </article>
     </li>

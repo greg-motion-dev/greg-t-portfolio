@@ -1,9 +1,6 @@
-import {
-  experienceContent,
-  timeline,
-  type TimelineItem as TimelineItemData,
-  type TimelineMilestone,
-} from "@/constants";
+import { type TimelineItem as TimelineItemData, type TimelineMilestone } from "@/constants";
+import { getTimeline } from "@/i18n/content";
+import { getUi } from "@/i18n/getUi";
 import AlsoList from "@/components/experience/AlsoList";
 import EducationList from "@/components/experience/EducationList";
 import LanguageList from "@/components/experience/LanguageList";
@@ -21,14 +18,15 @@ function isMilestone(item: TimelineItemData): item is TimelineMilestone {
   return item.kind === "certification" || item.kind === "project";
 }
 
-export default function Experience() {
-  const items: readonly TimelineItemData[] = timeline;
+export default async function Experience() {
+  const ui = await getUi();
+  const items: readonly TimelineItemData[] = await getTimeline();
   const roleCount = items.filter((item) => !isMilestone(item)).length;
 
   return (
     <section id="experience" aria-labelledby="experience-title" className="py-24 md:py-32">
       <div className="mx-auto max-w-7xl px-5 md:px-10">
-        <SectionHeading id="experience-title" title={experienceContent.title} count={roleCount} />
+        <SectionHeading id="experience-title" title={ui.experience.title} count={roleCount} />
       </div>
 
       <div className="mx-auto mt-16 max-w-7xl px-5 md:mt-24 md:px-10">
@@ -55,19 +53,19 @@ export default function Experience() {
 
       <ul className="mt-24 grid gap-px border-y border-white/10 bg-white/10 md:mt-32 md:grid-cols-3">
         <li className={columnClasses}>
-          <h3 className={columnTitleClasses}>{experienceContent.educationTitle}</h3>
+          <h3 className={columnTitleClasses}>{ui.experience.educationTitle}</h3>
           <div className={columnBodyClasses}>
             <EducationList />
           </div>
         </li>
         <li className={columnClasses}>
-          <h3 className={columnTitleClasses}>{experienceContent.languagesTitle}</h3>
+          <h3 className={columnTitleClasses}>{ui.experience.languagesTitle}</h3>
           <div className={columnBodyClasses}>
             <LanguageList />
           </div>
         </li>
         <li className={columnClasses}>
-          <h3 className={columnTitleClasses}>{experienceContent.alsoTitle}</h3>
+          <h3 className={columnTitleClasses}>{ui.experience.alsoTitle}</h3>
           <div className={columnBodyClasses}>
             <AlsoList />
           </div>

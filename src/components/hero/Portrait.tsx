@@ -1,11 +1,13 @@
 import Image from "next/image";
 import { heroPortrait } from "@/constants";
+import { getUi } from "@/i18n/getUi";
 
-export default function Portrait() {
+export default async function Portrait() {
+  const ui = await getUi();
   return (
     <Image
       src={heroPortrait.src}
-      alt={heroPortrait.alt}
+      alt={ui.hero.portraitAlt}
       width={heroPortrait.width}
       height={heroPortrait.height}
       sizes="(min-width: 768px) 198px, 132px"

@@ -1,25 +1,22 @@
 import Image from "next/image";
-import {
-  contactContent,
-  cvPageContent,
-  heroPortrait,
-  profile,
-  profileLinkLabels,
-} from "@/constants";
+import { heroPortrait, profile, profileLinkLabels } from "@/constants";
+import { localizeHref } from "@/i18n/config";
+import { getLocale } from "@/i18n/getLocale";
+import { getUi } from "@/i18n/getUi";
 import CvOrbit from "@/components/cv/CvOrbit";
 import GlobeIcon from "@/components/icons/GlobeIcon";
 import LocationIcon from "@/components/icons/LocationIcon";
 import MailIcon from "@/components/icons/MailIcon";
-import PhoneIcon from "@/components/icons/PhoneIcon";
 import SocialIcon from "@/components/icons/SocialIcon";
 
-const contactRowClasses = "grid grid-cols-3 gap-x-4";
-const itemClasses = "flex items-center gap-1.5";
+const itemClasses = "flex items-center gap-1";
 const linkClasses =
   "flex w-fit items-center gap-1.5 underline decoration-white/25 underline-offset-2";
 const iconClasses = "size-[3mm] shrink-0 text-brand-yellow";
 
-export default function CvHeader() {
+export default async function CvHeader() {
+  const ui = await getUi();
+  const websiteHref = new URL(localizeHref(await getLocale(), "/"), profile.website.href).href;
   return (
     <header className="relative shrink-0 overflow-hidden bg-canvas px-[14mm] pt-[10mm] pb-[5mm] text-ink">
       <div className="flex items-center gap-[4.8mm]">
@@ -27,7 +24,7 @@ export default function CvHeader() {
           <CvOrbit />
           <Image
             src={heroPortrait.src}
-            alt={heroPortrait.alt}
+            alt={ui.hero.portraitAlt}
             width={heroPortrait.width}
             height={heroPortrait.height}
             sizes="120px"
@@ -42,44 +39,34 @@ export default function CvHeader() {
             {profile.title}
           </p>
           <p className="text-[0.6875rem]/[1.45] text-ink-muted [text-box:trim-both_cap_alphabetic]">
-            {cvPageContent.profileSummary}
+            {ui.cvPage.profileSummary}
           </p>
-          <div className="flex flex-col gap-y-[2mm] font-mono text-cv-xs text-ink-muted">
-            <ul className={contactRowClasses}>
-              <li className={itemClasses}>
-                <LocationIcon className={iconClasses} />
-                {profile.location}
-              </li>
-              <li data-cv-phone hidden>
-                <a data-cv-phone-link className={linkClasses}>
-                  <PhoneIcon className={iconClasses} />
-                  <span data-cv-phone-number />
+          <ul className="flex justify-between gap-x-1.5 font-mono text-cv-xs whitespace-nowrap text-ink-muted">
+            <li>
+              <a href={websiteHref} className={linkClasses}>
+                <GlobeIcon className={iconClasses} />
+                {profile.website.label}
+              </a>
+            </li>
+            <li>
+              <a href={`mailto:${ui.contact.email}`} className={linkClasses}>
+                <MailIcon className={iconClasses} />
+                {ui.contact.email}
+              </a>
+            </li>
+            {profile.links.map(({ kind, handle, href }) => (
+              <li key={kind}>
+                <a href={href} aria-label={profileLinkLabels[kind]} className={linkClasses}>
+                  <SocialIcon kind={kind} className={iconClasses} />
+                  {handle}
                 </a>
               </li>
-              <li>
-                <a href={`mailto:${contactContent.email}`} className={linkClasses}>
-                  <MailIcon className={iconClasses} />
-                  {contactContent.email}
-                </a>
-              </li>
-            </ul>
-            <ul className={contactRowClasses}>
-              <li>
-                <a href={profile.website.href} className={linkClasses}>
-                  <GlobeIcon className={iconClasses} />
-                  {profile.website.label}
-                </a>
-              </li>
-              {profile.links.map(({ kind, handle, href }) => (
-                <li key={kind}>
-                  <a href={href} aria-label={profileLinkLabels[kind]} className={linkClasses}>
-                    <SocialIcon kind={kind} className={iconClasses} />
-                    {handle}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
+            ))}
+            <li className={itemClasses}>
+              <LocationIcon className={iconClasses} />
+              {profile.location}
+            </li>
+          </ul>
         </div>
       </div>
     </header>

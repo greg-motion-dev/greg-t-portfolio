@@ -2,11 +2,19 @@
 
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
-import { mobileNavLabels, navContact, navLinks, profile, profileLinkLabels } from "@/constants";
+import {
+  fillTemplate,
+  profile,
+  profileLinkLabels,
+  type MobileNavLabels,
+  type NavContent,
+} from "@/constants";
 import CloseIcon from "@/components/icons/CloseIcon";
 import MenuIcon from "@/components/icons/MenuIcon";
 import SocialIcon from "@/components/icons/SocialIcon";
+import LanguageSwitch from "@/components/layout/LanguageSwitch";
 import { useMediaQuery } from "@/hooks/useMediaQuery";
+import { localizeHref, type Locale } from "@/i18n/config";
 
 const iconButtonClasses =
   "focus-ring flex size-10 items-center justify-center text-ink transition-colors hover:text-brand-yellow";
@@ -16,10 +24,17 @@ const dialogClasses =
 
 const formatIndex = (index: number): string => String(index + 1).padStart(2, "0");
 
-export default function MobileNav() {
+export interface MobileNavProps {
+  readonly locale: Locale;
+  readonly nav: NavContent;
+  readonly labels: MobileNavLabels;
+}
+
+export default function MobileNav({ locale, nav, labels }: MobileNavProps) {
   const dialogRef = useRef<HTMLDialogElement>(null);
   const [open, setOpen] = useState(false);
   const isDesktop = useMediaQuery("(min-width: 64rem)");
+  const navItems = [...nav.links, nav.contact];
 
   useEffect(() => {
     if (isDesktop) {
@@ -44,7 +59,7 @@ export default function MobileNav() {
     <>
       <button
         type="button"
-        aria-label={mobileNavLabels.openMenu}
+        aria-label={labels.openMenu}
         aria-haspopup="dialog"
         aria-expanded={open}
         onClick={openMenu}
@@ -55,7 +70,7 @@ export default function MobileNav() {
 
       <dialog
         ref={dialogRef}
-        aria-label={mobileNavLabels.menu}
+        aria-label={labels.menu}
         onClose={handleDialogClose}
         className={dialogClasses}
       >
@@ -63,31 +78,34 @@ export default function MobileNav() {
           <div className="border-b border-white/10">
             <div className="mx-auto flex h-nav max-w-7xl items-center justify-between gap-3 px-5 md:px-10">
               <Link
-                href="/#about"
+                href={localizeHref(locale, "/#about")}
                 onClick={closeMenu}
                 className="focus-ring font-mono text-sm font-extrabold tracking-widest text-ink uppercase sm:text-base md:text-lg"
               >
                 {profile.name}
               </Link>
-              <div className="-mr-2">
-                <button
-                  type="button"
-                  aria-label={mobileNavLabels.closeMenu}
-                  onClick={closeMenu}
-                  className={iconButtonClasses}
-                >
-                  <CloseIcon className="size-6" />
-                </button>
+              <div className="flex items-center gap-4">
+                <LanguageSwitch locale={locale} label={nav.languageSwitchLabel} />
+                <div className="-mr-2">
+                  <button
+                    type="button"
+                    aria-label={labels.closeMenu}
+                    onClick={closeMenu}
+                    className={iconButtonClasses}
+                  >
+                    <CloseIcon className="size-6" />
+                  </button>
+                </div>
               </div>
             </div>
           </div>
 
-          <nav aria-label="Primary" className="flex-1 overflow-y-auto">
+          <nav aria-label={nav.ariaLabel} className="flex-1 overflow-y-auto">
             <ul className="mx-auto max-w-7xl px-5 py-8 md:px-10">
-              {navLinks.map(({ name, link }, index) => (
+              {navItems.map(({ name, link }, index) => (
                 <li key={name} className="border-b border-white/10">
                   <Link
-                    href={link}
+                    href={localizeHref(locale, link)}
                     onClick={closeMenu}
                     className="focus-ring group flex items-baseline gap-4 py-5"
                   >
@@ -102,14 +120,7 @@ export default function MobileNav() {
           </nav>
 
           <div className="border-t border-white/10">
-            <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-5 py-6 md:px-10">
-              <Link
-                href={navContact.link}
-                onClick={closeMenu}
-                className="focus-ring border border-ink px-4 py-2 font-mono text-sm text-ink transition-colors hover:bg-ink hover:text-canvas"
-              >
-                {navContact.name}
-              </Link>
+            <div className="mx-auto flex max-w-7xl items-center gap-4 px-5 py-6 md:px-10">
               <ul className="flex items-center gap-5">
                 {profile.links.map(({ kind, href }) => (
                   <li key={kind}>
@@ -117,7 +128,9 @@ export default function MobileNav() {
                       href={href}
                       target="_blank"
                       rel="noopener noreferrer"
-                      aria-label={`${profileLinkLabels[kind]} profile`}
+                      aria-label={fillTemplate(nav.profileLinkAriaTemplate, {
+                        name: profileLinkLabels[kind],
+                      })}
                       className="focus-ring block text-ink-muted transition-colors hover:text-ink"
                     >
                       <SocialIcon kind={kind} className="size-6" />

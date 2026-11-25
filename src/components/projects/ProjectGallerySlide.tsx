@@ -1,11 +1,12 @@
 import Image from "next/image";
-import { lineupContent, type ProjectGalleryMedia } from "@/constants";
+import type { LineupContent, ProjectGalleryMedia } from "@/constants";
 import BrowserFrame from "@/components/projects/BrowserFrame";
 import PhoneFrame from "@/components/projects/PhoneFrame";
 
 export interface ProjectGallerySlideProps {
   readonly item: ProjectGalleryMedia;
   readonly domain: string | undefined;
+  readonly labels: LineupContent;
 }
 
 const BROWSER_BAR = "2.25rem + 2px";
@@ -30,7 +31,7 @@ function renderImage(item: ProjectGalleryMedia) {
   );
 }
 
-export default function ProjectGallerySlide({ item, domain }: ProjectGallerySlideProps) {
+export default function ProjectGallerySlide({ item, domain, labels }: ProjectGallerySlideProps) {
   const ratio = item.width / item.height;
 
   if (item.kind === "page") {
@@ -38,7 +39,7 @@ export default function ProjectGallerySlide({ item, domain }: ProjectGallerySlid
       <BrowserFrame domain={domain} style={{ width: "min(100cqw, 72rem)", height: "100cqh" }}>
         <div
           tabIndex={0}
-          aria-label={`${item.alt}. ${lineupContent.galleryScrollHint}`}
+          aria-label={`${item.alt}. ${labels.galleryScrollHint}`}
           className="focus-ring min-h-0 flex-1 overflow-y-auto overscroll-contain"
         >
           {renderImage(item)}

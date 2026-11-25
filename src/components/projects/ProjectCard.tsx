@@ -1,10 +1,5 @@
-import {
-  disciplineAccent,
-  eraLabels,
-  lineupContent,
-  roleLabels,
-  type Project,
-} from "@/constants";
+import { disciplineAccent, type Project } from "@/constants";
+import { getUi } from "@/i18n/getUi";
 import DisciplinePill from "@/components/projects/DisciplinePill";
 import ProjectLinkArrow from "@/components/projects/ProjectLinkArrow";
 import ProjectMediaSlot from "@/components/projects/ProjectMediaSlot";
@@ -20,7 +15,8 @@ function formatIndex(position: number): string {
   return String(position).padStart(2, "0");
 }
 
-export default function ProjectCard({ project, position }: ProjectCardProps) {
+export default async function ProjectCard({ project, position }: ProjectCardProps) {
+  const ui = await getUi();
   const accent = disciplineAccent[project.discipline];
   const titleId = `project-${project.id}`;
   const liveLink = project.links.find((link) => link.kind === "live");
@@ -57,7 +53,7 @@ export default function ProjectCard({ project, position }: ProjectCardProps) {
 
         <div className="flex flex-1 flex-col px-6 pt-6 pb-8">
           <p className="font-mono text-xs tracking-wider text-ink-muted uppercase">
-            {eraLabels[project.era]} · {project.year}
+            {ui.eraLabels[project.era]} · {project.year}
           </p>
 
           <h3
@@ -71,7 +67,7 @@ export default function ProjectCard({ project, position }: ProjectCardProps) {
 
           <ul className="mt-6 flex flex-wrap gap-2 font-mono text-xs tracking-wider uppercase">
             <li className={`border border-current px-2.5 py-1 ${accentTextClasses[accent]}`}>
-              {roleLabels[project.role]}
+              {ui.roleLabels[project.role]}
             </li>
             {project.stack.map((technology) => (
               <li key={technology} className="border border-white/10 px-2.5 py-1 text-ink-muted">
@@ -99,7 +95,7 @@ export default function ProjectCard({ project, position }: ProjectCardProps) {
               </ul>
             ) : (
               <p className="font-mono text-sm tracking-widest text-ink-muted/60 uppercase">
-                {lineupContent.linkPendingLabel}
+                {ui.lineup.linkPendingLabel}
               </p>
             )}
           </div>
