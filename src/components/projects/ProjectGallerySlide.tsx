@@ -12,19 +12,22 @@ export interface ProjectGallerySlideProps {
 const BROWSER_BAR = "2.25rem + 2px";
 const PHONE_BEZEL = "1rem + 2px";
 const imageSizes = "(min-width: 1280px) 72rem, 100vw";
+const pageImageSizes = "(max-width: 767px) 66vw, (min-width: 1280px) 72rem, 100vw";
+const bareOnPhoneClasses =
+  "max-md:rounded-none max-md:border-0 max-md:bg-transparent max-md:shadow-none";
 
 function fitWidth(ratio: number, verticalChrome: string, horizontalChrome = "0px"): string {
   return `min(100cqw, calc((100cqh - (${verticalChrome})) * ${ratio} + (${horizontalChrome})))`;
 }
 
-function renderImage(item: ProjectGalleryMedia) {
+function renderImage(item: ProjectGalleryMedia, sizes = imageSizes) {
   return (
     <Image
       src={item.src}
       alt={item.alt}
       width={item.width}
       height={item.height}
-      sizes={imageSizes}
+      sizes={sizes}
       draggable={false}
       className="block h-auto w-full"
     />
@@ -36,13 +39,18 @@ export default function ProjectGallerySlide({ item, domain, labels }: ProjectGal
 
   if (item.kind === "page") {
     return (
-      <BrowserFrame domain={domain} style={{ width: "min(100cqw, 72rem)", height: "100cqh" }}>
+      <BrowserFrame
+        domain={domain}
+        style={{ width: "min(100cqw, 72rem)", height: "100cqh" }}
+        className={bareOnPhoneClasses}
+        barClassName="max-md:hidden"
+      >
         <div
           tabIndex={0}
           aria-label={`${item.alt}. ${labels.galleryScrollHint}`}
-          className="focus-ring min-h-0 flex-1 overflow-y-auto overscroll-contain"
+          className="focus-ring min-h-0 flex-1 touch-pan-y overflow-y-auto overscroll-contain"
         >
-          {renderImage(item)}
+          {renderImage(item, pageImageSizes)}
         </div>
       </BrowserFrame>
     );
@@ -64,9 +72,5 @@ export default function ProjectGallerySlide({ item, domain, labels }: ProjectGal
     );
   }
 
-  return (
-    <div style={{ width: fitWidth(ratio, "0px") }}>
-      {renderImage(item)}
-    </div>
-  );
+  return <div style={{ width: fitWidth(ratio, "0px") }}>{renderImage(item)}</div>;
 }
