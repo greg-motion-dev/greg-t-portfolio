@@ -139,13 +139,16 @@ export default function ProjectGallery({
                 drag={total > 1 ? "x" : false}
                 dragConstraints={{ left: 0, right: 0 }}
                 dragElastic={0.2}
+                dragDirectionLock
                 onDragEnd={handleDragEnd}
-                className="absolute inset-0 m-0 flex cursor-grab flex-col px-5 py-6 active:cursor-grabbing md:px-10 md:py-8"
+                className={`absolute inset-0 m-0 flex cursor-grab flex-col active:cursor-grabbing md:px-10 md:py-8 ${current.kind === "page" ? "max-md:pb-6" : "px-5 py-6"}`}
               >
                 <div className="flex min-h-0 flex-1 items-center justify-center [container-type:size]">
                   <ProjectGallerySlide item={current} domain={domain} labels={labels} />
                 </div>
-                <figcaption className="mx-auto mt-4 flex max-w-3xl flex-col items-center text-center text-sm text-ink-muted">
+                <figcaption
+                  className={`mx-auto mt-4 flex max-w-3xl flex-col items-center text-center text-sm text-ink-muted ${current.kind === "page" ? "max-md:px-5" : ""}`}
+                >
                   {current.alt}
                   {current.kind === "image" && current.link ? (
                     <a

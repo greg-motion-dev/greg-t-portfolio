@@ -54,9 +54,6 @@ We need to merge my extensive background as a Senior UI/UX Strategist (10+ years
 
 ## 2. Technical Stack & Strict Rules
 
-- **Framework:** Next.js (App Router) + React.
-- **Styling:** Tailwind CSS v4.
-- **Animation/3D:** GSAP (ScrollTrigger) + React Three Fiber (R3F) / Three.js + **`motion`** (imported from `motion/react`).
 - **Package manager:** npm only.
 - **Language:** 100% strict TypeScript. No `any`, no implicitly typed events, strict interface definitions for all constants.
 - **SSR Rule:** Do not generate any code that breaks SSR/prerendering. All `useGLTF` calls and WebGL `<Canvas>` elements must live in Client Components (`"use client"`) and be suspended/loaded safely.
@@ -106,13 +103,7 @@ We need to merge my extensive background as a Senior UI/UX Strategist (10+ years
 
 ---
 
-## 3. Content Architecture to Integrate
-
-We are merging three eras of work into `src/constants/index.ts` (converting from `.tsx` to pure `.ts` with zero JSX):
-
-1. **The Professional Era (Climate & UI/UX):** Zero Carbon Analytics (Original & 2025 Rebrand), SteelWatch, GasOutlook, and CORE (Climate Opinion Research Exchange).
-2. **The Engineering Era (SPICED & Interactive):** Apple 3D Showcase, GSAP Cocktail Website, Orryana Financial Platform, Interactive Calculator, and Plant-Pal App.
-3. **The CV Integration:** Work history (Meliore Foundation, European Climate Foundation, Skyscanner/Capital GES), SPICED Academy Bootcamp (2026), academic degrees (MSc University of Edinburgh, BAs Edinburgh Napier & Hanze Groningen), and languages.
+## 3. Content Architecture
 
 ### Content rules
 
@@ -125,16 +116,14 @@ We are merging three eras of work into `src/constants/index.ts` (converting from
 
 ## 4. Section-by-Section Redesign Plan
 
-- **Kill the Tutorial Template:** Remove the tutorial 3D room, desk, computer, and floating 3D `TechIcon` `.glb` components.
 - **Navbar:** Minimal sticky top bar — `GREG TELAKIS` on the left, clean anchor links in page order (`about`, `work`, `experience`, `techstack`), with `contact` as the last link in the same style (no border), and the `EN / DE` language switch on the right (no theme toggle). Below `lg`, the links (including `contact`) and the GitHub/LinkedIn icons move into a full-screen menu built on a native `<dialog>`; the language switch stays visible in the bar.
 - **Hero (`Hero.tsx` + `OrbitalCanvas.tsx`):**
   - **Centerpiece:** Centered circular portrait (`/images/profile.jpg` on `brand-yellow`), a yellow monospace greeting (`Ahoi! My name is Greg.`), the role as a two-line display `h1` (`Creative UI Engineer` / `Motion & 3D Web Specialist`), muted intro copy, and two sharp rectangular CTAs (`see my work` solid white, `resume` hairline border).
-- **3D Layer:** An SSR-safe R3F `<Canvas>` (lazy-loaded, CSS ring fallback) rendering three tilted orbits around the portrait, which is the identity circle and acts as a sun: tetrahedrons in `brand-pink` (inner), octahedrons in `brand-teal` (middle), cubes in `brand-yellow` (outer). Shapes use a custom Fresnel shader and may pass in front of or behind the portrait (depth-masked by an invisible sphere). Orbit paths are `white/10` hairlines that fade with depth and light up with a 3s colour trail behind each shape. The portrait casts a soft black shadow with a fine, slowly pulsing yellow glow. A sparse, seeded, twinkling starfield sits behind. Users can drag to rotate (three's `OrbitControls`, mouse/trackpad only, rotate only, eases back to rest); a one-time intro nudge and a corner `drag to orbit` hint aid discovery. All tuning lives in `src/components/three/orbitConfig.ts`. Reduced motion renders a single static frame.
+- **3D Layer:** spec in `src/components/three/CLAUDE.md`; all tuning lives in `src/components/three/orbitConfig.ts`.
 - **Project Lineup (`ProjectLineup.tsx`):**
   - Modeled after `getartcraft.com`'s "Lineup" section: full-width stacked editorial rows separated by `1px` borders (`border-white/10`), large accented index numbers (`01`–`10`), a discipline pill with its shape marker, plus a monospace role label (e.g. `■ Front-end · Designed & built`) , concise role/impact summary, action links, and clean visual mockups.
 - **Experience & Tech Stack:** Clean editorial timeline for CV history/education/languages and a categorized grid for the tech stack (replacing the heavy multi-canvas `.glb` icons).
 - **Contact (`Contact.tsx`):** No form and no EmailJS. A Server Component with a short intro (one sentence per line), an availability line, the email as a `mailto:` link, and a small client-side copy-to-clipboard button. Social links live only in the footer. A lightweight 3D accent is deferred and may be dropped, since the hero carries the 3D.
-- **Design tokens first:** Define colors, type scale, spacing, and borders as Tailwind v4 `@theme` tokens before building components.
 
 ---
 
@@ -209,16 +198,7 @@ We are merging three eras of work into `src/constants/index.ts` (converting from
 
 **npm is the only package manager.** Never use `yarn`, `pnpm`, or `bun`, and never create `yarn.lock` or `pnpm-lock.yaml`.
 
-| Task                                 | Command                 |
-| ------------------------------------ | ----------------------- |
-| Install dependencies                 | `npm install`           |
-| Add a dependency (after my approval) | `npm install <package>` |
-| Dev server                           | `npm run dev`           |
-| Production build                     | `npm run build`         |
-| Lint                                 | `npm run lint`          |
-| Type check                           | `npx tsc --noEmit`      |
-
-- Check `package.json` scripts before running anything, and tell me if a script above doesn't exist.
+- Check `package.json` scripts before running anything, and tell me if a script you expect doesn't exist.
 - Animation package is **`motion`**. If `framer-motion` appears in `package.json` or any import, flag it to me instead of using it.
 - Don't run `npm audit fix --force`, `npm update`, or `npm install` for new packages without my approval.
 - Don't leave the dev server running in the background after a task.
@@ -257,15 +237,3 @@ Before calling any task complete, verify and report on:
 - Use code blocks with file paths for any code you propose.
 - When you modify files, summarize _what changed and why_ in a few bullets.
 - Point out flaws or risks in my ideas honestly. Don't just agree.
-
----
-
-## 14. First Action Item
-
-Re-read the updated `CLAUDE.md`, acknowledge the merged design direction and strict rules, and present a concise step-by-step plan (following Section 5: Working Agreement) to:
-
-1. Define the Tailwind v4 `@theme` design tokens in `globals.css`.
-2. Migrate `src/constants/index.tsx` to pure TypeScript `src/constants/index.ts` with all CV and portfolio data.
-3. Clean up unused tutorial 3D assets/components and scaffold the new `Hero` + `OrbitalCanvas`.
-
-Wait for my "go" before editing any files.
